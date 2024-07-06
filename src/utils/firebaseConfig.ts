@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -68,4 +69,20 @@ const signUpWithEmail = (email, password) => {
     });
 };
 
-export { auth, signInWithGoogle, signUpWithEmail };
+const signInWithEmail = (email: string, password: string, navigate: any) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log("user", user);
+      navigate("/home");
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("Error Code & Message", errorCode, errorMessage);
+    });
+};
+
+export { auth, signInWithGoogle, signUpWithEmail, signInWithEmail };
