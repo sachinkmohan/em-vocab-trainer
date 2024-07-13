@@ -9,20 +9,23 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest --config jest.config.cjs"
   },
   "dependencies": {
+    "eslint-plugin-jest": "^28.6.0",
     "firebase": "^10.12.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-env": "^7.24.8",
     "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
     "@testing-library/dom": "^10.3.1",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
@@ -40,7 +43,8 @@
     "postcss": "^8.4.39",
     "react-test-renderer": "^18.3.1",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.2.2",
+    "ts-jest": "^29.2.2",
+    "typescript": "^5.5.3",
     "vite": "^5.3.1"
   }
 }

@@ -1,5 +1,6 @@
 {
   "files": [],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.app.json"
@@ -9,6 +10,21 @@
     }
   ],
   "compilerOptions": {
-    "types": ["jest"]
+    "types": ["jest"],
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   }
 }
