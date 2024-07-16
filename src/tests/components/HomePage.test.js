@@ -1,5 +1,11 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import HomePage from "../../components/HomePage.tsx";
+import { addDoc, collection } from "firebase/firestore";
+
+jest.mock("firebase/firestore", () => ({
+  addDoc: jest.fn(),
+  collection: jest.fn(),
+}));
 
 describe("add a new word to the mainWords collection", () => {
   beforeEach(() => {
@@ -28,13 +34,15 @@ describe("add a new word to the mainWords collection", () => {
     ]);
   });
 
-  test("should add a new word to the mainWords collection", () => {
+  test("should add a new word to the mainWords collection", async () => {
     render(<HomePage />);
 
     const wordInput = screen.getByPlaceholderText("Enter words");
     const addButton = screen.getByText("Add Words");
 
     console.log = jest.fn();
+
+    addDoc.mockResolvedValue({ id: "mocDocId" });
 
     // simulate user typing comma-seperated words
     fireEvent.change(wordInput, {
@@ -43,10 +51,24 @@ describe("add a new word to the mainWords collection", () => {
       },
     });
     fireEvent.click(addButton);
-    expect(console.log).toHaveBeenLastCalledWith([
-      { figureOfSpeech: " verb", translation: " sleep", word: "orangu" },
-      { figureOfSpeech: "verb", translation: "laughed", word: "chirichu" },
-      { figureOfSpeech: "verb", translation: "cried", word: "karanju" },
-    ]);
+
+    await waitFor(() => {
+      expect(addDoc).toHaveBeenCalledTimes(3);
+      expect(addDoc).toHaveBeenCalledWith(expect.anything(), {
+        words: "orangu",
+        translation: " sleep",
+        figureOfSpeech: " verb",
+      });
+      expect(addDoc).toHaveBeenCalledWith(expect.anything(), {
+        words: "chirichu",
+        translation: "laughed",
+        figureOfSpeech: "verb",
+      });
+      expect(addDoc).toHaveBeenCalledWith(expect.anything(), {
+        words: "karanju",
+        translation: "cried",
+        figureOfSpeech: "verb",
+      });
+    });
   });
 });

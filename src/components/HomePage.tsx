@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { db } from "../utils/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -7,10 +9,22 @@ const HomePage = () => {
     setInputValue(event.target.value);
   };
 
-  const addWordsToMainWordsDB = () => {
-    const words = inputValue.split("\n");
-    // add words to array of objects in the format {word: "word", translation: "translation", figureOfSpeech: "figureOfSpeech"}
-    const wordsArray = words.map((w) => {
+  interface Entry {
+    word: string;
+    translation: string;
+    figureOfSpeech: string;
+  }
+
+  const addEntriesToFSDB = async (ent: Entry) => {
+    const wordsCollection = collection(db, "mainWords");
+    const docRef = await addDoc(wordsCollection, ent);
+
+    console.log("Document written with ID: ", docRef.id);
+  };
+
+  const addEntries = async () => {
+    const entry = inputValue.split("\n");
+    const entryArray: Entry[] = entry.map((w) => {
       const [word, translation, figureOfSpeech] = w.split(",");
       return {
         word,
@@ -18,8 +32,17 @@ const HomePage = () => {
         figureOfSpeech,
       };
     });
-    console.log(wordsArray);
+
+    try {
+      await Promise.all(entryArray.map((ent) => addEntriesToFSDB(ent)));
+      console.log("all words added successfully");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    } finally {
+      setInputValue("");
+    }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-lg space-y-4" data-testid="home-page">
@@ -33,7 +56,7 @@ const HomePage = () => {
           <button
             type="button"
             className=" bg-blue-500 hover:bg-blue-700 text-white rounded-md px-4 py-2 ml-4"
-            onClick={addWordsToMainWordsDB}
+            onClick={addEntries}
           >
             Add Words
           </button>
