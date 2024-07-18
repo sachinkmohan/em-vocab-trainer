@@ -10,9 +10,9 @@
     }
   ],
   "compilerOptions": {
-    "types": ["jest"],
-    "target": "es5",
-    "module": "commonjs",
+    "types": ["jest", "node"],
+    "target": "es2020",
+    "module": "es2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { db } from "../utils/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+import { DocumentReference } from "firebase/firestore/lite";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -17,7 +18,10 @@ const HomePage = () => {
 
   const addEntriesToFSDB = async (ent: Entry) => {
     const wordsCollection = collection(db, "mainWords");
-    const docRef = await addDoc(wordsCollection, ent);
+    const docRef = (await addDoc(
+      wordsCollection,
+      ent
+    )) as DocumentReference<Entry>;
 
     console.log("Document written with ID: ", docRef.id);
   };
