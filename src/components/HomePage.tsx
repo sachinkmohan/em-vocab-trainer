@@ -55,6 +55,7 @@ const HomePage = () => {
           rows={10}
           placeholder="Enter words"
           onChange={handleInputChange}
+          value={inputValue}
         />
         <div className="flex justify-center">
           <button

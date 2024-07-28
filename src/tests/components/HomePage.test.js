@@ -48,6 +48,10 @@ describe("add a new word to the mainWords collection", () => {
       translation: "hello",
       figureOfSpeech: "noun",
     });
+
+    await waitFor(() => {
+      expect(wordInput.value).toBe("");
+    });
     // expect(console.log).toHaveBeenLastCalledWith([
     //   { figureOfSpeech: " noun", translation: " hello", word: "namaskaram" },
     // ]);
@@ -88,6 +92,10 @@ describe("add a new word to the mainWords collection", () => {
         translation: "cried",
         figureOfSpeech: "verb",
       });
+    });
+
+    await waitFor(() => {
+      expect(wordInput.value).toBe("");
     });
   });
 });
