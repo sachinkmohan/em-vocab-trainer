@@ -24,7 +24,9 @@ describe("add a new word to the mainWords collection", () => {
   test("should add a new word to the mainWords collection", async () => {
     render(<HomePage />);
 
-    const wordInput = screen.getByPlaceholderText("Enter words");
+    const wordInput = screen.getByPlaceholderText(
+      "word, translation, figure of speech"
+    );
     const addButton = screen.getByText("Add Words");
 
     console.log = jest.fn();
@@ -60,7 +62,9 @@ describe("add a new word to the mainWords collection", () => {
   test("should add a new word to the mainWords collection", async () => {
     render(<HomePage />);
 
-    const wordInput = screen.getByPlaceholderText("Enter words");
+    const wordInput = screen.getByPlaceholderText(
+      "word, translation, figure of speech"
+    );
     const addButton = screen.getByText("Add Words");
 
     console.log = jest.fn();

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { db } from "../utils/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { DocumentReference } from "firebase/firestore/lite";
+import { ToastContainer, toast } from "react-toastify";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -40,8 +41,14 @@ const HomePage = () => {
     try {
       await Promise.all(entryArray.map((ent) => addEntriesToFSDB(ent)));
       console.log("all words added successfully");
+      toast.success("Words added successfully", {
+        position: "top-right",
+      });
     } catch (e) {
       console.error("Error adding document: ", e);
+      toast.error("Error adding words", {
+        position: "top-right",
+      });
     } finally {
       setInputValue("");
     }
@@ -53,7 +60,7 @@ const HomePage = () => {
         <textarea
           className="w-full border  border-gray-300 rounded-md "
           rows={10}
-          placeholder="Enter words"
+          placeholder="word, translation, figure of speech"
           onChange={handleInputChange}
           value={inputValue}
         />
@@ -67,6 +74,7 @@ const HomePage = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
