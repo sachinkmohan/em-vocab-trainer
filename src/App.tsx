@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import MainHomePage from "./pages/MainHomePage";
+import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
 
 const router = createBrowserRouter(
@@ -14,7 +15,10 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<MainLayout />}>
-        <Route index element={<MainHomePage />} />)
+        <Route index element={<MainHomePage />} />
+      </Route>
+      <Route path="/library" element={<MainLayout />}>
+        <Route index element={<LibraryOfWords />} />
       </Route>
     </>
   )
