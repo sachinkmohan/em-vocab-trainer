@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignIn = (e) => {
+  const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
     signInWithEmail(email, password, navigate);
   };
