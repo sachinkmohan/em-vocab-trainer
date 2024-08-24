@@ -1,50 +1,51 @@
 import { useState, useEffect } from "react";
 import { db } from "../utils/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  limit,
+  orderBy,
+  startAfter,
+} from "firebase/firestore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 const WordList = () => {
-  const wordsDummy = {
-    words: [
-      {
-        id: 1,
-        word: "parippu",
-        meaning: "dal",
-      },
-      {
-        id: 2,
-        word: "thakkali",
-        meaning: "tomato",
-      },
-      {
-        id: 3,
-        word: "pachadi",
-        meaning: "pickle",
-      },
-    ],
-  };
-  // const [words, setWords] = useState([]);
+  const [words, setWords] = useState([]);
+  const [lastVisible, setLastVisible] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchWords = async () => {
-  //     try {
-  //       const querySnapshot = await getDocs(collection(db, "mainWords"));
-  //       const wordsList = querySnapshot.docs.map((doc) => doc.data());
-  //       setWords(wordsList);
-  //       console.log(wordsList);
-  //     } catch (e) {
-  //       console.error("Error fetching documents: ", e);
-  //     }
-  //   };
-  //   fetchWords();
-  // }, []);
+  const fetchWords = async (lastVisible) => {
+    setLoading(true);
+    try {
+      let q;
+      if (lastVisible) {
+        q = query(
+          collection(db, "mainWords"),
+          orderBy("id"),
+          startAfter(lastVisible),
+          limit(10)
+        );
+      } else {
+        q = query(
+          collection(db, "mainWords"),
+          orderBy("figureOfSpeech"),
+          limit(10)
+        );
+      }
+      const querySnapshot = await getDocs(q);
+      console.log("QUERY SNAPSHOT", querySnapshot.docs);
+    } catch (e) {
+      console.log("ERROR fetching documents", e);
+    }
+  };
 
   return (
     <>
       <div className="p-4">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {wordsDummy.words.map((word) => {
+        {/* <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {{words : [ id: "blah", ]}.map((word) => {
             return (
               <li
                 key={word.id}
@@ -58,8 +59,16 @@ const WordList = () => {
                 />
               </li>
             );
-          })}
-        </ul>
+          })} */}
+        {/* </ul> */}
+        <p>Dummy Words</p>
+        <button
+          onClick={() => fetchWords(lastVisible)}
+          className="bg-blue-500 text-white p-2 rounded"
+        >
+          {" "}
+          lol
+        </button>
       </div>
     </>
   );
