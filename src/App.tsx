@@ -9,6 +9,7 @@ import {
 import MainHomePage from "./pages/MainHomePage";
 import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
+import { WordsProvider } from "./components/helpers/WordsContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +26,11 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <WordsProvider>
+      <RouterProvider router={router} />
+    </WordsProvider>
+  );
 };
 
 export default App;
