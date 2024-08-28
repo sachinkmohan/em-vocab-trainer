@@ -1,10 +1,28 @@
 import { useWords } from "../components/helpers/WordsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { useState, useRef } from "react";
+
+interface Word {
+  word: string;
+  translation: string;
+}
 
 const WordList = () => {
-  const words = useWords();
-  console.log(words);
+  const words: Word[] = useWords() || [];
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+
+  const [selectedTranslation, setSelectedTranslation] = useState("");
+
+  const handleIconClick = (translation: string) => {
+    setSelectedTranslation(translation);
+    dialogRef.current?.showModal();
+  };
+
+  const closeDialog = () => {
+    dialogRef.current?.close();
+    setSelectedTranslation("");
+  };
 
   return (
     <>
@@ -21,12 +39,19 @@ const WordList = () => {
                 <FontAwesomeIcon
                   icon={faInfoCircle}
                   className="text-blue-500"
+                  onClick={() => handleIconClick(word.translation)}
                 />
               </li>
             );
           })}
         </ul>
       </div>
+
+      <dialog ref={dialogRef}>
+        <h2>Word Meaning</h2>
+        <p>{selectedTranslation}</p>
+        <button onClick={closeDialog}>Close</button>
+      </dialog>
     </>
   );
 };
