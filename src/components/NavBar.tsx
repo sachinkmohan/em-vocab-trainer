@@ -3,7 +3,7 @@ const NavBar = () => {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "bg-black text-white hover:bg-gray-900"
-      : "text-white hover:bg-gray-900 ";
+      : "text-black hover:bg-gray-900 ";
 
   return (
     <div className="mx-auto max-w-7xl px-2 ">
@@ -12,7 +12,9 @@ const NavBar = () => {
           <NavLink to="/home" className={linkClass}>
             Home
           </NavLink>
-          <NavLink to="/profile">Profile</NavLink>
+          <NavLink to="/library" className={linkClass}>
+            Library
+          </NavLink>
         </div>
       </div>
     </div>
