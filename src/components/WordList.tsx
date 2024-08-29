@@ -1,7 +1,8 @@
 import { useWords } from "../components/helpers/WordsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef } from "react";
+import WordDetails from "./words/WordDetails";
 
 interface Word {
   word: string;
@@ -47,18 +48,11 @@ const WordList = () => {
         </ul>
       </div>
 
-      <dialog
+      <WordDetails
         ref={dialogRef}
-        className="relative bg-white p-4 rounded shadow-lg w-[375px] h-[375px]"
-      >
-        <h2>Word Meaning</h2>
-        <p>{selectedTranslation}</p>
-        <FontAwesomeIcon
-          className="absolute top-2 right-2 text-rose-300 text-2xl"
-          icon={faCircleXmark}
-          onClick={closeDialog}
-        />
-      </dialog>
+        selectedTranslation={selectedTranslation}
+        closeDialog={closeDialog}
+      />
     </>
   );
 };
