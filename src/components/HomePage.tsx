@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { db } from "../utils/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
-import { DocumentReference } from "firebase/firestore/lite";
 import { ToastContainer, toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,19 +16,9 @@ const HomePage = () => {
     figureOfSpeech: string;
   }
 
-  const addEntriesToFSDB = async (ent: Entry) => {
-    const wordsCollection = collection(db, "mainWords");
-    const docRef = (await addDoc(
-      wordsCollection,
-      ent
-    )) as DocumentReference<Entry>;
-
-    console.log("Document written with ID: ", docRef.id);
-  };
-
   const addEntriesToLocalJSON = async (ent: Entry) => {
     try {
-      const res = await fetch("http://localhost:5174/words", {
+      await fetch("http://localhost:5174/words", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
