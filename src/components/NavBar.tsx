@@ -1,5 +1,20 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 const NavBar = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "bg-black text-white hover:bg-gray-900"
@@ -16,6 +31,11 @@ const NavBar = () => {
             Library
           </NavLink>
         </div>
+        <FontAwesomeIcon
+          className="px-4"
+          icon={faSignOutAlt}
+          onClick={handleLogout}
+        />
       </div>
     </div>
   );

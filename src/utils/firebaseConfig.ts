@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -47,8 +48,9 @@ const signInWithEmail = (email: string, password: string, navigate: any) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log("user", user);
       navigate("/home");
+      localStorage.setItem("userEmail", user.email ?? "");
+
       // ...
     })
     .catch((error) => {
