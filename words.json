@@ -4,13 +4,45 @@
       "word": "kalikkuka",
       "meaning": "to play",
       "figureOfSpeech": "verb",
-      "sentence": "Njan kalikkukka aanu - I am playing"
+      "sentence": "Njan kalikkukka aanu - I am playing",
+      "id": "9f03"
     },
     {
       "word": "chirikkuka",
       "meaning": "to laugh",
       "figureOfSpeech": "verb",
-      "sentence": "Njan chirikkuka aanu - I am laughing"
+      "sentence": "Njan chirikkuka aanu - I am laughing",
+      "id": "a99b"
+    },
+    {
+      "id": "f0ef",
+      "word": "padikkuka",
+      "translation": " to study",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "1d1a",
+      "word": "chinthikukka",
+      "translation": " to study",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "d623",
+      "word": "irikkuka",
+      "translation": " to study",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
+      "word": "eneekukka",
+      "translation": "to stand up",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "595ae022-4413-4371-92a4-a8df5773203b",
+      "word": "eneekukka",
+      "translation": "to stand up",
+      "figureOfSpeech": " verb"
     }
   ]
 }
