@@ -1,7 +1,7 @@
 // import { useWords } from "../components/helpers/WordsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState, useRef, useEffect } from "react";
+import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useState, useRef } from "react";
 import WordDetails from "./words/WordDetails";
 
 interface Word {
@@ -17,6 +17,7 @@ const WordList = () => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
+  const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +42,10 @@ const WordList = () => {
     setSelectedTranslation("");
   };
 
+  const handleFavoriteClick = () => {
+    setIsFavorited(!isFavorited);
+  };
+
   return (
     <>
       <div className="p-4">
@@ -53,11 +58,18 @@ const WordList = () => {
               >
                 {" "}
                 {word.word}{" "}
-                <FontAwesomeIcon
-                  icon={faInfoCircle}
-                  className="text-blue-500"
-                  onClick={() => handleIconClick(word.translation)}
-                />
+                <div className="flex justify-around gap-6 pr-4">
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className={isFavorited ? "text-red-500" : "text-gray-500"}
+                    onClick={() => handleFavoriteClick()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faInfoCircle}
+                    className="text-blue-500"
+                    onClick={() => handleIconClick(word.translation)}
+                  />
+                </div>
               </li>
             );
           })}
