@@ -5,7 +5,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = (e) => {
+  const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     signUpWithEmail(email, password);
   };
