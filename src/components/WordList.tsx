@@ -1,19 +1,35 @@
-import { useWords } from "../components/helpers/WordsContext";
+// import { useWords } from "../components/helpers/WordsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 
 interface Word {
   word: string;
-  translation: string;
+  meaning: string;
+  figureOfSpeech: string;
+  exampleSentence: string;
 }
 
 const WordList = () => {
-  const words: Word[] = useWords() || [];
+  // const words: Word[] = useWords() || [];
+  const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:5174/words");
+        const data = await response.json();
+        setWords(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleIconClick = (translation: string) => {
     setSelectedTranslation(translation);

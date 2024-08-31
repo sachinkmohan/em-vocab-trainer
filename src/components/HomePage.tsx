@@ -3,6 +3,7 @@ import { db } from "../utils/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { DocumentReference } from "firebase/firestore/lite";
 import { ToastContainer, toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -12,6 +13,7 @@ const HomePage = () => {
   };
 
   interface Entry {
+    id: string;
     word: string;
     translation: string;
     figureOfSpeech: string;
@@ -27,11 +29,26 @@ const HomePage = () => {
     console.log("Document written with ID: ", docRef.id);
   };
 
+  const addEntriesToLocalJSON = async (ent: Entry) => {
+    try {
+      const res = await fetch("http://localhost:5174/words", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ent),
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   const addEntries = async () => {
     const entry = inputValue.split("\n");
     const entryArray: Entry[] = entry.map((w) => {
       const [word, translation, figureOfSpeech] = w.split(",");
       return {
+        id: uuidv4(),
         word,
         translation,
         figureOfSpeech,
@@ -39,7 +56,7 @@ const HomePage = () => {
     });
 
     try {
-      await Promise.all(entryArray.map((ent) => addEntriesToFSDB(ent)));
+      await Promise.all(entryArray.map((ent) => addEntriesToLocalJSON(ent)));
       console.log("all words added successfully");
       toast.success("Words added successfully", {
         position: "top-right",
