@@ -1,10 +1,12 @@
-// import { useWords } from "../components/helpers/WordsContext";
+import { db } from "../utils/firebaseConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
+import { doc, collection, addDoc } from "firebase/firestore";
 
 interface Word {
+  id: string;
   word: string;
   meaning: string;
   figureOfSpeech: string;
@@ -12,11 +14,12 @@ interface Word {
 }
 
 const WordList = () => {
-  // const words: Word[] = useWords() || [];
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
+  const [email, setEmail] = useState<string | null>(null);
+
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
@@ -32,8 +35,13 @@ const WordList = () => {
     fetchData();
   }, []);
 
-  const handleIconClick = (translation: string) => {
-    setSelectedTranslation(translation);
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("userEmail");
+    setEmail(storedEmail);
+  }, []);
+
+  const handleIconClick = (meaning: string) => {
+    setSelectedTranslation(meaning);
     dialogRef.current?.showModal();
   };
 
@@ -42,18 +50,30 @@ const WordList = () => {
     setSelectedTranslation("");
   };
 
-  const handleFavoriteClick = () => {
-    setIsFavorited(!isFavorited);
+  const handleFavoriteClick = async (WordId: string) => {
+    try {
+      const userDocRef = doc(db, "users", email ?? "");
+      const favoriteWordIDsCollectionRef = collection(
+        userDocRef,
+        "favoriteWordIDs"
+      );
+      // add WordId to favoriteWordIDsCollectionRef
+
+      await addDoc(favoriteWordIDsCollectionRef, { WordId });
+      console.log("Word added to favorites");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   return (
     <>
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {words.map((word, index) => {
+          {words.map((word) => {
             return (
               <li
-                key={index}
+                key={word.id}
                 className="flex justify-between items-center border border-blue-300"
               >
                 {" "}
@@ -62,12 +82,12 @@ const WordList = () => {
                   <FontAwesomeIcon
                     icon={faHeart}
                     className={isFavorited ? "text-red-500" : "text-gray-500"}
-                    onClick={() => handleFavoriteClick()}
+                    onClick={() => handleFavoriteClick(word.id)}
                   />
                   <FontAwesomeIcon
                     icon={faInfoCircle}
                     className="text-blue-500"
-                    onClick={() => handleIconClick(word.translation)}
+                    onClick={() => handleIconClick(word.meaning)}
                   />
                 </div>
               </li>
