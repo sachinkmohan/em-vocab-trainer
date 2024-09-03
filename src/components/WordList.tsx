@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
-import { doc, collection, addDoc } from "firebase/firestore";
+import { doc, collection, addDoc, getDocs } from "firebase/firestore";
 
 interface Word {
   id: string;
@@ -20,7 +20,7 @@ const WordList = () => {
   const [selectedTranslation, setSelectedTranslation] = useState("");
   const [email, setEmail] = useState<string | null>(null);
 
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +66,30 @@ const WordList = () => {
     }
   };
 
+  const fetchFavoriteWords = async () => {
+    if (!email) {
+      return;
+    }
+    try {
+      const userDocRef = doc(db, "users", email ?? "");
+      const favoriteWordIDsCollectionRef = collection(
+        userDocRef,
+        "favoriteWordIDs"
+      );
+
+      const querySnapshot = await getDocs(favoriteWordIDsCollectionRef);
+      const favoriteWords = querySnapshot.docs.map((doc) => doc.data().WordId);
+      setFavoriteWords(favoriteWords);
+      console.log("Favorite words fetched: ", favoriteWords);
+    } catch (e) {
+      console.error("Error fetching favorite words: ", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchFavoriteWords();
+  }, [email]);
+
   return (
     <>
       <div className="p-4">
@@ -81,7 +105,11 @@ const WordList = () => {
                 <div className="flex justify-around gap-6 pr-4">
                   <FontAwesomeIcon
                     icon={faHeart}
-                    className={isFavorited ? "text-red-500" : "text-gray-500"}
+                    className={
+                      favoriteWords.includes(word.id)
+                        ? "text-red-500"
+                        : "text-gray-500"
+                    }
                     onClick={() => handleFavoriteClick(word.id)}
                   />
                   <FontAwesomeIcon
