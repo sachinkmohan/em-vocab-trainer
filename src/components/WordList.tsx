@@ -3,7 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
-import { doc, collection, addDoc, getDocs } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+
+import {
+  doc,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  query,
+  where,
+} from "firebase/firestore";
 
 interface Word {
   id: string;
@@ -57,10 +67,31 @@ const WordList = () => {
         userDocRef,
         "favoriteWordIDs"
       );
-      // add WordId to favoriteWordIDsCollectionRef
 
-      await addDoc(favoriteWordIDsCollectionRef, { WordId });
-      console.log("Word added to favorites");
+      // Optimistically update the local state
+      setFavoriteWords((prevFavorites) => {
+        if (prevFavorites.includes(WordId)) {
+          return prevFavorites.filter((id) => id !== WordId);
+        } else {
+          return [...prevFavorites, WordId];
+        }
+      });
+
+      if (favoriteWords.includes(WordId)) {
+        // Remove from firestore
+        const q = query(
+          favoriteWordIDsCollectionRef,
+          where("WordId", "==", WordId)
+        );
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+          toast.error("Word removed from favorites");
+        });
+      } else {
+        await addDoc(favoriteWordIDsCollectionRef, { WordId });
+        toast.success("Word added to favorites");
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -129,6 +160,7 @@ const WordList = () => {
         selectedTranslation={selectedTranslation}
         closeDialog={closeDialog}
       />
+      <ToastContainer />
     </>
   );
 };
