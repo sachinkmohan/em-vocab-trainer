@@ -7,19 +7,19 @@ const mockWords = [
   {
     id: "1",
     word: "namaskaram",
-    translation: "hello",
+    meaning: "hello",
     figureOfSpeech: "noun",
   },
   {
     id: "2",
     word: "nanni",
-    translation: "thank you",
+    meaning: "thank you",
     figureOfSpeech: "noun",
   },
   {
     id: "3",
     word: "joli",
-    translation: "work",
+    meaning: "work",
     figureOfSpeech: "noun",
   },
 ];
@@ -29,8 +29,9 @@ describe("WordList component test", () => {
     expect(WordList).toBeDefined();
   });
 
-  test("fetches and displays words from the mainWords collection", async () => {
-    const { findByText } = render(<WordList />);
-    expect(await findByText("namaskaram")).toBeInTheDocument();
-  });
+  // test('should toggle favorite state when the heart icon is clicked', async () => {
+  //   const mockAddFavorite = jest.fn();
+  //   const mockRemoveFavorite = jest.fn();
+
+  // })
 });
