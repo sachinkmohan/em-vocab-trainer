@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
-  const [email, setEmail] = useState<string | null>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
@@ -16,11 +15,6 @@ const HomePage = () => {
     translation: string;
     figureOfSpeech: string;
   }
-
-  useEffect(() => {
-    const storedEmail = localStorage.getItem("userEmail");
-    setEmail(storedEmail);
-  }, []);
 
   const addEntriesToLocalJSON = async (ent: Entry) => {
     try {
@@ -83,7 +77,6 @@ const HomePage = () => {
             Add Words
           </button>
         </div>
-        <div>{email}</div>
       </div>
       <ToastContainer />
     </div>
