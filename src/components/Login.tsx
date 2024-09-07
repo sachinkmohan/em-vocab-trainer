@@ -52,6 +52,7 @@ const Login = () => {
           <button
             type="button"
             className="w-full mt-4 bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors"
+            onClick={() => navigate("/signup")}
           >
             Create new account
           </button>
