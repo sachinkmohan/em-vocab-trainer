@@ -125,7 +125,7 @@ const SignUp = () => {
             )}
           </div>
 
-          <div className="py-2">
+          <div className="py-1">
             <input
               type="password"
               placeholder="Repeat Password"
@@ -141,7 +141,7 @@ const SignUp = () => {
           <button
             type="submit"
             onClick={handleSignUp}
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+            className="w-full bg-blue-500 text-white py-2 mt-1 rounded-md hover:bg-blue-600 transition-colors"
           >
             Sign Up
           </button>
