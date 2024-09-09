@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -28,20 +28,45 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-const signUpWithEmail = (email: string, password: string) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-      console.log(user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      // ..
-    });
+const signUpWithEmail = async (
+  email: string,
+  password: string,
+  nickname: string,
+  name: string,
+  learningLanguage: string,
+  languageLevel: string,
+  navigate: any
+) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    if (learningLanguage === "malayalam") {
+      await setDoc(doc(db, "usersMalayalam", user.uid), {
+        email,
+        nickname,
+        name,
+        learningLanguage,
+        languageLevel,
+      });
+      navigate("/home");
+    } else {
+      await setDoc(doc(db, "usersKannada", user.uid), {
+        email,
+        nickname,
+        name,
+        learningLanguage,
+        languageLevel,
+      });
+      navigate("/home");
+    }
+  } catch (error) {
+    console.error("Error during sign up:", error);
+  }
 };
 
 const signInWithEmail = (

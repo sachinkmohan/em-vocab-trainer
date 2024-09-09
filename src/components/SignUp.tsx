@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { signUpWithEmail } from "../utils/firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -11,12 +13,24 @@ const SignUp = () => {
   const [languageLevel, setLanguageLevel] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Sign up successful");
-      alert("Sign up successful");
+      try {
+        await signUpWithEmail(
+          email,
+          password,
+          nickname,
+          name,
+          learningLanguage,
+          languageLevel,
+          navigate
+        );
+        alert("Sign up successful");
+      } catch (error) {
+        console.error("Error during sign up in signup page:", error);
+      }
     } else {
       setErrors(validationErrors);
     }
