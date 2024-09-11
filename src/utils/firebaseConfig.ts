@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { NavigateFunction } from "react-router-dom";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -43,7 +44,11 @@ const signUpWithEmail = (email: string, password: string) => {
     });
 };
 
-const signInWithEmail = (email: string, password: string, navigate: any) => {
+const signInWithEmail = (
+  email: string,
+  password: string,
+  navigate: NavigateFunction
+) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
