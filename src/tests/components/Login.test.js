@@ -2,7 +2,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/dom";
 import Login from "../../components/Login";
 import { signInWithEmail } from "../../utils/firebaseConfig";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // Mocking the signInWithEmail function and useNavigate function
 jest.mock("../../utils/firebaseConfig", () => ({
