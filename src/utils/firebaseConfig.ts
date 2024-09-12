@@ -35,7 +35,7 @@ const signUpWithEmail = async (
   name: string,
   learningLanguage: string,
   languageLevel: string,
-  navigate: any
+  navigate: NavigateFunction
 ) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
