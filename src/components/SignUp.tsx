@@ -18,6 +18,7 @@ const SignUp = () => {
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
       try {
+        const initialRoles = ["user"];
         await signUpWithEmail(
           email,
           password,
@@ -25,6 +26,7 @@ const SignUp = () => {
           name,
           learningLanguage,
           languageLevel,
+          initialRoles,
           navigate
         );
         alert("Sign up successful");

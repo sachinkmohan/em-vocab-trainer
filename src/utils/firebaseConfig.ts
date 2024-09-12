@@ -35,6 +35,7 @@ const signUpWithEmail = async (
   name: string,
   learningLanguage: string,
   languageLevel: string,
+  roles: string[],
   navigate: NavigateFunction
 ) => {
   try {
@@ -46,21 +47,23 @@ const signUpWithEmail = async (
     const user = userCredential.user;
 
     if (learningLanguage === "malayalam") {
-      await setDoc(doc(db, "usersMalayalam", user.uid), {
+      await setDoc(doc(db, "usersMalayalam", user.uid, "userData", "profile"), {
         email,
         nickname,
         name,
         learningLanguage,
         languageLevel,
+        roles,
       });
       navigate("/home");
     } else {
-      await setDoc(doc(db, "usersKannada", user.uid), {
+      await setDoc(doc(db, "usersKannada", user.uid, "userData", "profile"), {
         email,
         nickname,
         name,
         learningLanguage,
         languageLevel,
+        roles,
       });
       navigate("/home");
     }
