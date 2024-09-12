@@ -1,4 +1,4 @@
-// import SignUp from "./components/SignUp";
+import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import {
   Route,
@@ -15,6 +15,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/home" element={<MainLayout />}>
         <Route index element={<MainHomePage />} />
       </Route>
