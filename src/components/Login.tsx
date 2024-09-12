@@ -15,7 +15,9 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white  p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          🇮🇳 Vocab Trainer 🇮🇳
+        </h2>
         <form onSubmit={handleSignIn}>
           <div>
             <input
@@ -41,7 +43,18 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
           >
-            Login In
+            Login
+          </button>
+
+          {/* Divider */}
+          <div className="my-4 border-t border-gray-300"></div>
+
+          <button
+            type="button"
+            className="w-full mt-4 bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors"
+            onClick={() => navigate("/signup")}
+          >
+            Create new account
           </button>
         </form>
       </div>
