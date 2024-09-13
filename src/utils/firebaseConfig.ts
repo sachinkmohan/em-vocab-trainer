@@ -46,27 +46,18 @@ const signUpWithEmail = async (
     );
     const user = userCredential.user;
 
-    if (learningLanguage === "malayalam") {
-      await setDoc(doc(db, "usersMalayalam", user.uid, "userData", "profile"), {
+    await setDoc(
+      doc(db, "users", user.uid, `${learningLanguage}`, "userData"),
+      {
         email,
         nickname,
         name,
         learningLanguage,
         languageLevel,
         roles,
-      });
-      navigate("/home");
-    } else {
-      await setDoc(doc(db, "usersKannada", user.uid, "userData", "profile"), {
-        email,
-        nickname,
-        name,
-        learningLanguage,
-        languageLevel,
-        roles,
-      });
-      navigate("/home");
-    }
+      }
+    );
+    navigate("/library");
   } catch (error) {
     console.error("Error during sign up:", error);
   }
@@ -81,7 +72,7 @@ const signInWithEmail = (
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      navigate("/home");
+      navigate("/library");
       localStorage.setItem("userEmail", user.email ?? "");
 
       // ...
