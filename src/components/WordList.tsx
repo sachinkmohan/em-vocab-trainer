@@ -4,6 +4,7 @@ import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
+import wordsData from "../../words.json";
 
 import {
   doc,
@@ -20,9 +21,9 @@ import { useUserData } from "./helpers/UserDataContext";
 interface Word {
   id: string;
   word: string;
-  meaning: string;
+  translation: string;
   figureOfSpeech: string;
-  exampleSentence: string;
+  exampleSentence?: string;
 }
 
 const WordList = () => {
@@ -36,16 +37,7 @@ const WordList = () => {
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5174/words");
-        const data = await response.json();
-        setWords(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-    fetchData();
+    setWords(wordsData.words);
   }, []);
 
   useEffect(() => {
@@ -170,7 +162,7 @@ const WordList = () => {
                   <FontAwesomeIcon
                     icon={faInfoCircle}
                     className="text-blue-500"
-                    onClick={() => handleIconClick(word.meaning)}
+                    onClick={() => handleIconClick(word.translation)}
                   />
                 </div>
               </li>
