@@ -176,7 +176,7 @@ const WordList = () => {
         selectedTranslation={selectedTranslation}
         closeDialog={closeDialog}
       />
-      <ToastContainer />
+      <ToastContainer closeOnClick autoClose={2000} />
     </>
   );
 };
