@@ -2,8 +2,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { useUserData } from "./helpers/UserDataContext";
 
 const NavBar = () => {
+  const { roles } = useUserData();
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -24,9 +26,12 @@ const NavBar = () => {
     <div className="mx-auto max-w-7xl px-2 ">
       <div className="flex h-20 items-center justify-between">
         <div className="flex flex-1 items-center space-x-4">
-          <NavLink to="/home" className={linkClass}>
-            Home
-          </NavLink>
+          {roles && !roles.includes("user") && (
+            <NavLink to="/home" className={linkClass}>
+              Home
+            </NavLink>
+          )}
+
           <NavLink to="/library" className={linkClass}>
             Library
           </NavLink>

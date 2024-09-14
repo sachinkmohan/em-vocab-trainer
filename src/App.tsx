@@ -9,7 +9,7 @@ import {
 import MainHomePage from "./pages/MainHomePage";
 import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
-// import { UserDataPovider } from "./components/helpers/UserDataContext";
+import { UserDataProvider } from "./components/helpers/UserDataContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +28,9 @@ const router = createBrowserRouter(
 
 const App = () => {
   return (
-    // <UserDataPovider>
-    <RouterProvider router={router} />
-    // </UserDataPovider>
+    <UserDataProvider>
+      <RouterProvider router={router} />
+    </UserDataProvider>
   );
 };
 

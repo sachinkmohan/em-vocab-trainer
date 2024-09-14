@@ -46,17 +46,15 @@ const signUpWithEmail = async (
     );
     const user = userCredential.user;
 
-    await setDoc(
-      doc(db, "users", user.uid, `${learningLanguage}`, "userData"),
-      {
-        email,
-        nickname,
-        name,
-        learningLanguage,
-        languageLevel,
-        roles,
-      }
-    );
+    await setDoc(doc(db, "users", user.uid), {
+      email,
+      nickname,
+      name,
+      learningLanguage,
+      languageLevel,
+      roles,
+    });
+    console.log("User created successfully:");
     navigate("/library");
   } catch (error) {
     console.error("Error during sign up:", error);

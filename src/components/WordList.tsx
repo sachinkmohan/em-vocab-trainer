@@ -15,6 +15,8 @@ import {
   where,
 } from "firebase/firestore";
 
+import { useUserData } from "./helpers/UserDataContext";
+
 interface Word {
   id: string;
   word: string;
@@ -24,6 +26,7 @@ interface Word {
 }
 
 const WordList = () => {
+  const { name, learningLanguage } = useUserData();
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -140,6 +143,10 @@ const WordList = () => {
 
   return (
     <>
+      <div>
+        <h1> Name: {name}</h1>
+        <h1> Learning Language: {learningLanguage}</h1>
+      </div>
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {words.map((word) => {
