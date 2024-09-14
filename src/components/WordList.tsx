@@ -32,7 +32,7 @@ const WordList = () => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
-  const [email, setEmail] = useState<string | null>(null);
+  const [userID, setUserID] = useState<string | null>(null);
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
 
@@ -41,8 +41,8 @@ const WordList = () => {
   }, []);
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem("userEmail");
-    setEmail(storedEmail);
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
   }, []);
 
   const handleIconClick = (meaning: string) => {
@@ -57,7 +57,7 @@ const WordList = () => {
 
   const handleFavoriteClick = async (WordId: string) => {
     try {
-      const userDocRef = doc(db, "users", email ?? "");
+      const userDocRef = doc(db, "users", userID ?? "");
       const favoriteWordIDsCollectionRef = collection(
         userDocRef,
         "favoriteWordIDs"
@@ -100,11 +100,11 @@ const WordList = () => {
 
   useEffect(() => {
     const fetchFavoriteWords = async () => {
-      if (!email) {
+      if (!userID) {
         return;
       }
       try {
-        const userDocRef = doc(db, "users", email ?? "");
+        const userDocRef = doc(db, "users", userID ?? "");
         const favoriteWordIDsCollectionRef = collection(
           userDocRef,
           "favoriteWordIDs"
@@ -131,7 +131,7 @@ const WordList = () => {
     } else {
       fetchFavoriteWords();
     }
-  }, [email]);
+  }, [userID]);
 
   return (
     <>
