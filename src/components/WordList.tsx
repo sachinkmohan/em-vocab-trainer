@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
 import wordsData from "../../words.json";
+import ReactGA from "react-ga4";
 
 import {
   doc,
@@ -37,6 +38,10 @@ const WordList = () => {
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
 
   useEffect(() => {
+    ReactGA.initialize("G-K25K213J7F");
+  }, []);
+
+  useEffect(() => {
     setWords(wordsData.words);
   }, []);
 
@@ -55,7 +60,7 @@ const WordList = () => {
     setSelectedTranslation("");
   };
 
-  const handleFavoriteClick = async (WordId: string) => {
+  const handleFavoriteClick = async (WordId: string, actualWord: string) => {
     try {
       const userDocRef = doc(db, "users", userID ?? "");
       const favoriteWordIDsCollectionRef = collection(
@@ -88,10 +93,20 @@ const WordList = () => {
         querySnapshot.forEach(async (doc) => {
           await deleteDoc(doc.ref);
           toast.error("Word removed from favorites");
+          ReactGA.event({
+            category: "All Words",
+            action: "Removed from Favorites",
+            label: actualWord,
+          });
         });
       } else {
         await addDoc(favoriteWordIDsCollectionRef, { WordId });
         toast.success("Word added to favorites");
+        ReactGA.event({
+          category: "All Words",
+          action: "Added to Favorites",
+          label: actualWord,
+        });
       }
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -157,7 +172,7 @@ const WordList = () => {
                         ? "text-red-500"
                         : "text-gray-500"
                     }
-                    onClick={() => handleFavoriteClick(word.id)}
+                    onClick={() => handleFavoriteClick(word.id, word.word)}
                   />
                   <FontAwesomeIcon
                     icon={faInfoCircle}
