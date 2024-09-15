@@ -56,6 +56,7 @@ const signUpWithEmail = async (
     });
     console.log("User created successfully:");
     navigate("/library");
+    localStorage.setItem("userID", user.uid ?? "");
   } catch (error) {
     console.error("Error during sign up:", error);
   }
@@ -71,7 +72,7 @@ const signInWithEmail = (
       // Signed in
       const user = userCredential.user;
       navigate("/library");
-      localStorage.setItem("userEmail", user.email ?? "");
+      localStorage.setItem("userID", user.uid ?? "");
 
       // ...
     })
