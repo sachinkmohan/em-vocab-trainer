@@ -4,6 +4,7 @@ import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
+import wordsData from "../../words.json";
 
 import {
   doc,
@@ -20,9 +21,9 @@ import { useUserData } from "./helpers/UserDataContext";
 interface Word {
   id: string;
   word: string;
-  meaning: string;
+  translation: string;
   figureOfSpeech: string;
-  exampleSentence: string;
+  exampleSentence?: string;
 }
 
 const WordList = () => {
@@ -31,26 +32,17 @@ const WordList = () => {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
-  const [email, setEmail] = useState<string | null>(null);
+  const [userID, setUserID] = useState<string | null>(null);
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5174/words");
-        const data = await response.json();
-        setWords(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-    fetchData();
+    setWords(wordsData.words);
   }, []);
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem("userEmail");
-    setEmail(storedEmail);
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
   }, []);
 
   const handleIconClick = (meaning: string) => {
@@ -65,7 +57,7 @@ const WordList = () => {
 
   const handleFavoriteClick = async (WordId: string) => {
     try {
-      const userDocRef = doc(db, "users", email ?? "");
+      const userDocRef = doc(db, "users", userID ?? "");
       const favoriteWordIDsCollectionRef = collection(
         userDocRef,
         "favoriteWordIDs"
@@ -108,11 +100,11 @@ const WordList = () => {
 
   useEffect(() => {
     const fetchFavoriteWords = async () => {
-      if (!email) {
+      if (!userID) {
         return;
       }
       try {
-        const userDocRef = doc(db, "users", email ?? "");
+        const userDocRef = doc(db, "users", userID ?? "");
         const favoriteWordIDsCollectionRef = collection(
           userDocRef,
           "favoriteWordIDs"
@@ -139,7 +131,7 @@ const WordList = () => {
     } else {
       fetchFavoriteWords();
     }
-  }, [email]);
+  }, [userID]);
 
   return (
     <>
@@ -170,7 +162,7 @@ const WordList = () => {
                   <FontAwesomeIcon
                     icon={faInfoCircle}
                     className="text-blue-500"
-                    onClick={() => handleIconClick(word.meaning)}
+                    onClick={() => handleIconClick(word.translation)}
                   />
                 </div>
               </li>
@@ -184,7 +176,7 @@ const WordList = () => {
         selectedTranslation={selectedTranslation}
         closeDialog={closeDialog}
       />
-      <ToastContainer />
+      <ToastContainer closeOnClick autoClose={2000} />
     </>
   );
 };
