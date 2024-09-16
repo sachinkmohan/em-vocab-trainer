@@ -36,10 +36,15 @@ const WordList = () => {
   const [userID, setUserID] = useState<string | null>(null);
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
+  const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
 
   useEffect(() => {
     ReactGA.initialize("G-K25K213J7F");
   }, []);
+
+  useEffect(() => {
+    setFavoriteWordsCount(favoriteWords.length);
+  }, [favoriteWords]);
 
   useEffect(() => {
     setWords(wordsData.words);
@@ -153,6 +158,13 @@ const WordList = () => {
       <div>
         <h1> Name: {name}</h1>
         <h1> Learning Language: {learningLanguage}</h1>
+        <h1 className="text-xl font-bold text-center text-white mt-8 bg-green-600 rounded-lg shadow-lg mx-2">
+          🫵 have learned{" "}
+          <span className="text-blue-600 text-2xl rounded-full bg-white px-2 py-0">
+            {favoriteWordsCount}
+          </span>{" "}
+          words so far 🥳
+        </h1>
       </div>
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
