@@ -171,33 +171,41 @@ const WordList = () => {
       </div>
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {words.map((word) => {
-            return (
-              <li
-                key={word.id}
-                className="flex justify-between items-center border border-blue-300"
-              >
-                {" "}
-                {word.word}{" "}
-                <div className="flex justify-around gap-6 pr-4">
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className={
-                      favoriteWords.includes(word.id)
-                        ? "text-red-500"
-                        : "text-gray-500"
-                    }
-                    onClick={() => handleFavoriteClick(word.id, word.word)}
-                  />
-                  <FontAwesomeIcon
-                    icon={faInfoCircle}
-                    className="text-blue-500"
-                    onClick={() => handleIconClick(word.translation)}
-                  />
-                </div>
-              </li>
-            );
-          })}
+          {words
+            .toSorted((a: Word, b: Word) => {
+              const aFavorited = favoriteWords.includes(a.id);
+              const bFavorited = favoriteWords.includes(b.id);
+              if (aFavorited && !bFavorited) return 1;
+              if (!aFavorited && bFavorited) return -1;
+              return 0;
+            })
+            .map((word: Word) => {
+              return (
+                <li
+                  key={word.id}
+                  className="flex justify-between items-center border border-blue-300"
+                >
+                  {" "}
+                  {word.word}{" "}
+                  <div className="flex justify-around gap-6 pr-4">
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className={
+                        favoriteWords.includes(word.id)
+                          ? "text-red-500"
+                          : "text-gray-500"
+                      }
+                      onClick={() => handleFavoriteClick(word.id, word.word)}
+                    />
+                    <FontAwesomeIcon
+                      icon={faInfoCircle}
+                      className="text-blue-500"
+                      onClick={() => handleIconClick(word.translation)}
+                    />
+                  </div>
+                </li>
+              );
+            })}
         </ul>
       </div>
 
