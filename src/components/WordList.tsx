@@ -105,7 +105,10 @@ const WordList = () => {
           });
         });
       } else {
-        await addDoc(favoriteWordIDsCollectionRef, { WordId });
+        await addDoc(favoriteWordIDsCollectionRef, {
+          WordId,
+          favoritedAt: new Date().toISOString(),
+        });
         toast.success("Word added to favorites");
         ReactGA.event({
           category: "All Words",
