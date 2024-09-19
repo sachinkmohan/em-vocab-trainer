@@ -12,7 +12,7 @@
     "types": ["jest", "node"],
     "target": "es2020",
     "module": "es2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "ES2023.Array"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
