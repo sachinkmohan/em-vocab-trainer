@@ -44,6 +44,8 @@ const SignUp = () => {
     if (!nickname) errors.nickname = "Nickname is required";
     if (!email) errors.email = "Email is required";
     if (!password) errors.password = "Password is required";
+    if (password.length < 6)
+      errors.password = "Password must be at least 6 characters";
     if (password !== repeatPassword)
       errors.repeatPassword = "Passwords do not match";
     if (!learningLanguage) errors.learningLanguage = "One language is required";
