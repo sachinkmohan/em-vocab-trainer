@@ -5,13 +5,14 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "./helpers/UserDataContext";
 
 const NavBar = () => {
-  const { roles } = useUserData();
+  const { roles, id } = useUserData();
   const navigate = useNavigate();
   const auth = getAuth();
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      localStorage.setItem("prevUserID", id ?? "");
       navigate("/");
     } catch (error) {
       console.error("Error signing out: ", error);
