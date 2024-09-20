@@ -73,7 +73,11 @@ const HomePage = () => {
           <button
             type="button"
             className=" bg-blue-500 hover:bg-blue-700 text-white rounded-md px-4 py-2 ml-4"
-            onClick={addEntries}
+            onClick={() => {
+              if (window.confirm("Are you sure you want to add these words?")) {
+                addEntries();
+              }
+            }}
           >
             Add Words
           </button>
