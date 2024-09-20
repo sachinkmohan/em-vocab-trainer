@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const HomePage = () => {
   const [inputValue, setInputValue] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("malayalam");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
@@ -68,7 +69,7 @@ const HomePage = () => {
           onChange={handleInputChange}
           value={inputValue}
         />
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center">
           <button
             type="button"
             className=" bg-blue-500 hover:bg-blue-700 text-white rounded-md px-4 py-2 ml-4"
@@ -76,6 +77,14 @@ const HomePage = () => {
           >
             Add Words
           </button>
+          <select
+            value={selectedLanguage}
+            onChange={(e) => setSelectedLanguage(e.target.value)}
+            className="ml-4 bg-white border border-gray-300 rounded-md px-4 py-2"
+          >
+            <option value="malayalam">Malayalam</option>
+            <option value="kannada">Kannada</option>
+          </select>
         </div>
       </div>
       <ToastContainer />
