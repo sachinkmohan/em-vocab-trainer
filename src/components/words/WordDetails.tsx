@@ -11,10 +11,12 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
     return (
       <dialog
         ref={ref}
-        className="relative bg-white p-4 rounded shadow-lg w-[375px] h-[375px]"
+        className="relative bg-white p-4 rounded shadow-lg w-[375px] h-[150px]"
       >
-        <h2>Word Meaning</h2>
-        <p>{selectedTranslation}</p>
+        <h2 className="text-xl text-center">Word Meaning</h2>
+        <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-green-200 to-blue-200">
+          {selectedTranslation}
+        </p>
         <FontAwesomeIcon
           className="absolute top-2 right-2 text-rose-300 text-2xl"
           icon={faCircleXmark}
