@@ -13,8 +13,8 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
         ref={ref}
         className="relative bg-white p-4 rounded shadow-lg w-[375px] h-[150px]"
       >
-        <h2 className="text-xl text-center">Word Meaning</h2>
-        <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-green-200 to-blue-200">
+        <h2 className="text-xl text-center ">Word Meaning</h2>
+        <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-green-200 to-blue-200 tracking-wide leading-relaxed ring-2 ring-blue-300">
           {selectedTranslation}
         </p>
         <FontAwesomeIcon
