@@ -1,5 +1,5 @@
 {
-  "words": [
+  "wordsMalayalam": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
       "word": "eneekukka",
@@ -17,6 +17,18 @@
       "word": "adikkukka",
       "translation": "to beat",
       "figureOfSpeech": " verb"
+    },
+    {
+      "id": "c93b83c4-da8b-431b-93ef-af20ec1e83a3",
+      "word": "nokukuka",
+      "translation": " to see",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "2675be2b-8553-4e25-ad38-371ac0b6abd3",
+      "word": "parayuka",
+      "translation": "to tell",
+      "figureOfSpeech": "verb"
     }
   ]
 }
