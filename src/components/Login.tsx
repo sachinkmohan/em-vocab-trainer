@@ -5,11 +5,23 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    signInWithEmail(email, password, navigate);
+    const errorMessage = await signInWithEmail(email, password, navigate);
+    console.log("errorMESSAGE", errorMessage);
+    if (errorMessage) {
+      if (errorMessage === "auth/too-many-requests") {
+        const errorMessageToUser =
+          "Too many failed login attempts. Please try again later.";
+        setError(errorMessageToUser);
+        return;
+      }
+      const errorMessageToUser = "Invalid email or password. Please try again.";
+      setError(errorMessageToUser);
+    }
   };
 
   return (
@@ -45,6 +57,12 @@ const Login = () => {
           >
             Login
           </button>
+
+          {error && (
+            <div className="text-red-700 bg-red-100 p-4 my-4 rounded">
+              {error}
+            </div>
+          )}
 
           {/* Divider */}
           <div className="my-4 border-t border-gray-300"></div>

@@ -4,7 +4,8 @@ import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
-import wordsData from "../../words.json";
+import wordsDataMalayalam from "../../wordsMalayalam.json";
+import wordsDataKannada from "../../wordsKannada.json";
 import ReactGA from "react-ga4";
 
 import {
@@ -34,6 +35,7 @@ const WordList = () => {
 
   const [selectedTranslation, setSelectedTranslation] = useState("");
   const [userID, setUserID] = useState<string | null>(null);
+  const [prevUserID, setPrevUserID] = useState<string | null>(null);
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
   const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
@@ -47,12 +49,21 @@ const WordList = () => {
   }, [favoriteWords]);
 
   useEffect(() => {
-    setWords(wordsData.words);
-  }, []);
+    if (learningLanguage === "kannada") {
+      setWords(wordsDataKannada.wordsKannada);
+    } else if (learningLanguage === "malayalam") {
+      setWords(wordsDataMalayalam.wordsMalayalam);
+    } else {
+      setWords([]);
+    }
+  }, [learningLanguage]);
 
   useEffect(() => {
     const storedUserID = localStorage.getItem("userID");
+    const prevUserID = localStorage.getItem("prevUserID");
+
     setUserID(storedUserID);
+    setPrevUserID(prevUserID);
   }, []);
 
   const handleIconClick = (meaning: string) => {
@@ -147,6 +158,11 @@ const WordList = () => {
       }
     };
 
+    // clear favoriteWords in localStorage when userID changes
+    if (prevUserID !== userID) {
+      localStorage.removeItem("favoriteWords");
+    }
+
     // Read from localStorage on component mount
     const storedFavorites = localStorage.getItem("favoriteWords");
     if (storedFavorites) {
@@ -154,6 +170,7 @@ const WordList = () => {
     } else {
       fetchFavoriteWords();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
 
   return (
@@ -172,6 +189,7 @@ const WordList = () => {
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {words
+            //@ts-expect-error - TS doesn't know about toSorted even after adding to tsconfig.json
             .toSorted((a: Word, b: Word) => {
               const aFavorited = favoriteWords.includes(a.id);
               const bFavorited = favoriteWords.includes(b.id);

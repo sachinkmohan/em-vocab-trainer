@@ -1,0 +1,34 @@
+{
+  "wordsKannada": [
+    {
+      "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
+      "word": "eddelu",
+      "translation": "to stand up",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "595ae022-4413-4371-92a4-a8df5773203b",
+      "word": "malagu",
+      "translation": "to sleep maga",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "43847693-3593-46c3-9a02-25a5363c22bf",
+      "word": "odi",
+      "translation": "to beat",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "df72fa64-3a19-4786-a647-e0f7ff742b7b",
+      "word": "Noduvudu",
+      "translation": "to see",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "a1f88b67-a670-408c-9ef5-7ee37056510a",
+      "word": "Heluvudu",
+      "translation": "to tell",
+      "figureOfSpeech": "verb"
+    }
+  ]
+}

@@ -31,7 +31,7 @@ describe("Login Component", () => {
     });
 
     // Simulate form submission
-    fireEvent.click(getByText("Login In"));
+    fireEvent.click(getByText("Login"));
 
     // Wait for the signInWithEmail function to be called
 

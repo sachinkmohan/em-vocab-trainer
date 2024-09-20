@@ -66,8 +66,8 @@ const signInWithEmail = (
   email: string,
   password: string,
   navigate: NavigateFunction
-) => {
-  signInWithEmailAndPassword(auth, email, password)
+): Promise<string | void> => {
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
@@ -80,6 +80,7 @@ const signInWithEmail = (
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log("Error Code & Message", errorCode, errorMessage);
+      return errorMessage;
     });
 };
 
