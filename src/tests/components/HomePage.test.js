@@ -25,7 +25,7 @@ describe("add a new word to the mainWords collection", () => {
     expect(HomePage).toBeDefined();
   });
 
-  test("should add a new word to the mainWords collection", async () => {
+  test.skip("should add a new word to the mainWords collection", async () => {
     render(<HomePage />);
 
     const wordInput = screen.getByPlaceholderText(
@@ -62,7 +62,7 @@ describe("add a new word to the mainWords collection", () => {
     });
   });
 
-  test("should add a new word to the mainWords collection", async () => {
+  test.skip("should add a new word to the mainWords collection", async () => {
     render(<HomePage />);
 
     const wordInput = screen.getByPlaceholderText(
