@@ -19,13 +19,23 @@ const HomePage = () => {
 
   const addEntriesToLocalJSON = async (ent: Entry) => {
     try {
-      await fetch("http://localhost:5174/words", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(ent),
-      });
+      if (selectedLanguage === "malayalam") {
+        await fetch("http://localhost:5001/wordsMalayalam", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(ent),
+        });
+      } else if (selectedLanguage === "kannada") {
+        await fetch("http://localhost:6001/wordsKannada", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(ent),
+        });
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }

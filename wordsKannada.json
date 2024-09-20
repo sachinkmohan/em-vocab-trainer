@@ -1,5 +1,5 @@
 {
-  "words": [
+  "wordsKannada": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
       "word": "eddelu",
@@ -17,6 +17,18 @@
       "word": "odi",
       "translation": "to beat",
       "figureOfSpeech": " verb"
+    },
+    {
+      "id": "df72fa64-3a19-4786-a647-e0f7ff742b7b",
+      "word": "Noduvudu",
+      "translation": "to see",
+      "figureOfSpeech": " verb"
+    },
+    {
+      "id": "a1f88b67-a670-408c-9ef5-7ee37056510a",
+      "word": "Heluvudu",
+      "translation": "to tell",
+      "figureOfSpeech": "verb"
     }
   ]
 }

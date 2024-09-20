@@ -50,9 +50,9 @@ const WordList = () => {
 
   useEffect(() => {
     if (learningLanguage === "kannada") {
-      setWords(wordsDataKannada.words);
+      setWords(wordsDataKannada.wordsKannada);
     } else if (learningLanguage === "malayalam") {
-      setWords(wordsDataMalayalam.words);
+      setWords(wordsDataMalayalam.wordsMalayalam);
     } else {
       setWords([]);
     }
