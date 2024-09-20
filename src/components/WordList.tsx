@@ -189,6 +189,7 @@ const WordList = () => {
       <div className="p-4">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {words
+            //@ts-expect-error - TS doesn't know about toSorted even after adding to tsconfig.json
             .toSorted((a: Word, b: Word) => {
               const aFavorited = favoriteWords.includes(a.id);
               const bFavorited = favoriteWords.includes(b.id);
