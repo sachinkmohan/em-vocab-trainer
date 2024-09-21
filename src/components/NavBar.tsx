@@ -36,6 +36,9 @@ const NavBar = () => {
           <NavLink to="/library" className={linkClass}>
             Library
           </NavLink>
+          <NavLink to="/admin-dashboard" className={linkClass}>
+            A-DBoard
+          </NavLink>
         </div>
         <FontAwesomeIcon
           className="px-4"
