@@ -55,7 +55,6 @@ const HomePage = () => {
 
     try {
       await Promise.all(entryArray.map((ent) => addEntriesToLocalJSON(ent)));
-      console.log("all words added successfully");
       toast.success("Words added successfully", {
         position: "top-right",
       });
