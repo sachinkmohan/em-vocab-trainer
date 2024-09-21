@@ -9,6 +9,7 @@ import {
 import MainHomePage from "./pages/MainHomePage";
 import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
+import AdminDashboard from "./components/dashboard/AdminDashboard";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 
 const router = createBrowserRouter(
@@ -21,6 +22,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/library" element={<MainLayout />}>
         <Route index element={<LibraryOfWords />} />
+      </Route>
+      <Route path="/admin-dashboard" element={<MainLayout />}>
+        <Route index element={<AdminDashboard />} />
       </Route>
     </>
   )
