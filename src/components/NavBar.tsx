@@ -27,17 +27,19 @@ const NavBar = () => {
     <div className="mx-auto max-w-7xl px-2 ">
       <div className="flex h-20 items-center justify-between">
         <div className="flex flex-1 items-center space-x-4">
-          {roles && !roles.includes("user") && (
-            <NavLink to="/home" className={linkClass}>
-              Home
-            </NavLink>
+          {roles && roles.includes("admin") && (
+            <>
+              <NavLink to="/home" className={linkClass}>
+                Home
+              </NavLink>
+              <NavLink to="/admin-dashboard" className={linkClass}>
+                A-DBoard
+              </NavLink>
+            </>
           )}
 
           <NavLink to="/library" className={linkClass}>
             Library
-          </NavLink>
-          <NavLink to="/admin-dashboard" className={linkClass}>
-            A-DBoard
           </NavLink>
         </div>
         <FontAwesomeIcon
