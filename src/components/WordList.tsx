@@ -29,7 +29,7 @@ interface Word {
 }
 
 const WordList = () => {
-  const { name, learningLanguage } = useUserData();
+  const { nickname, learningLanguage } = useUserData();
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -176,8 +176,10 @@ const WordList = () => {
   return (
     <>
       <div>
-        <h1> Name: {name}</h1>
-        <h1> Learning Language: {learningLanguage}</h1>
+        <h1 className="text-xl font-semibold text-gray-600 ml-2">
+          {" "}
+          Welcome {nickname}!
+        </h1>
         <h1 className="text-xl font-bold text-center text-white mt-8 bg-green-600 rounded-lg shadow-lg mx-2">
           🫵 have learned{" "}
           <span className="text-blue-600 text-2xl rounded-full bg-white px-2 py-0">
