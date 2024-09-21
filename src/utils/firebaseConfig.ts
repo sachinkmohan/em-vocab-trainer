@@ -8,11 +8,6 @@ import {
 } from "firebase/auth";
 import { NavigateFunction } from "react-router-dom";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.VITE_FIREBASE_API_KEY,
   authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -54,7 +49,6 @@ const signUpWithEmail = async (
       languageLevel,
       roles,
     });
-    console.log("User created successfully:");
     navigate("/library");
     localStorage.setItem("userID", user.uid ?? "");
   } catch (error) {
@@ -77,9 +71,7 @@ const signInWithEmail = (
       // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("Error Code & Message", errorCode, errorMessage);
       return errorMessage;
     });
 };

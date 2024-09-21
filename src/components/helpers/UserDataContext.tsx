@@ -18,11 +18,11 @@ interface UserData {
   id: string | null;
 }
 
-interface userDataContextProps extends UserData {
+interface UserDataContextProps extends UserData {
   setUserData: (userData: UserData) => void; // KNOW
 }
 
-const UserDataContext = createContext<userDataContextProps | undefined>(
+const UserDataContext = createContext<UserDataContextProps | undefined>(
   undefined
 );
 
@@ -40,14 +40,12 @@ export const UserDataProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log("USER IN CONTEXT", user);
       try {
         if (user) {
           const userDocRef = doc(db, "users", user.uid);
 
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
-            console.log("USERDOC", userDoc.data());
             const userData = userDoc.data();
             setUserData({
               email: userData.email,

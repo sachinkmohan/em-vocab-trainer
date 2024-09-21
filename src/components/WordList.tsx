@@ -152,7 +152,6 @@ const WordList = () => {
 
         // Store fetched words in localStorage
         localStorage.setItem("favoriteWords", JSON.stringify(favoriteWords));
-        console.log("Favorite words fetched: ", favoriteWords);
       } catch (e) {
         console.error("Error fetching favorite words: ", e);
       }
