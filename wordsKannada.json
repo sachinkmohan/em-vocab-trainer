@@ -2,32 +2,62 @@
   "wordsKannada": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
-      "word": "eddelu",
-      "translation": "to stand up",
-      "figureOfSpeech": " verb"
+      "word": "idhu",
+      "translation": "this",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "595ae022-4413-4371-92a4-a8df5773203b",
-      "word": "malagu",
-      "translation": "to sleep maga",
-      "figureOfSpeech": " verb"
+      "word": "adhu",
+      "translation": "that",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "43847693-3593-46c3-9a02-25a5363c22bf",
-      "word": "odi",
-      "translation": "to beat",
-      "figureOfSpeech": " verb"
+      "word": "nanna",
+      "translation": "my/mine",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "df72fa64-3a19-4786-a647-e0f7ff742b7b",
-      "word": "Noduvudu",
-      "translation": "to see",
-      "figureOfSpeech": " verb"
+      "word": "nanu/nanage",
+      "translation": "I",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "a1f88b67-a670-408c-9ef5-7ee37056510a",
-      "word": "Heluvudu",
-      "translation": "to tell",
+      "word": "hesaru",
+      "translation": "name",
+      "figureOfSpeech": "noun"
+    },
+    {
+      "id": "96bf1b53-7382-4481-882f-24c4131590ba",
+      "word": "ōdu",
+      "translation": "to study",
+      "figureOfSpeech": "verb"
+    },
+    {
+      "id": "0a21c528-91c4-4a33-a6c7-68237f05a118",
+      "word": "ēnu",
+      "translation": "what",
+      "figureOfSpeech": "pronoun"
+    },
+    {
+      "id": "0917f9ef-26f8-45a1-aacd-db2c431e57bb",
+      "word": "yaavudhu",
+      "translation": "which",
+      "figureOfSpeech": "pronoun"
+    },
+    {
+      "id": "09abdd78-2f96-4b41-938d-2dc0e2b40409",
+      "word": "oota madu",
+      "translation": "to eat",
+      "figureOfSpeech": "verb"
+    },
+    {
+      "id": "45e1bf29-d1bb-427b-946b-5cc5a7cbe840",
+      "word": "malagu",
+      "translation": "to sleep",
       "figureOfSpeech": "verb"
     }
   ]

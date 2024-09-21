@@ -2,33 +2,69 @@
   "wordsMalayalam": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
-      "word": "eneekukka",
-      "translation": "to stand up",
-      "figureOfSpeech": " verb"
+      "word": "aanu",
+      "translation": "is/am/are",
+      "figureOfSpeech": "verb"
     },
     {
       "id": "595ae022-4413-4371-92a4-a8df5773203b",
-      "word": "eneekukka",
-      "translation": "to stand up",
-      "figureOfSpeech": " verb"
+      "word": "ithu",
+      "translation": "this",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "43847693-3593-46c3-9a02-25a5363c22bf",
-      "word": "adikkukka",
-      "translation": "to beat",
-      "figureOfSpeech": " verb"
+      "word": "athu",
+      "translation": "that",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "c93b83c4-da8b-431b-93ef-af20ec1e83a3",
-      "word": "nokukuka",
-      "translation": " to see",
-      "figureOfSpeech": " verb"
+      "word": "ente",
+      "translation": "my/mine",
+      "figureOfSpeech": "pronoun"
     },
     {
       "id": "2675be2b-8553-4e25-ad38-371ac0b6abd3",
-      "word": "parayuka",
-      "translation": "to tell",
+      "word": "njan/enikku",
+      "translation": "I",
+      "figureOfSpeech": "pronoun"
+    },
+    {
+      "id": "aa03b3e9-71f8-468d-b832-b3fc0bfb2b3b",
+      "word": "peru",
+      "translation": "name",
+      "figureOfSpeech": "noun"
+    },
+    {
+      "id": "c7a81809-ec64-4548-8549-c99bc488a3af",
+      "word": "padikkuka",
+      "translation": "to study",
       "figureOfSpeech": "verb"
+    },
+    {
+      "id": "0d98e3a5-08a3-4651-9e71-cddfec8f0da8",
+      "word": "ethu",
+      "translation": "pronoun",
+      "figureOfSpeech": "which"
+    },
+    {
+      "id": "f63ca11a-3259-4aab-bad7-d3b349201512",
+      "word": "enthu",
+      "translation": "pronoun",
+      "figureOfSpeech": "what"
+    },
+    {
+      "id": "3981b8e7-3aba-4beb-9656-ad64dcbde00e",
+      "word": "uranguka",
+      "translation": "verb",
+      "figureOfSpeech": "to sleep"
+    },
+    {
+      "id": "c575b8f7-1d2a-46bb-8aaf-d67a5999a614",
+      "word": "kazhikkuka",
+      "translation": "verb",
+      "figureOfSpeech": "to eat"
     }
   ]
 }
