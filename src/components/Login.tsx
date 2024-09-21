@@ -11,7 +11,6 @@ const Login = () => {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     const errorMessage = await signInWithEmail(email, password, navigate);
-    console.log("errorMESSAGE", errorMessage);
     if (errorMessage) {
       if (errorMessage === "auth/too-many-requests") {
         const errorMessageToUser =
