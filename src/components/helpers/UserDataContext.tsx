@@ -16,6 +16,7 @@ interface UserData {
   languageLevel: string | null;
   roles: string[] | null;
   id: string | null;
+  growthPoints: number | null;
 }
 
 interface UserDataContextProps extends UserData {
@@ -35,6 +36,7 @@ export const UserDataProvider = ({ children }: { children: ReactNode }) => {
     languageLevel: null,
     roles: null,
     id: null,
+    growthPoints: null,
   });
 
   useEffect(() => {
@@ -55,6 +57,7 @@ export const UserDataProvider = ({ children }: { children: ReactNode }) => {
               languageLevel: userData.languageLevel,
               roles: userData.roles,
               id: user.uid,
+              growthPoints: userData.growthPoints,
             });
           } else {
             console.error("No such document");

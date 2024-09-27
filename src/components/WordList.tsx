@@ -16,6 +16,7 @@ import {
   deleteDoc,
   query,
   where,
+  updateDoc,
 } from "firebase/firestore";
 
 import { useUserData } from "./helpers/UserDataContext";
@@ -29,7 +30,7 @@ interface Word {
 }
 
 const WordList = () => {
-  const { nickname, learningLanguage } = useUserData();
+  const { nickname, learningLanguage, growthPoints } = useUserData();
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -120,6 +121,7 @@ const WordList = () => {
           WordId,
           favoritedAt: new Date().toISOString(),
         });
+        await addGPToFirebase(1);
         toast.success("Word added to favorites");
         ReactGA.event({
           category: "All Words",
@@ -171,6 +173,22 @@ const WordList = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
+
+  const addGPToFirebase = async (favGrowthPoint: number) => {
+    if (!userID) {
+      console.error("userID is null");
+      return;
+    }
+    const userDocRef = doc(db, "users", userID);
+    try {
+      const fetchedGrowthPoints = growthPoints ?? 0;
+      await updateDoc(userDocRef, {
+        growthPoints: fetchedGrowthPoints + favGrowthPoint,
+      });
+    } catch (error) {
+      console.error("Error setting growthPoints: ", error);
+    }
+  };
 
   return (
     <>
