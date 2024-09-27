@@ -10,6 +10,7 @@ import MainHomePage from "./pages/MainHomePage";
 import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
+import MatchTheWords from "./components/games/MatchTheWords";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 
 const router = createBrowserRouter(
@@ -25,6 +26,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/admin-dashboard" element={<MainLayout />}>
         <Route index element={<AdminDashboard />} />
+      </Route>
+      <Route path="/match-the-words" element={<MainLayout />}>
+        <Route index element={<MatchTheWords />} />
       </Route>
     </>
   )

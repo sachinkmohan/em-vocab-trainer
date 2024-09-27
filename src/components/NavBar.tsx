@@ -41,6 +41,9 @@ const NavBar = () => {
           <NavLink to="/library" className={linkClass}>
             Library
           </NavLink>
+          <NavLink to="/match-the-words" className={linkClass}>
+            Match
+          </NavLink>
         </div>
         <FontAwesomeIcon
           className="px-4"
