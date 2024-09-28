@@ -11,7 +11,7 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
     return (
       <dialog
         ref={ref}
-        className="relative bg-gray-50 p-4 rounded-lg shadow-xl border border-gray-200 w-[375px] h-[150px]"
+        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-gray-50 p-4 rounded-lg shadow-xl border border-gray-200 w-11/12 max-w-md h-auto"
       >
         <h2 className="text-xl text-center">Word Meaning</h2>
         <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-yellow-200 to-green-200 tracking-wide leading-relaxed ring-2 ring-blue-300">
