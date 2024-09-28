@@ -48,6 +48,7 @@ const signUpWithEmail = async (
       learningLanguage,
       languageLevel,
       roles,
+      growthPoints: 0,
     });
     navigate("/library");
     localStorage.setItem("userID", user.uid ?? "");
