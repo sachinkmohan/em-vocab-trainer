@@ -59,6 +59,96 @@
       "word": "malagu",
       "translation": "to sleep",
       "figureOfSpeech": "verb"
+    },
+    {
+      "id": "af8aac44-0050-4355-8134-c374c9a81b14",
+      "word": "yaavagalu",
+      "translation": "always",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "a4e7143c-55db-4724-9d40-c8c975375482",
+      "word": "uttara",
+      "translation": "answer",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "11ff8b1c-a196-418f-badc-8ce11fa9fce3",
+      "word": "matthe",
+      "translation": "and",
+      "figureOfSpeech": "conjunction  "
+    },
+    {
+      "id": "d9750e8b-85e7-493e-a636-ee11179dca5b",
+      "word": "munche",
+      "translation": "before",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "849b82f6-f1ad-4f15-8b2b-8b63a403d246",
+      "word": "nanthara",
+      "translation": "after",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "ae53c785-8574-406e-a66d-b99935fb71d7",
+      "word": "eekendare",
+      "translation": "because",
+      "figureOfSpeech": "conjunction  "
+    },
+    {
+      "id": "ee9aa3d2-4f7e-45b4-9d39-c0cb04737fc4",
+      "word": "saha/kooda",
+      "translation": "also",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "22236986-8795-4246-84e7-d39aa931aa1d",
+      "word": "matthe",
+      "translation": "again",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "c0a1cc42-7025-4ca9-8ef9-1d05f74c0f0d",
+      "word": "sumaru",
+      "translation": "about",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "d535f96a-8cf4-4870-80f6-01cf5a4467a6",
+      "word": "ella",
+      "translation": "all",
+      "figureOfSpeech": "determiner  "
+    },
+    {
+      "id": "4fbac286-52fd-42c4-b9cc-2d5961d77851",
+      "word": "anthe",
+      "translation": "as",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "83dbc460-0bdc-48f8-a934-c2d76cdcefcd",
+      "word": "madhyana",
+      "translation": "afternoon",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "8c766cd9-129d-4f54-b97f-6d6ea4390039",
+      "word": "beLagge",
+      "translation": "morning",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "b6ab59a4-a214-48c2-add4-a82d75e07d2a",
+      "word": "yavudadaru/enaadaru",
+      "translation": "anything",
+      "figureOfSpeech": "pronoun  "
+    },
+    {
+      "id": "0d84edaf-506c-450c-b0c5-bc42a40f6ebd",
+      "word": "Dhina",
+      "translation": "day",
+      "figureOfSpeech": "noun"
     }
   ]
 }

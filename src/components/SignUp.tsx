@@ -9,6 +9,7 @@ const SignUp = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [name, setName] = useState("");
+  const [instaHandle, setInstaHandle] = useState("");
   const [learningLanguage, setLearningLanguage] = useState("");
   const [languageLevel, setLanguageLevel] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -21,6 +22,7 @@ const SignUp = () => {
         const initialRoles = ["user"];
         await signUpWithEmail(
           email,
+          instaHandle,
           password,
           nickname,
           name,
@@ -82,6 +84,16 @@ const SignUp = () => {
             {errors.nickname && (
               <p className="text-red-500 text-sm">{errors.nickname}</p>
             )}
+          </div>
+
+          <div className="py-1">
+            <input
+              type="text"
+              placeholder="Instagram Handle - Optional Field"
+              value={instaHandle}
+              onChange={(e) => setInstaHandle(e.target.value)}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
+            />
           </div>
 
           <div className="py-1">

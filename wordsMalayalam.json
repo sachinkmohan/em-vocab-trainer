@@ -65,6 +65,96 @@
       "word": "kazhikkuka",
       "translation": "verb",
       "figureOfSpeech": "to eat"
+    },
+    {
+      "id": "38b5ad6e-2a6b-4889-9521-0a9ff77ae743",
+      "word": "karaNam",
+      "translation": "because",
+      "figureOfSpeech": "conjunction  "
+    },
+    {
+      "id": "5800b05e-4740-4be3-afa3-71c195258576",
+      "word": "eppozhum",
+      "translation": "always",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "575cfad1-5a59-40da-96f1-2a04c1c9ea5d",
+      "word": "pinneyum",
+      "translation": "again",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "6eef5470-5e0a-4b0d-9e73-6e79cfa5d657",
+      "word": "munbu",
+      "translation": "before",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "feb7843c-a1eb-4212-bb7f-0743cad7a50f",
+      "word": "sheSham",
+      "translation": "after",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "cffda172-2c4c-48ca-b5fb-6a218aac0eee",
+      "word": "um",
+      "translation": "also",
+      "figureOfSpeech": "adverb  "
+    },
+    {
+      "id": "8065bc6f-b0e9-4d00-8207-6cf0270ed242",
+      "word": "pinne/um",
+      "translation": "and",
+      "figureOfSpeech": "conjunction  "
+    },
+    {
+      "id": "8e044a76-e096-4968-a882-0ffbcdb2bf0a",
+      "word": "uttharam",
+      "translation": "answer",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "1ea56f91-c766-4bc6-97af-da3748b31465",
+      "word": "ekadesham",
+      "translation": "about",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "8e572af4-04fb-4dfa-a277-ccdab5fc70bf",
+      "word": "ellam",
+      "translation": "all",
+      "figureOfSpeech": "determiner  "
+    },
+    {
+      "id": "a3a5b214-9758-4db1-b057-108660a7880d",
+      "word": "pole",
+      "translation": "as",
+      "figureOfSpeech": "preposition  "
+    },
+    {
+      "id": "f097f48e-a772-448e-9d07-d9dca4e78ce0",
+      "word": "uccha",
+      "translation": "afternoon",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "c830b034-0d40-4629-b06b-3b6714309732",
+      "word": "kalatthu",
+      "translation": "morning",
+      "figureOfSpeech": "noun  "
+    },
+    {
+      "id": "df5c2219-d5bc-4ee6-8387-447d2dd03474",
+      "word": "enthum/enthengilum",
+      "translation": "anything",
+      "figureOfSpeech": "pronoun  "
+    },
+    {
+      "id": "2a50069c-100a-4dda-b73e-abb0106e2c34",
+      "word": "divasam",
+      "translation": "day",
+      "figureOfSpeech": "noun"
     }
   ]
 }
