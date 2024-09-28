@@ -41,6 +41,9 @@ const NavBar = () => {
           <NavLink to="/library" className={linkClass}>
             Library
           </NavLink>
+          <NavLink to="/user-all-time-dashboard" className={linkClass}>
+            Dashboard
+          </NavLink>
         </div>
         <FontAwesomeIcon
           className="px-4"
