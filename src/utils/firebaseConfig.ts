@@ -25,6 +25,7 @@ const auth = getAuth();
 
 const signUpWithEmail = async (
   email: string,
+  instaHandle: string,
   password: string,
   nickname: string,
   name: string,
@@ -48,6 +49,7 @@ const signUpWithEmail = async (
       learningLanguage,
       languageLevel,
       roles,
+      instaHandle,
       growthPoints: 0,
     });
     navigate("/library");
