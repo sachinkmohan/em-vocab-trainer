@@ -6,6 +6,7 @@ import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
 import wordsDataMalayalam from "../../wordsMalayalam.json";
 import wordsDataKannada from "../../wordsKannada.json";
+import useUserGrowthPoints from "./hooks/useUserGrowthPoints";
 import ReactGA from "react-ga4";
 
 import {
@@ -16,7 +17,6 @@ import {
   deleteDoc,
   query,
   where,
-  updateDoc,
 } from "firebase/firestore";
 
 import { useUserData } from "./helpers/UserDataContext";
@@ -30,7 +30,7 @@ interface Word {
 }
 
 const WordList = () => {
-  const { nickname, learningLanguage, growthPoints } = useUserData();
+  const { nickname, learningLanguage } = useUserData();
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -40,6 +40,8 @@ const WordList = () => {
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
   const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
+  const { userGrowthPoints, addGPToFirebase, removeGPFromFirebase } =
+    useUserGrowthPoints(userID);
 
   useEffect(() => {
     ReactGA.initialize("G-K25K213J7F");
@@ -109,6 +111,7 @@ const WordList = () => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(async (doc) => {
           await deleteDoc(doc.ref);
+          await removeGPFromFirebase(1);
           toast.error("Word removed from favorites");
           ReactGA.event({
             category: "All Words",
@@ -174,22 +177,6 @@ const WordList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
 
-  const addGPToFirebase = async (favGrowthPoint: number) => {
-    if (!userID) {
-      console.error("userID is null");
-      return;
-    }
-    const userDocRef = doc(db, "users", userID);
-    try {
-      const fetchedGrowthPoints = growthPoints ?? 0;
-      await updateDoc(userDocRef, {
-        growthPoints: fetchedGrowthPoints + favGrowthPoint,
-      });
-    } catch (error) {
-      console.error("Error setting growthPoints: ", error);
-    }
-  };
-
   return (
     <>
       <div>
@@ -197,6 +184,10 @@ const WordList = () => {
           {" "}
           Welcome {nickname}!
         </h1>
+        <span className="flex items-center space-x-2 rounded-lg px-4 py-2 bg-blue-500">
+          <span>User GP - </span>
+          <span>{userGrowthPoints}</span>
+        </span>
         <h1 className="text-xl font-bold text-center text-white mt-8 bg-green-600 rounded-lg shadow-lg mx-2">
           🫵 have learned{" "}
           <span className="text-blue-600 text-2xl rounded-full bg-white px-2 py-0">
