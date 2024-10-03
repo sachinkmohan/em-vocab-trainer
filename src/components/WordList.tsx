@@ -1,6 +1,5 @@
 import { db } from "../utils/firebaseConfig";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
@@ -20,6 +19,7 @@ import {
 } from "firebase/firestore";
 
 import { useUserData } from "./helpers/UserDataContext";
+import WordListContainer from "./words/WordListContainer";
 
 interface Word {
   id: string;
@@ -214,48 +214,13 @@ const WordList = () => {
         </h1>
       </div>
       <div className="p-4">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {words
-            //@ts-expect-error - TS doesn't know about toSorted even after adding to tsconfig.json
-            .toSorted((a: Word, b: Word) => {
-              const aFavorited = favoriteWords.includes(a.id);
-              const bFavorited = favoriteWords.includes(b.id);
-              if (aFavorited && !bFavorited) return 1;
-              if (!aFavorited && bFavorited) return -1;
-              return 0;
-            })
-            .map((word: Word) => {
-              return (
-                <li
-                  key={word.id}
-                  className={`flex justify-between items-center border border-blue-300 ${
-                    highlightedWordId === word.id ? "bg-yellow-100" : ""
-                  }`}
-                >
-                  {" "}
-                  {word.word.inTranslit}{" "}
-                  <div className="flex justify-around gap-6 pr-4">
-                    <FontAwesomeIcon
-                      icon={faHeart}
-                      className={
-                        favoriteWords.includes(word.id)
-                          ? "text-red-500"
-                          : "text-gray-500"
-                      }
-                      onClick={() =>
-                        handleFavoriteClick(word.id, word.word.inTranslit)
-                      }
-                    />
-                    <FontAwesomeIcon
-                      icon={faInfoCircle}
-                      className="text-blue-500"
-                      onClick={() => handleInfoClick(word)}
-                    />
-                  </div>
-                </li>
-              );
-            })}
-        </ul>
+        <WordListContainer
+          words={words}
+          favoriteWords={favoriteWords}
+          handleFavoriteClick={handleFavoriteClick}
+          handleInfoClick={handleInfoClick}
+          highlightedWordId={highlightedWordId}
+        ></WordListContainer>
       </div>
 
       <WordDetails

@@ -17,6 +17,24 @@
       ],
       "wordLevel": "A1",
       "pronunciation": ""
+    },
+    {
+      "id": "g7ec48ae-43cc-4258-904a-a69c85705f19",
+      "word": {
+        "inTranslit": "aara",
+        "inNativeScript": "ആര"
+      },
+      "meaning": "who",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "Aaraanu?",
+          "translation": "Who is it?",
+          "inNativeScript": "ആരാണ്?"
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     }
   ]
 }
