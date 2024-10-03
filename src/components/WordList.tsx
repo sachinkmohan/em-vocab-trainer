@@ -82,7 +82,7 @@ const WordList = () => {
     setPrevUserID(prevUserID);
   }, []);
 
-  const handleIconClick = (word: Word) => {
+  const handleInfoClick = (word: Word) => {
     setSelectedTranslation(word.meaning);
     setHighlightedWordId(word.id);
     dialogRef.current?.showModal();
@@ -249,7 +249,7 @@ const WordList = () => {
                     <FontAwesomeIcon
                       icon={faInfoCircle}
                       className="text-blue-500"
-                      onClick={() => handleIconClick(word)}
+                      onClick={() => handleInfoClick(word)}
                     />
                   </div>
                 </li>
