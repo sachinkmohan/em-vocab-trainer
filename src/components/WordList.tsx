@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
 import wordsDataMalayalam from "../../wordsMalayalam.json";
-import wordsDataKannada from "../../wordsKannada.json";
+// import wordsDataKannada from "../../wordsKannada.json";
 import useUserGrowthPoints from "./hooks/useUserGrowthPoints";
 import ReactGA from "react-ga4";
 
@@ -23,10 +23,19 @@ import { useUserData } from "./helpers/UserDataContext";
 
 interface Word {
   id: string;
-  word: string;
-  translation: string;
+  word: {
+    inTranslit: string;
+    inNativeScript: string;
+  };
+  meaning: string;
   figureOfSpeech: string;
-  exampleSentence?: string;
+  examples: {
+    inTranslit: string;
+    translation: string;
+    inNativeScript: string;
+  }[];
+  wordLevel: string;
+  pronunciation: string;
 }
 
 const WordList = () => {
@@ -55,9 +64,10 @@ const WordList = () => {
   }, [favoriteWords]);
 
   useEffect(() => {
-    if (learningLanguage === "kannada") {
-      setWords(wordsDataKannada.wordsKannada);
-    } else if (learningLanguage === "malayalam") {
+    // if (learningLanguage === "kannada") {
+    //   setWords(wordsDataKannada.wordsKannada);
+    // } else
+    if (learningLanguage === "malayalam") {
       setWords(wordsDataMalayalam.wordsMalayalam);
     } else {
       setWords([]);
@@ -73,7 +83,7 @@ const WordList = () => {
   }, []);
 
   const handleIconClick = (word: Word) => {
-    setSelectedTranslation(word.translation);
+    setSelectedTranslation(word.meaning);
     setHighlightedWordId(word.id);
     dialogRef.current?.showModal();
   };
@@ -223,7 +233,7 @@ const WordList = () => {
                   }`}
                 >
                   {" "}
-                  {word.word}{" "}
+                  {word.word.inTranslit}{" "}
                   <div className="flex justify-around gap-6 pr-4">
                     <FontAwesomeIcon
                       icon={faHeart}
@@ -232,7 +242,9 @@ const WordList = () => {
                           ? "text-red-500"
                           : "text-gray-500"
                       }
-                      onClick={() => handleFavoriteClick(word.id, word.word)}
+                      onClick={() =>
+                        handleFavoriteClick(word.id, word.word.inTranslit)
+                      }
                     />
                     <FontAwesomeIcon
                       icon={faInfoCircle}
