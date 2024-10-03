@@ -40,6 +40,9 @@ const WordList = () => {
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
   const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
+  const [highlightedWordId, setHighlightedWordId] = useState<string | null>(
+    null
+  );
   const { userGrowthPoints, addGPToFirebase, removeGPFromFirebase } =
     useUserGrowthPoints(userID);
 
@@ -69,14 +72,16 @@ const WordList = () => {
     setPrevUserID(prevUserID);
   }, []);
 
-  const handleIconClick = (meaning: string) => {
-    setSelectedTranslation(meaning);
+  const handleIconClick = (word: Word) => {
+    setSelectedTranslation(word.translation);
+    setHighlightedWordId(word.id);
     dialogRef.current?.showModal();
   };
 
   const closeDialog = () => {
     dialogRef.current?.close();
     setSelectedTranslation("");
+    setHighlightedWordId(null);
   };
 
   const handleFavoriteClick = async (WordId: string, actualWord: string) => {
@@ -213,7 +218,9 @@ const WordList = () => {
               return (
                 <li
                   key={word.id}
-                  className="flex justify-between items-center border border-blue-300"
+                  className={`flex justify-between items-center border border-blue-300 ${
+                    highlightedWordId === word.id ? "bg-yellow-100" : ""
+                  }`}
                 >
                   {" "}
                   {word.word}{" "}
@@ -230,7 +237,7 @@ const WordList = () => {
                     <FontAwesomeIcon
                       icon={faInfoCircle}
                       className="text-blue-500"
-                      onClick={() => handleIconClick(word.translation)}
+                      onClick={() => handleIconClick(word)}
                     />
                   </div>
                 </li>
