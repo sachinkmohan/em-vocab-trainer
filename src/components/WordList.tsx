@@ -16,6 +16,7 @@ import {
   deleteDoc,
   query,
   where,
+  CollectionReference,
 } from "firebase/firestore";
 
 import { useUserData } from "./helpers/UserDataContext";
@@ -94,6 +95,64 @@ const WordList = () => {
     setHighlightedWordId(null);
   };
 
+  const updateLocalStorage = (WordId: string) => {
+    const updatedFavorite = favoriteWords.includes(WordId)
+      ? favoriteWords.filter((id) => id !== WordId)
+      : [...favoriteWords, WordId];
+    localStorage.setItem("favoriteWords", JSON.stringify(updatedFavorite));
+  };
+
+  const updateLocalState = (WordId: string) => {
+    setFavoriteWords((prevFavorites) => {
+      if (prevFavorites.includes(WordId)) {
+        return prevFavorites.filter((id) => id !== WordId);
+      } else {
+        return [...prevFavorites, WordId];
+      }
+    });
+  };
+
+  const removeFromFavorites = async (
+    favoriteWordIDsCollectionRef: CollectionReference,
+    WordId: string,
+    actualWord: string
+  ) => {
+    // Remove from firestore
+    const q = query(
+      favoriteWordIDsCollectionRef,
+      where("WordId", "==", WordId)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
+      await removeGPFromFirebase(1);
+      toast.error("Word removed from favorites");
+      ReactGA.event({
+        category: "All Words",
+        action: "Removed from Favorites",
+        label: actualWord,
+      });
+    });
+  };
+
+  const addToFavorites = async (
+    favoriteWordIDsCollectionRef: CollectionReference,
+    WordId: string,
+    actualWord: string
+  ) => {
+    await addDoc(favoriteWordIDsCollectionRef, {
+      WordId,
+      favoritedAt: new Date().toISOString(),
+    });
+    await addGPToFirebase(1);
+    toast.success("Word added to favorites");
+    ReactGA.event({
+      category: "All Words",
+      action: "Added to Favorites",
+      label: actualWord,
+    });
+  };
+
   const handleFavoriteClick = async (WordId: string, actualWord: string) => {
     try {
       const userDocRef = doc(db, "users", userID ?? "");
@@ -102,50 +161,17 @@ const WordList = () => {
         "favoriteWordIDs"
       );
 
-      // Optimistically update the local state
-      setFavoriteWords((prevFavorites) => {
-        if (prevFavorites.includes(WordId)) {
-          return prevFavorites.filter((id) => id !== WordId);
-        } else {
-          return [...prevFavorites, WordId];
-        }
-      });
-
-      // Update localStorage
-      const updatedFavorite = favoriteWords.includes(WordId)
-        ? favoriteWords.filter((id) => id !== WordId)
-        : [...favoriteWords, WordId];
-      localStorage.setItem("favoriteWords", JSON.stringify(updatedFavorite));
+      updateLocalState(WordId);
+      updateLocalStorage(WordId);
 
       if (favoriteWords.includes(WordId)) {
-        // Remove from firestore
-        const q = query(
+        await removeFromFavorites(
           favoriteWordIDsCollectionRef,
-          where("WordId", "==", WordId)
-        );
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc) => {
-          await deleteDoc(doc.ref);
-          await removeGPFromFirebase(1);
-          toast.error("Word removed from favorites");
-          ReactGA.event({
-            category: "All Words",
-            action: "Removed from Favorites",
-            label: actualWord,
-          });
-        });
-      } else {
-        await addDoc(favoriteWordIDsCollectionRef, {
           WordId,
-          favoritedAt: new Date().toISOString(),
-        });
-        await addGPToFirebase(1);
-        toast.success("Word added to favorites");
-        ReactGA.event({
-          category: "All Words",
-          action: "Added to Favorites",
-          label: actualWord,
-        });
+          actualWord
+        );
+      } else {
+        addToFavorites(favoriteWordIDsCollectionRef, WordId, actualWord);
       }
     } catch (e) {
       console.error("Error adding document: ", e);
