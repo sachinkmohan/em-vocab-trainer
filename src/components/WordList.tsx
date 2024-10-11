@@ -178,43 +178,60 @@ const WordList = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchFavoriteWords = async () => {
-      if (!userID) {
-        return;
-      }
-      try {
-        const userDocRef = doc(db, "users", userID ?? "");
-        const favoriteWordIDsCollectionRef = collection(
-          userDocRef,
-          "favoriteWordIDs"
-        );
-
-        const querySnapshot = await getDocs(favoriteWordIDsCollectionRef);
-        const favoriteWords = querySnapshot.docs.map(
-          (doc) => doc.data().WordId
-        );
-        setFavoriteWords(favoriteWords);
-
-        // Store fetched words in localStorage
-        localStorage.setItem("favoriteWords", JSON.stringify(favoriteWords));
-      } catch (e) {
-        console.error("Error fetching favorite words: ", e);
-      }
-    };
-
-    // clear favoriteWords in localStorage when userID changes
-    if (prevUserID !== userID) {
-      localStorage.removeItem("favoriteWords");
-    }
-
-    // Read from localStorage on component mount
+  const readFavoritesFromLocalStorage = (
+    setFavoriteWords: (words: string[]) => void
+  ) => {
     const storedFavorites = localStorage.getItem("favoriteWords");
     if (storedFavorites) {
       setFavoriteWords(JSON.parse(storedFavorites));
-    } else {
-      fetchFavoriteWords();
     }
+  };
+
+  const clearFavoritesFromLocalStorage = (
+    prevUserID: string | null,
+    userID: string | null
+  ) => {
+    if (prevUserID !== userID) {
+      localStorage.removeItem("favoriteWords");
+    }
+  };
+
+  const fetchFavoriteWords = async (
+    userID: string,
+    setFavoriteWords: (words: string[]) => void
+  ) => {
+    try {
+      const userDocRef = doc(db, "users", userID ?? "");
+      const favoriteWordIDsCollectionRef = collection(
+        userDocRef,
+        "favoriteWordIDs"
+      );
+
+      const querySnapshot = await getDocs(favoriteWordIDsCollectionRef);
+      const favoriteWords = querySnapshot.docs.map((doc) => doc.data().WordId);
+      setFavoriteWords(favoriteWords);
+
+      // Store fetched words in localStorage
+      localStorage.setItem("favoriteWords", JSON.stringify(favoriteWords));
+    } catch (e) {
+      console.error("Error fetching favorite words: ", e);
+    }
+  };
+
+  useEffect(() => {
+    if (!userID) {
+      return;
+    }
+
+    clearFavoritesFromLocalStorage(prevUserID, userID);
+    readFavoritesFromLocalStorage(setFavoriteWords);
+
+    const storedFavorites = localStorage.getItem("favoriteWords");
+
+    if (!storedFavorites) {
+      fetchFavoriteWords(userID, setFavoriteWords);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
 
