@@ -44,7 +44,9 @@ const WordList = () => {
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-  const [selectedTranslation, setSelectedTranslation] = useState("");
+  const [selectedTranslation, setSelectedTranslation] = useState<Word | null>(
+    null
+  );
   const [userID, setUserID] = useState<string | null>(null);
   const [prevUserID, setPrevUserID] = useState<string | null>(null);
 
@@ -55,6 +57,12 @@ const WordList = () => {
   );
   const { userGrowthPoints, addGPToFirebase, removeGPFromFirebase } =
     useUserGrowthPoints(userID);
+
+  useEffect(() => {
+    if (selectedTranslation) {
+      dialogRef.current?.showModal();
+    }
+  }, [selectedTranslation]);
 
   useEffect(() => {
     ReactGA.initialize("G-K25K213J7F");
@@ -84,14 +92,14 @@ const WordList = () => {
   }, []);
 
   const handleInfoClick = (word: Word) => {
-    setSelectedTranslation(word.meaning);
+    setSelectedTranslation(word);
     setHighlightedWordId(word.id);
-    dialogRef.current?.showModal();
+    // dialogRef.current?.showModal();
   };
 
   const closeDialog = () => {
     dialogRef.current?.close();
-    setSelectedTranslation("");
+    setSelectedTranslation(null);
     setHighlightedWordId(null);
   };
 
@@ -266,11 +274,13 @@ const WordList = () => {
         ></WordListContainer>
       </div>
 
-      <WordDetails
-        ref={dialogRef}
-        selectedTranslation={selectedTranslation}
-        closeDialog={closeDialog}
-      />
+      {selectedTranslation && (
+        <WordDetails
+          ref={dialogRef}
+          selectedTranslation={selectedTranslation}
+          closeDialog={closeDialog}
+        />
+      )}
       <ToastContainer closeOnClick autoClose={2000} />
     </>
   );
