@@ -2,159 +2,39 @@
   "wordsMalayalam": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
-      "word": "aanu",
-      "translation": "is/am/are",
-      "figureOfSpeech": "verb"
+      "word": {
+        "inTranslit": "aanu",
+        "inNativeScript": "ആണ്"
+      },
+      "meaning": "is/am/are",
+      "figureOfSpeech": "verb",
+      "examples": [
+        {
+          "inTranslit": "Ithu oru veedu aanu.",
+          "translation": "This is a house.",
+          "inNativeScript": "ഇത് ഒരു വീട് ആണ്."
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
     {
-      "id": "595ae022-4413-4371-92a4-a8df5773203b",
-      "word": "ithu",
-      "translation": "this",
-      "figureOfSpeech": "pronoun"
-    },
-    {
-      "id": "43847693-3593-46c3-9a02-25a5363c22bf",
-      "word": "athu",
-      "translation": "that",
-      "figureOfSpeech": "pronoun"
-    },
-    {
-      "id": "c93b83c4-da8b-431b-93ef-af20ec1e83a3",
-      "word": "ente",
-      "translation": "my/mine",
-      "figureOfSpeech": "pronoun"
-    },
-    {
-      "id": "2675be2b-8553-4e25-ad38-371ac0b6abd3",
-      "word": "njan/enikku",
-      "translation": "I",
-      "figureOfSpeech": "pronoun"
-    },
-    {
-      "id": "aa03b3e9-71f8-468d-b832-b3fc0bfb2b3b",
-      "word": "peru",
-      "translation": "name",
-      "figureOfSpeech": "noun"
-    },
-    {
-      "id": "c7a81809-ec64-4548-8549-c99bc488a3af",
-      "word": "padikkuka",
-      "translation": "to study",
-      "figureOfSpeech": "verb"
-    },
-    {
-      "id": "0d98e3a5-08a3-4651-9e71-cddfec8f0da8",
-      "word": "ethu",
-      "translation": "pronoun",
-      "figureOfSpeech": "which"
-    },
-    {
-      "id": "f63ca11a-3259-4aab-bad7-d3b349201512",
-      "word": "enthu",
-      "translation": "pronoun",
-      "figureOfSpeech": "what"
-    },
-    {
-      "id": "3981b8e7-3aba-4beb-9656-ad64dcbde00e",
-      "word": "uranguka",
-      "translation": "verb",
-      "figureOfSpeech": "to sleep"
-    },
-    {
-      "id": "c575b8f7-1d2a-46bb-8aaf-d67a5999a614",
-      "word": "kazhikkuka",
-      "translation": "verb",
-      "figureOfSpeech": "to eat"
-    },
-    {
-      "id": "38b5ad6e-2a6b-4889-9521-0a9ff77ae743",
-      "word": "karaNam",
-      "translation": "because",
-      "figureOfSpeech": "conjunction  "
-    },
-    {
-      "id": "5800b05e-4740-4be3-afa3-71c195258576",
-      "word": "eppozhum",
-      "translation": "always",
-      "figureOfSpeech": "adverb  "
-    },
-    {
-      "id": "575cfad1-5a59-40da-96f1-2a04c1c9ea5d",
-      "word": "pinneyum",
-      "translation": "again",
-      "figureOfSpeech": "adverb  "
-    },
-    {
-      "id": "6eef5470-5e0a-4b0d-9e73-6e79cfa5d657",
-      "word": "munbu",
-      "translation": "before",
-      "figureOfSpeech": "preposition  "
-    },
-    {
-      "id": "feb7843c-a1eb-4212-bb7f-0743cad7a50f",
-      "word": "sheSham",
-      "translation": "after",
-      "figureOfSpeech": "preposition  "
-    },
-    {
-      "id": "cffda172-2c4c-48ca-b5fb-6a218aac0eee",
-      "word": "um",
-      "translation": "also",
-      "figureOfSpeech": "adverb  "
-    },
-    {
-      "id": "8065bc6f-b0e9-4d00-8207-6cf0270ed242",
-      "word": "pinne/um",
-      "translation": "and",
-      "figureOfSpeech": "conjunction  "
-    },
-    {
-      "id": "8e044a76-e096-4968-a882-0ffbcdb2bf0a",
-      "word": "uttharam",
-      "translation": "answer",
-      "figureOfSpeech": "noun  "
-    },
-    {
-      "id": "1ea56f91-c766-4bc6-97af-da3748b31465",
-      "word": "ekadesham",
-      "translation": "about",
-      "figureOfSpeech": "preposition  "
-    },
-    {
-      "id": "8e572af4-04fb-4dfa-a277-ccdab5fc70bf",
-      "word": "ellam",
-      "translation": "all",
-      "figureOfSpeech": "determiner  "
-    },
-    {
-      "id": "a3a5b214-9758-4db1-b057-108660a7880d",
-      "word": "pole",
-      "translation": "as",
-      "figureOfSpeech": "preposition  "
-    },
-    {
-      "id": "f097f48e-a772-448e-9d07-d9dca4e78ce0",
-      "word": "uccha",
-      "translation": "afternoon",
-      "figureOfSpeech": "noun  "
-    },
-    {
-      "id": "c830b034-0d40-4629-b06b-3b6714309732",
-      "word": "kalatthu",
-      "translation": "morning",
-      "figureOfSpeech": "noun  "
-    },
-    {
-      "id": "df5c2219-d5bc-4ee6-8387-447d2dd03474",
-      "word": "enthum/enthengilum",
-      "translation": "anything",
-      "figureOfSpeech": "pronoun  "
-    },
-    {
-      "id": "2a50069c-100a-4dda-b73e-abb0106e2c34",
-      "word": "divasam",
-      "translation": "day",
-      "figureOfSpeech": "noun"
+      "id": "g7ec48ae-43cc-4258-904a-a69c85705f19",
+      "word": {
+        "inTranslit": "aara",
+        "inNativeScript": "ആര"
+      },
+      "meaning": "who",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "Aaraanu?",
+          "translation": "Who is it?",
+          "inNativeScript": "ആരാണ്?"
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     }
   ]
 }
