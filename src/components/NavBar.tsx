@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "./helpers/UserDataContext";
 
 const NavBar = () => {
@@ -45,6 +45,7 @@ const NavBar = () => {
             Dashboard
           </NavLink>
         </div>
+        <FontAwesomeIcon icon={faUserPen} />
         <FontAwesomeIcon
           className="px-4"
           icon={faSignOutAlt}
