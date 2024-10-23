@@ -10,8 +10,6 @@ import MainHomePage from "./pages/MainHomePage";
 import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
-import NavBar from "./components/NavBar";
-import WordList from "./components/WordList";
 import UserAllTimeDashboard from "./components/dashboard/UserAllTimeDashboard";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 import { EditModeProvider } from "./components/helpers/EditModeContext";
@@ -41,8 +39,6 @@ const App = () => {
   return (
     <UserDataProvider>
       <EditModeProvider>
-        <NavBar />
-        <WordList />
         <RouterProvider router={router} />
       </EditModeProvider>
     </UserDataProvider>
