@@ -1,4 +1,5 @@
 import WordItem from "./WordItem";
+import { useEditMode } from "../helpers/EditModeContext";
 
 interface Word {
   id: string;
@@ -32,18 +33,21 @@ const WordListContainer: React.FC<WordListContainerProps> = ({
   handleFavoriteClick,
   handleInfoClick,
 }) => {
+  const { isEditMode } = useEditMode();
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {words.map((word: Word) => {
         return (
-          <WordItem
-            key={word.id}
-            word={word}
-            highlightedWordId={highlightedWordId}
-            favoriteWords={favoriteWords}
-            handleFavoriteClick={handleFavoriteClick}
-            handleInfoClick={handleInfoClick}
-          />
+          <div key={word.id}>
+            <WordItem
+              word={word}
+              highlightedWordId={highlightedWordId}
+              favoriteWords={favoriteWords}
+              handleFavoriteClick={handleFavoriteClick}
+              handleInfoClick={handleInfoClick}
+            />
+            {isEditMode && <button>Edit</button>}
+          </div>
         );
       })}
     </ul>

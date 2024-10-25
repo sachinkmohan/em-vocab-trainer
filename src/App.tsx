@@ -12,6 +12,7 @@ import MainLayout from "./layouts/MainLayout";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import UserAllTimeDashboard from "./components/dashboard/UserAllTimeDashboard";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
+import { EditModeProvider } from "./components/helpers/EditModeContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +38,9 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <UserDataProvider>
-      <RouterProvider router={router} />
+      <EditModeProvider>
+        <RouterProvider router={router} />
+      </EditModeProvider>
     </UserDataProvider>
   );
 };
