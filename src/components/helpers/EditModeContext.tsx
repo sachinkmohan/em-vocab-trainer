@@ -1,4 +1,11 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  useMemo,
+  useCallback,
+  ReactNode,
+} from "react";
 
 const EditModeContext = createContext({
   isEditMode: false,
@@ -8,12 +15,17 @@ const EditModeContext = createContext({
 export const EditModeProvider = ({ children }: { children: ReactNode }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const toggleEditMode = () => {
+  const toggleEditMode = useCallback(() => {
     setIsEditMode((prevMode) => !prevMode);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ isEditMode, toggleEditMode }),
+    [isEditMode, toggleEditMode]
+  );
 
   return (
-    <EditModeContext.Provider value={{ isEditMode, toggleEditMode }}>
+    <EditModeContext.Provider value={value}>
       {children}
     </EditModeContext.Provider>
   );
