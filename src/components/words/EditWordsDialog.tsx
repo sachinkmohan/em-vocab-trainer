@@ -55,6 +55,56 @@ const EditWordsDialog: React.FC<EditWordsDialogProps> = ({ word, onClose }) => {
             className="mx-2 py-1 border rounded"
           />
         </label>
+
+        <label className="flex">
+          <span className="w-24 ml-2">FoS</span>
+          <input
+            type="text"
+            name="FoS"
+            value={editedWord.figureOfSpeech}
+            className="mx-2 py-1 border rounded"
+          />
+        </label>
+
+        <label className="flex">
+          <span className="w-24 ml-2">Eg-Translit</span>
+          <input
+            type="text"
+            name="examplestranslit"
+            value={editedWord.examples[0]?.inTranslit}
+            className="mx-2 py-1 border rounded"
+          />
+        </label>
+
+        <label className="flex">
+          <span className="w-24 ml-2">Eg-Transltn</span>
+          <input
+            type="text"
+            name="examplestranslation"
+            value={editedWord.examples[0]?.translation}
+            className="mx-2 py-1 border rounded"
+          />
+        </label>
+
+        <label className="flex">
+          <span className="w-24 ml-2">Eg-NatScript</span>
+          <input
+            type="text"
+            name="examplesnativescript"
+            value={editedWord.examples[0]?.inNativeScript}
+            className="mx-2 py-1 border rounded"
+          />
+        </label>
+
+        <label className="flex">
+          <span className="w-24 ml-2">wordLevel</span>
+          <input
+            type="text"
+            name="wordLevel"
+            value={editedWord.wordLevel}
+            className="mx-2 py-1 border rounded"
+          />
+        </label>
       </div>
 
       <button onClick={handleClose}>Close</button>
