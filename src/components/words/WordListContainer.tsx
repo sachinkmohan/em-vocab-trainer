@@ -1,5 +1,7 @@
+import { useState } from "react";
 import WordItem from "./WordItem";
 import { useEditMode } from "../helpers/EditModeContext";
+import EditWordsDialog from "./EditWordsDialog";
 
 interface Word {
   id: string;
@@ -34,23 +36,40 @@ const WordListContainer: React.FC<WordListContainerProps> = ({
   handleInfoClick,
 }) => {
   const { isEditMode } = useEditMode();
+  const [selectedWord, setSelectedWord] = useState<Word | null>(null);
+
+  const handleEditClick = (word: Word) => {
+    setSelectedWord(word);
+  };
+
+  const handleDialogClose = () => {
+    setSelectedWord(null);
+  };
+
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {words.map((word: Word) => {
-        return (
-          <div key={word.id}>
-            <WordItem
-              word={word}
-              highlightedWordId={highlightedWordId}
-              favoriteWords={favoriteWords}
-              handleFavoriteClick={handleFavoriteClick}
-              handleInfoClick={handleInfoClick}
-            />
-            {isEditMode && <button>Edit</button>}
-          </div>
-        );
-      })}
-    </ul>
+    <>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {words.map((word: Word) => {
+          return (
+            <div key={word.id}>
+              <WordItem
+                word={word}
+                highlightedWordId={highlightedWordId}
+                favoriteWords={favoriteWords}
+                handleFavoriteClick={handleFavoriteClick}
+                handleInfoClick={handleInfoClick}
+              />
+              {isEditMode && (
+                <button onClick={() => handleEditClick(word)}>Edit</button>
+              )}
+            </div>
+          );
+        })}
+      </ul>
+      {selectedWord && (
+        <EditWordsDialog word={selectedWord} onClose={handleDialogClose} />
+      )}
+    </>
   );
 };
 
