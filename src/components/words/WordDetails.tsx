@@ -20,23 +20,43 @@ interface Word {
 }
 
 interface WordDetailsProps {
-  selectedTranslation: Word;
+  selectedWord: Word;
   closeDialog: () => void;
 }
 const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
-  ({ selectedTranslation, closeDialog }, ref) => {
+  ({ selectedWord, closeDialog }, ref) => {
     return (
       <dialog
         ref={ref}
         className="fixed max-w-md h-1/3 bg-gray-50 p-4 rounded-lg shadow-xl border border-gray-200 w-11/12  "
       >
-        <h2 className="text-xl text-center">Word Meaning</h2>
-        <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-yellow-200 to-green-200 tracking-wide leading-relaxed ring-2 ring-blue-300">
-          {selectedTranslation.meaning}
-        </p>
-        <p className="text-lg text-center font-bold mt-4 p-4 rounded-lg shadow-md bg-gradient-to-r from-yellow-200 to-green-200 tracking-wide leading-relaxed ring-2 ring-blue-300">
-          {selectedTranslation.figureOfSpeech}
-        </p>
+        <div className="flex flex-col items-start">
+          <div className="flex flex-row text-2xl pt-5">
+            <h2 className="pr-2 text-bol">Word:</h2>
+            <h2>{selectedWord.word.inTranslit}</h2>
+            <h2>({selectedWord.word.inNativeScript})</h2>
+          </div>
+          <h5 className="pl-16 text-sm">{selectedWord.figureOfSpeech}</h5>
+
+          <div className="flex text-xl">
+            <h2 className="pr-2">Translation:</h2>
+            <h2>{selectedWord.meaning}</h2>
+          </div>
+
+          <div className="flex text-lg mt-4">
+            <h2 className="pr-2">Eg(T).:</h2>
+            <h2>{selectedWord.examples[0].inTranslit}</h2>
+          </div>
+          <div className="flex text-lg">
+            <h2 className="pr-2">Eg(N).:</h2>
+            <h2>{selectedWord.examples[0].inNativeScript}</h2>
+          </div>
+          <div className="flex text-lg">
+            <h2 className="pr-2">Transl.:</h2>
+            <h2>{selectedWord.examples[0].translation}</h2>
+          </div>
+        </div>
+
         <FontAwesomeIcon
           className="absolute top-2 right-2 text-rose-300 text-2xl"
           icon={faCircleXmark}
