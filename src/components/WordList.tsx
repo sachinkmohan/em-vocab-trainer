@@ -277,7 +277,7 @@ const WordList = () => {
       {selectedTranslation && (
         <WordDetails
           ref={dialogRef}
-          selectedTranslation={selectedTranslation}
+          selectedWord={selectedTranslation}
           closeDialog={closeDialog}
         />
       )}
