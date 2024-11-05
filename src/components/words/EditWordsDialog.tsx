@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Word } from "../../interfaces/Word";
-
+import { toast } from "react-toastify";
 interface EditWordsDialogProps {
   word: Word;
   onClose: () => void;
@@ -53,6 +53,31 @@ const EditWordsDialog: React.FC<EditWordsDialogProps> = ({ word, onClose }) => {
         ...prevWord,
         [name]: value,
       }));
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5001/wordsMalayalam/${editedWord.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedWord),
+        }
+      );
+      if (!response.ok) {
+        toast.error("Failed to update word!");
+        throw new Error("Failed to update Word");
+      }
+
+      toast.success("Word succesfully updated!");
+      handleClose();
+    } catch (error) {
+      toast.error("JSON Server not started!");
+      console.error("Error.updating word:", error);
     }
   };
 
@@ -154,7 +179,7 @@ const EditWordsDialog: React.FC<EditWordsDialogProps> = ({ word, onClose }) => {
           Close
         </button>
         <button
-          onClick={handleClose}
+          onClick={handleUpdate}
           className="px-4 py-2 bg-blue-500 text-white rounded"
         >
           Update
