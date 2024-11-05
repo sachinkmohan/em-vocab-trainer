@@ -149,7 +149,17 @@ const EditWordsDialog: React.FC<EditWordsDialogProps> = ({ word, onClose }) => {
         </label>
       </div>
 
-      <button onClick={handleClose}>Close</button>
+      <div className="flex justify-end space-x-2 my-4 mr-2">
+        <button onClick={handleClose} className="px-4 py-2 bg-gray-300 rounded">
+          Close
+        </button>
+        <button
+          onClick={handleClose}
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Update
+        </button>
+      </div>
     </dialog>
   );
 };
