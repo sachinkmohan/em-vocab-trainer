@@ -37,7 +37,9 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
             <h2>({selectedWord.word.inNativeScript})</h2>
           </div>
           <h5 className="pl-16 text-sm text-gray-600">
-            {selectedWord.figureOfSpeech}
+            {selectedWord.figureOfSpeech
+              ? selectedWord.figureOfSpeech
+              : "Unknown"}
           </h5>
 
           <div className="flex text-xl">
@@ -48,19 +50,25 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
           <div className="flex text-lg mt-4">
             <h2 className="pr-2 font-semibold text-purple-600">Eg(T).:</h2>
             <h2 className="text-gray-600">
-              {selectedWord.examples[0].inTranslit}
+              {selectedWord.examples[0].inTranslit
+                ? selectedWord.examples[0].inTranslit
+                : "No data available"}
             </h2>
           </div>
           <div className="flex text-lg">
             <h2 className="pr-2 font-semibold text-purple-600">Eg(N).:</h2>
             <h2 className="text-gray-600">
-              {selectedWord.examples[0].inNativeScript}
+              {selectedWord.examples[0].inNativeScript
+                ? selectedWord.examples[0].inNativeScript
+                : "No data available"}
             </h2>
           </div>
           <div className="flex text-lg">
             <h2 className="pr-2 font-semibold text-purple-600">Transl.:</h2>
             <h2 className="text-gray-600">
-              {selectedWord.examples[0].translation}
+              {selectedWord.examples[0].translation
+                ? selectedWord.examples[0].translation
+                : "No data available"}
             </h2>
           </div>
         </div>
