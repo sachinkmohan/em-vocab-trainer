@@ -22,6 +22,7 @@ const mockWord = {
 };
 
 describe("EditWordsDialog", () => {
+  const mockOnClose = jest.fn();
   beforeAll(() => {
     HTMLDialogElement.prototype.showModal = jest.fn();
     HTMLDialogElement.prototype.close = jest.fn();
@@ -51,5 +52,49 @@ describe("EditWordsDialog", () => {
     fireEvent.click(screen.getByText("Close"));
     expect(mockOnClose).toHaveBeenCalled();
     expect(HTMLDialogElement.prototype.close).toHaveBeenCalled();
+  });
+
+  it("updates the state when input fields are changed", () => {
+    render(<EditWordsDialog word={mockWord} onClose={mockOnClose} />);
+
+    const translitInput = screen.getByDisplayValue("test1");
+    fireEvent.change(translitInput, { target: { value: "updatedTest1" } });
+    expect(translitInput).toHaveValue("updatedTest1");
+
+    const nativeScriptInput = screen.getByDisplayValue("pareekshanam");
+    fireEvent.change(nativeScriptInput, { target: { value: "aanamutta" } });
+    expect(nativeScriptInput).toHaveValue("aanamutta");
+
+    const meaningInput = screen.getByDisplayValue("meaning1");
+    fireEvent.change(meaningInput, { target: { value: "updatedMeanining" } });
+    expect(meaningInput).toHaveValue("updatedMeanining");
+
+    const figureOfSpeechInput = screen.getByDisplayValue("noun");
+    fireEvent.change(figureOfSpeechInput, { target: { value: "pronoun" } });
+    expect(figureOfSpeechInput).toHaveValue("pronoun");
+
+    const exampleTranslitInput = screen.getByDisplayValue("example1");
+    fireEvent.change(exampleTranslitInput, {
+      target: { value: "updatedExample1" },
+    });
+    expect(exampleTranslitInput).toHaveValue("updatedExample1");
+
+    const exampleTranslationInput = screen.getByDisplayValue("translation1");
+    fireEvent.change(exampleTranslationInput, {
+      target: { value: "updatedTranslation now" },
+    });
+    expect(exampleTranslationInput).toHaveValue("updatedTranslation now");
+
+    const exampleNativeScriptInput = screen.getByDisplayValue("pareekshanam 1");
+    fireEvent.change(exampleNativeScriptInput, {
+      target: { value: "updatedPareekshanam 1" },
+    });
+    expect(exampleNativeScriptInput).toHaveValue("updatedPareekshanam 1");
+
+    const wordLevelInput = screen.getByDisplayValue("beginner");
+    fireEvent.change(wordLevelInput, {
+      target: { value: "advanced" },
+    });
+    expect(wordLevelInput).toHaveValue("advanced");
   });
 });
