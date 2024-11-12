@@ -47,7 +47,9 @@ const NavBar = () => {
             Dashboard
           </NavLink>
         </div>
-        <FontAwesomeIcon icon={faUserPen} onClick={toggleEditMode} />
+        {roles && roles.includes("admin") && (
+          <FontAwesomeIcon icon={faUserPen} onClick={toggleEditMode} />
+        )}
         <FontAwesomeIcon
           className="px-4"
           icon={faSignOutAlt}
