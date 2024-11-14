@@ -34,7 +34,15 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
           <div className="flex flex-row text-2xl pt-5">
             <h2 className="pr-2 font-bold text-blue-600">Word:</h2>
             <h2>{selectedWord.word.inTranslit}</h2>
-            <h2>({selectedWord.word.inNativeScript})</h2>
+            <h2>
+              (
+              {selectedWord.word.inNativeScript ? (
+                selectedWord.word.inNativeScript
+              ) : (
+                <span className="text-sm">No data available</span>
+              )}
+              )
+            </h2>
           </div>
           <h5 className="pl-16 text-sm text-gray-600">
             {selectedWord.figureOfSpeech

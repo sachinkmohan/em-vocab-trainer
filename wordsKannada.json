@@ -2,153 +2,476 @@
   "wordsKannada": [
     {
       "id": "f7ec48ae-43cc-4258-904a-a69c85705f19",
-      "word": "idhu",
-      "translation": "this",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "idhu",
+        "inNativeScript": ""
+      },
+      "meaning": "this",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
     {
       "id": "595ae022-4413-4371-92a4-a8df5773203b",
-      "word": "adhu",
-      "translation": "that",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "adhu",
+        "inNativeScript": ""
+      },
+      "meaning": "that",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "43847693-3593-46c3-9a02-25a5363c22bf",
-      "word": "nanna",
-      "translation": "my/mine",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "nanna",
+        "inNativeScript": ""
+      },
+      "meaning": "my/mine",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "df72fa64-3a19-4786-a647-e0f7ff742b7b",
-      "word": "nanu/nanage",
-      "translation": "I",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "nanu/nanage",
+        "inNativeScript": ""
+      },
+      "meaning": "I",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "a1f88b67-a670-408c-9ef5-7ee37056510a",
-      "word": "hesaru",
-      "translation": "name",
-      "figureOfSpeech": "noun"
+      "word": {
+        "inTranslit": "hesaru",
+        "inNativeScript": ""
+      },
+      "meaning": "name",
+      "figureOfSpeech": "noun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "96bf1b53-7382-4481-882f-24c4131590ba",
-      "word": "ōdu",
-      "translation": "to study",
-      "figureOfSpeech": "verb"
+      "word": {
+        "inTranslit": "ōdu",
+        "inNativeScript": ""
+      },
+      "meaning": "to study",
+      "figureOfSpeech": "verb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "0a21c528-91c4-4a33-a6c7-68237f05a118",
-      "word": "ēnu",
-      "translation": "what",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "ēnu",
+        "inNativeScript": ""
+      },
+      "meaning": "what",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "0917f9ef-26f8-45a1-aacd-db2c431e57bb",
-      "word": "yaavudhu",
-      "translation": "which",
-      "figureOfSpeech": "pronoun"
+      "word": {
+        "inTranslit": "yaavudhu",
+        "inNativeScript": ""
+      },
+      "meaning": "which",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "09abdd78-2f96-4b41-938d-2dc0e2b40409",
-      "word": "oota madu",
-      "translation": "to eat",
-      "figureOfSpeech": "verb"
+      "word": {
+        "inTranslit": "oota madu",
+        "inNativeScript": ""
+      },
+      "meaning": "to eat",
+      "figureOfSpeech": "verb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "45e1bf29-d1bb-427b-946b-5cc5a7cbe840",
-      "word": "malagu",
-      "translation": "to sleep",
-      "figureOfSpeech": "verb"
+      "word": {
+        "inTranslit": "malagu",
+        "inNativeScript": ""
+      },
+      "meaning": "to sleep",
+      "figureOfSpeech": "verb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "af8aac44-0050-4355-8134-c374c9a81b14",
-      "word": "yaavagalu",
-      "translation": "always",
-      "figureOfSpeech": "adverb  "
+      "word": {
+        "inTranslit": "yaavagalu",
+        "inNativeScript": ""
+      },
+      "meaning": "always",
+      "figureOfSpeech": "adverb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "a4e7143c-55db-4724-9d40-c8c975375482",
-      "word": "uttara",
-      "translation": "answer",
-      "figureOfSpeech": "noun  "
+      "word": {
+        "inTranslit": "uttara",
+        "inNativeScript": ""
+      },
+      "meaning": "answer",
+      "figureOfSpeech": "noun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "11ff8b1c-a196-418f-badc-8ce11fa9fce3",
-      "word": "matthe",
-      "translation": "and",
-      "figureOfSpeech": "conjunction  "
+      "word": {
+        "inTranslit": "matthe",
+        "inNativeScript": ""
+      },
+      "meaning": "and",
+      "figureOfSpeech": "conjunction",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "d9750e8b-85e7-493e-a636-ee11179dca5b",
-      "word": "munche",
-      "translation": "before",
-      "figureOfSpeech": "preposition  "
+      "word": {
+        "inTranslit": "munche",
+        "inNativeScript": ""
+      },
+      "meaning": "before",
+      "figureOfSpeech": "preposition",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "849b82f6-f1ad-4f15-8b2b-8b63a403d246",
-      "word": "nanthara",
-      "translation": "after",
-      "figureOfSpeech": "preposition  "
+      "word": {
+        "inTranslit": "nanthara",
+        "inNativeScript": ""
+      },
+      "meaning": "after",
+      "figureOfSpeech": "preposition",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "ae53c785-8574-406e-a66d-b99935fb71d7",
-      "word": "eekendare",
-      "translation": "because",
-      "figureOfSpeech": "conjunction  "
+      "word": {
+        "inTranslit": "eekendare",
+        "inNativeScript": ""
+      },
+      "meaning": "because",
+      "figureOfSpeech": "conjunction",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "ee9aa3d2-4f7e-45b4-9d39-c0cb04737fc4",
-      "word": "saha/kooda",
-      "translation": "also",
-      "figureOfSpeech": "adverb  "
+      "word": {
+        "inTranslit": "saha/kooda",
+        "inNativeScript": ""
+      },
+      "meaning": "also",
+      "figureOfSpeech": "adverb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "22236986-8795-4246-84e7-d39aa931aa1d",
-      "word": "matthe",
-      "translation": "again",
-      "figureOfSpeech": "adverb  "
+      "word": {
+        "inTranslit": "matthe",
+        "inNativeScript": ""
+      },
+      "meaning": "again",
+      "figureOfSpeech": "adverb",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
-      "id": "c0a1cc42-7025-4ca9-8ef9-1d05f74c0f0d",
-      "word": "sumaru",
-      "translation": "about",
-      "figureOfSpeech": "adverb  "
+      "id": "0a1cc42-7025-4ca9-8ef9-1d05f74c0f0d",
+      "word": {
+        "inTranslit": "sumaru",
+        "inNativeScript": "about"
+      },
+      "meaning": "adverb",
+      "figureOfSpeech": "",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "d535f96a-8cf4-4870-80f6-01cf5a4467a6",
-      "word": "ella",
-      "translation": "all",
-      "figureOfSpeech": "determiner  "
+      "word": {
+        "inTranslit": "ella",
+        "inNativeScript": ""
+      },
+      "meaning": "all",
+      "figureOfSpeech": "determiner",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "4fbac286-52fd-42c4-b9cc-2d5961d77851",
-      "word": "anthe",
-      "translation": "as",
-      "figureOfSpeech": "preposition  "
+      "word": {
+        "inTranslit": "anthe",
+        "inNativeScript": ""
+      },
+      "meaning": "as",
+      "figureOfSpeech": "preposition",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "83dbc460-0bdc-48f8-a934-c2d76cdcefcd",
-      "word": "madhyana",
-      "translation": "afternoon",
-      "figureOfSpeech": "noun  "
+      "word": {
+        "inTranslit": "madhyana",
+        "inNativeScript": ""
+      },
+      "meaning": "afternoon",
+      "figureOfSpeech": "noun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "8c766cd9-129d-4f54-b97f-6d6ea4390039",
-      "word": "beLagge",
-      "translation": "morning",
-      "figureOfSpeech": "noun  "
+      "word": {
+        "inTranslit": "beLagge",
+        "inNativeScript": ""
+      },
+      "meaning": "morning",
+      "figureOfSpeech": "noun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "b6ab59a4-a214-48c2-add4-a82d75e07d2a",
-      "word": "yavudadaru/enaadaru",
-      "translation": "anything",
-      "figureOfSpeech": "pronoun  "
+      "word": {
+        "inTranslit": "yavudadaru/enaadaru",
+        "inNativeScript": ""
+      },
+      "meaning": "anything",
+      "figureOfSpeech": "pronoun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     },
+
     {
       "id": "0d84edaf-506c-450c-b0c5-bc42a40f6ebd",
-      "word": "Dhina",
-      "translation": "day",
-      "figureOfSpeech": "noun"
+      "word": {
+        "inTranslit": "Dhina",
+        "inNativeScript": ""
+      },
+      "meaning": "day",
+      "figureOfSpeech": "noun",
+      "examples": [
+        {
+          "inTranslit": "",
+          "translation": "",
+          "inNativeScript": ""
+        }
+      ],
+      "wordLevel": "A1",
+      "pronunciation": ""
     }
   ]
 }
