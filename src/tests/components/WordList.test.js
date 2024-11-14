@@ -1,37 +1,35 @@
-// import WordList from "../../components/WordList";
+// import { render } from "@testing-library/react";
+import WordList from "../../components/WordList";
 // import { render, screen, findByText } from "@testing-library/react";
-// jest.mock("firebase/firestore", () => {
-//   (getDocs) => jest.fn(() => mockWords);
-// });
-// const mockWords = [
-//   {
-//     id: "1",
-//     word: "namaskaram",
-//     meaning: "hello",
-//     figureOfSpeech: "noun",
-//   },
-//   {
-//     id: "2",
-//     word: "nanni",
-//     meaning: "thank you",
-//     figureOfSpeech: "noun",
-//   },
-//   {
-//     id: "3",
-//     word: "joli",
-//     meaning: "work",
-//     figureOfSpeech: "noun",
-//   },
-// ];
+// import { useUserData } from "../../components/helpers/UserDataContext";
 
-// describe("WordList component test", () => {
-//   test("WordList component should be imported correctly", () => {
-//     expect(WordList).toBeDefined();
-//   });
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(),
+}));
 
-//   // test('should toggle favorite state when the heart icon is clicked', async () => {
-//   //   const mockAddFavorite = jest.fn();
-//   //   const mockRemoveFavorite = jest.fn();
+jest.mock("../../components/helpers/UserDataContext", () => ({
+  useUserData: jest.fn(),
+}));
 
-//   // })
-// });
+describe("WordList component test", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+  test("WordList component should be imported correctly", () => {
+    expect(WordList).toBeDefined();
+  });
+
+  test("should set userID and prevUserID from localStorage on mount", () => {
+    localStorage.setItem("userID", "testUserID");
+    localStorage.setItem("prevUserID", "testPrevUserID");
+
+    // useUserData.mockReturnValue({
+    //   nickname: "testuser",
+    //   learningLanguage: "malayalam",
+    // });
+    // render(<WordList />);
+
+    expect(localStorage.getItem("userID")).toBe("testUserID");
+    expect(localStorage.getItem("prevUserID")).toBe("testPrevUserID");
+  });
+});

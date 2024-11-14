@@ -1,11 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "./helpers/UserDataContext";
+import { useEditMode } from "./helpers/EditModeContext";
 
 const NavBar = () => {
   const { roles, id } = useUserData();
+  const { toggleEditMode } = useEditMode();
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -45,6 +47,9 @@ const NavBar = () => {
             Dashboard
           </NavLink>
         </div>
+        {roles && roles.includes("admin") && (
+          <FontAwesomeIcon icon={faUserPen} onClick={toggleEditMode} />
+        )}
         <FontAwesomeIcon
           className="px-4"
           icon={faSignOutAlt}

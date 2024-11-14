@@ -1,6 +1,5 @@
 import { db } from "../utils/firebaseConfig";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import { useState, useRef, useEffect } from "react";
 import WordDetails from "./words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
@@ -17,16 +16,27 @@ import {
   deleteDoc,
   query,
   where,
+  CollectionReference,
 } from "firebase/firestore";
 
 import { useUserData } from "./helpers/UserDataContext";
+import WordListContainer from "./words/WordListContainer";
 
 interface Word {
   id: string;
-  word: string;
-  translation: string;
+  word: {
+    inTranslit: string;
+    inNativeScript: string;
+  };
+  meaning: string;
   figureOfSpeech: string;
-  exampleSentence?: string;
+  examples: {
+    inTranslit: string;
+    translation: string;
+    inNativeScript: string;
+  }[];
+  wordLevel: string;
+  pronunciation: string;
 }
 
 const WordList = () => {
@@ -34,7 +44,9 @@ const WordList = () => {
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-  const [selectedTranslation, setSelectedTranslation] = useState("");
+  const [selectedTranslation, setSelectedTranslation] = useState<Word | null>(
+    null
+  );
   const [userID, setUserID] = useState<string | null>(null);
   const [prevUserID, setPrevUserID] = useState<string | null>(null);
 
@@ -45,6 +57,12 @@ const WordList = () => {
   );
   const { userGrowthPoints, addGPToFirebase, removeGPFromFirebase } =
     useUserGrowthPoints(userID);
+
+  useEffect(() => {
+    if (selectedTranslation) {
+      dialogRef.current?.showModal();
+    }
+  }, [selectedTranslation]);
 
   useEffect(() => {
     ReactGA.initialize("G-K25K213J7F");
@@ -72,16 +90,74 @@ const WordList = () => {
     setPrevUserID(prevUserID);
   }, []);
 
-  const handleIconClick = (word: Word) => {
-    setSelectedTranslation(word.translation);
+  const handleInfoClick = (word: Word) => {
+    setSelectedTranslation(word);
     setHighlightedWordId(word.id);
-    dialogRef.current?.showModal();
+    // dialogRef.current?.showModal();
   };
 
   const closeDialog = () => {
     dialogRef.current?.close();
-    setSelectedTranslation("");
+    setSelectedTranslation(null);
     setHighlightedWordId(null);
+  };
+
+  const updateLocalStorage = (WordId: string) => {
+    const updatedFavorite = favoriteWords.includes(WordId)
+      ? favoriteWords.filter((id) => id !== WordId)
+      : [...favoriteWords, WordId];
+    localStorage.setItem("favoriteWords", JSON.stringify(updatedFavorite));
+  };
+
+  const updateLocalState = (WordId: string) => {
+    setFavoriteWords((prevFavorites) => {
+      if (prevFavorites.includes(WordId)) {
+        return prevFavorites.filter((id) => id !== WordId);
+      } else {
+        return [...prevFavorites, WordId];
+      }
+    });
+  };
+
+  const removeFromFavorites = async (
+    favoriteWordIDsCollectionRef: CollectionReference,
+    WordId: string,
+    actualWord: string
+  ) => {
+    // Remove from firestore
+    const q = query(
+      favoriteWordIDsCollectionRef,
+      where("WordId", "==", WordId)
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
+      await removeGPFromFirebase(1);
+      toast.error("Word removed from favorites");
+      ReactGA.event({
+        category: "All Words",
+        action: "Removed from Favorites",
+        label: actualWord,
+      });
+    });
+  };
+
+  const addToFavorites = async (
+    favoriteWordIDsCollectionRef: CollectionReference,
+    WordId: string,
+    actualWord: string
+  ) => {
+    await addDoc(favoriteWordIDsCollectionRef, {
+      WordId,
+      favoritedAt: new Date().toISOString(),
+    });
+    await addGPToFirebase(1);
+    toast.success("Word added to favorites");
+    ReactGA.event({
+      category: "All Words",
+      action: "Added to Favorites",
+      label: actualWord,
+    });
   };
 
   const handleFavoriteClick = async (WordId: string, actualWord: string) => {
@@ -92,93 +168,77 @@ const WordList = () => {
         "favoriteWordIDs"
       );
 
-      // Optimistically update the local state
-      setFavoriteWords((prevFavorites) => {
-        if (prevFavorites.includes(WordId)) {
-          return prevFavorites.filter((id) => id !== WordId);
-        } else {
-          return [...prevFavorites, WordId];
-        }
-      });
-
-      // Update localStorage
-      const updatedFavorite = favoriteWords.includes(WordId)
-        ? favoriteWords.filter((id) => id !== WordId)
-        : [...favoriteWords, WordId];
-      localStorage.setItem("favoriteWords", JSON.stringify(updatedFavorite));
+      updateLocalState(WordId);
+      updateLocalStorage(WordId);
 
       if (favoriteWords.includes(WordId)) {
-        // Remove from firestore
-        const q = query(
+        await removeFromFavorites(
           favoriteWordIDsCollectionRef,
-          where("WordId", "==", WordId)
-        );
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc) => {
-          await deleteDoc(doc.ref);
-          await removeGPFromFirebase(1);
-          toast.error("Word removed from favorites");
-          ReactGA.event({
-            category: "All Words",
-            action: "Removed from Favorites",
-            label: actualWord,
-          });
-        });
-      } else {
-        await addDoc(favoriteWordIDsCollectionRef, {
           WordId,
-          favoritedAt: new Date().toISOString(),
-        });
-        await addGPToFirebase(1);
-        toast.success("Word added to favorites");
-        ReactGA.event({
-          category: "All Words",
-          action: "Added to Favorites",
-          label: actualWord,
-        });
+          actualWord
+        );
+      } else {
+        addToFavorites(favoriteWordIDsCollectionRef, WordId, actualWord);
       }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
 
-  useEffect(() => {
-    const fetchFavoriteWords = async () => {
-      if (!userID) {
-        return;
-      }
-      try {
-        const userDocRef = doc(db, "users", userID ?? "");
-        const favoriteWordIDsCollectionRef = collection(
-          userDocRef,
-          "favoriteWordIDs"
-        );
-
-        const querySnapshot = await getDocs(favoriteWordIDsCollectionRef);
-        const favoriteWords = querySnapshot.docs.map(
-          (doc) => doc.data().WordId
-        );
-        setFavoriteWords(favoriteWords);
-
-        // Store fetched words in localStorage
-        localStorage.setItem("favoriteWords", JSON.stringify(favoriteWords));
-      } catch (e) {
-        console.error("Error fetching favorite words: ", e);
-      }
-    };
-
-    // clear favoriteWords in localStorage when userID changes
-    if (prevUserID !== userID) {
-      localStorage.removeItem("favoriteWords");
-    }
-
-    // Read from localStorage on component mount
+  const readFavoritesFromLocalStorage = (
+    setFavoriteWords: (words: string[]) => void
+  ) => {
     const storedFavorites = localStorage.getItem("favoriteWords");
     if (storedFavorites) {
       setFavoriteWords(JSON.parse(storedFavorites));
-    } else {
-      fetchFavoriteWords();
     }
+  };
+
+  const clearFavoritesFromLocalStorage = (
+    prevUserID: string | null,
+    userID: string | null
+  ) => {
+    if (prevUserID !== userID) {
+      localStorage.removeItem("favoriteWords");
+    }
+  };
+
+  const fetchFavoriteWords = async (
+    userID: string,
+    setFavoriteWords: (words: string[]) => void
+  ) => {
+    try {
+      const userDocRef = doc(db, "users", userID ?? "");
+      const favoriteWordIDsCollectionRef = collection(
+        userDocRef,
+        "favoriteWordIDs"
+      );
+
+      const querySnapshot = await getDocs(favoriteWordIDsCollectionRef);
+      const favoriteWords = querySnapshot.docs.map((doc) => doc.data().WordId);
+      setFavoriteWords(favoriteWords);
+
+      // Store fetched words in localStorage
+      localStorage.setItem("favoriteWords", JSON.stringify(favoriteWords));
+    } catch (e) {
+      console.error("Error fetching favorite words: ", e);
+    }
+  };
+
+  useEffect(() => {
+    if (!userID) {
+      return;
+    }
+
+    clearFavoritesFromLocalStorage(prevUserID, userID);
+    readFavoritesFromLocalStorage(setFavoriteWords);
+
+    const storedFavorites = localStorage.getItem("favoriteWords");
+
+    if (!storedFavorites) {
+      fetchFavoriteWords(userID, setFavoriteWords);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
 
@@ -204,53 +264,22 @@ const WordList = () => {
         </h1>
       </div>
       <div className="p-4">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {words
-            //@ts-expect-error - TS doesn't know about toSorted even after adding to tsconfig.json
-            .toSorted((a: Word, b: Word) => {
-              const aFavorited = favoriteWords.includes(a.id);
-              const bFavorited = favoriteWords.includes(b.id);
-              if (aFavorited && !bFavorited) return 1;
-              if (!aFavorited && bFavorited) return -1;
-              return 0;
-            })
-            .map((word: Word) => {
-              return (
-                <li
-                  key={word.id}
-                  className={`flex justify-between items-center border border-blue-300 ${
-                    highlightedWordId === word.id ? "bg-yellow-100" : ""
-                  }`}
-                >
-                  {" "}
-                  {word.word}{" "}
-                  <div className="flex justify-around gap-6 pr-4">
-                    <FontAwesomeIcon
-                      icon={faHeart}
-                      className={
-                        favoriteWords.includes(word.id)
-                          ? "text-red-500"
-                          : "text-gray-500"
-                      }
-                      onClick={() => handleFavoriteClick(word.id, word.word)}
-                    />
-                    <FontAwesomeIcon
-                      icon={faInfoCircle}
-                      className="text-blue-500"
-                      onClick={() => handleIconClick(word)}
-                    />
-                  </div>
-                </li>
-              );
-            })}
-        </ul>
+        <WordListContainer
+          words={words}
+          favoriteWords={favoriteWords}
+          handleFavoriteClick={handleFavoriteClick}
+          handleInfoClick={handleInfoClick}
+          highlightedWordId={highlightedWordId}
+        ></WordListContainer>
       </div>
 
-      <WordDetails
-        ref={dialogRef}
-        selectedTranslation={selectedTranslation}
-        closeDialog={closeDialog}
-      />
+      {selectedTranslation && (
+        <WordDetails
+          ref={dialogRef}
+          selectedWord={selectedTranslation}
+          closeDialog={closeDialog}
+        />
+      )}
       <ToastContainer closeOnClick autoClose={2000} />
     </>
   );
