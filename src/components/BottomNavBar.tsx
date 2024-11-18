@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaHome, FaHeart } from "react-icons/fa";
+import { HiRocketLaunch } from "react-icons/hi2";
 
 const BottomNavBar = () => {
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -10,8 +11,13 @@ const BottomNavBar = () => {
         <NavLink to="/library" className={getNavLinkClass}>
           <FaHome />
         </NavLink>
+
         <NavLink to="/user-all-time-dashboard" className={getNavLinkClass}>
           <FaHeart />
+        </NavLink>
+
+        <NavLink to="/learn-new-words" className={getNavLinkClass}>
+          <HiRocketLaunch />
         </NavLink>
       </div>
     </div>
