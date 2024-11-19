@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 const LearnWords = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/start-words-game");
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-blue-800">
       <head>
@@ -12,7 +19,10 @@ const LearnWords = () => {
         </p>
       </div>
       <div className="flex flex-grow justify-center items-center">
-        <button className="bg-white py-2 px-4 rounded-full">
+        <button
+          className="bg-white py-2 px-4 rounded-full"
+          onClick={handleButtonClick}
+        >
           Let's Learn!
         </button>
       </div>
