@@ -1,12 +1,18 @@
 import { useState } from "react";
-import wordsDataMalayalam from "../../../wordsMalayalam.json";
+import { useNavigate } from "react-router-dom";
+import wordsDataMalayalam from "../../../../wordsMalayalam.json";
 
 const words = wordsDataMalayalam.wordsMalayalam.slice(0, 3);
 const LearnWordsGame = () => {
+  const navigate = useNavigate();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   const handleButtonClick = () => {
-    setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+    if (currentWordIndex === words.length - 1) {
+      navigate("/learn-words-end-screen");
+    } else {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }
   };
 
   const selectedWord = words[currentWordIndex];
