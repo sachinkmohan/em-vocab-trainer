@@ -11,8 +11,9 @@ import LibraryOfWords from "./pages/LibraryOfWords";
 import MainLayout from "./layouts/MainLayout";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import UserAllTimeDashboard from "./components/dashboard/UserAllTimeDashboard";
-import LearnWordsContainer from "./components/games/LearnWordsContainer";
-import LearnWordsGame from "./components/games/LearnWordsGame";
+import LearnWordsContainer from "./components/games/LearnWords/LearnWordsContainer";
+import LearnWordsGame from "./components/games/LearnWords/LearnWordsGame";
+import LearnWordsEndScreen from "./components/games/LearnWords/LearnWordsEndScreen";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 import { EditModeProvider } from "./components/helpers/EditModeContext";
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter(
 
       <Route path="/start-words-game" element={<MainLayout />}>
         <Route index element={<LearnWordsGame />} />
+      </Route>
+
+      <Route path="/learn-words-end-screen" element={<MainLayout />}>
+        <Route index element={<LearnWordsEndScreen />} />
       </Route>
     </>
   )
