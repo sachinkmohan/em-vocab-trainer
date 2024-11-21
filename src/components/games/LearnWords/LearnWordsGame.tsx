@@ -1,17 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import wordsDataMalayalam from "../../../../wordsMalayalam.json";
+import { db } from "../../../utils/firebaseConfig";
+import { doc, collection, addDoc } from "firebase/firestore";
 
 const words = wordsDataMalayalam.wordsMalayalam.slice(0, 3);
+
 const LearnWordsGame = () => {
+  const [userID, setUserID] = useState<string | null>(null);
   const navigate = useNavigate();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  const handleButtonClick = () => {
+  useEffect(() => {
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
+  }, []);
+  const handleYesClick = () => {
+    if (currentWordIndex === words.length - 1) {
+      navigate("/learn-words-end-screen");
+      console.log("WordID", selectedWord.id);
+    } else {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      console.log("WordID", selectedWord.id);
+      addLearnedWordsToDB(selectedWord.id);
+    }
+  };
+
+  const handleNoClick = () => {
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
     } else {
       setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }
+  };
+
+  const addLearnedWordsToDB = async (WordId: string) => {
+    try {
+      const userDocRef = doc(db, "users", userID ?? "");
+      const learnedA1WordsCollectionRef = collection(
+        userDocRef,
+        "learnedWords",
+        "A1",
+        "words"
+      );
+
+      await addDoc(learnedA1WordsCollectionRef, {
+        WordId,
+        learnedOn: new Date().toISOString(),
+      });
+      console.log("Added to fireDB");
+    } catch (e) {
+      console.error("Error adding learned words", e);
     }
   };
 
@@ -81,14 +120,14 @@ const LearnWordsGame = () => {
           <div className="flex justify-center space-x-5">
             <button
               className="bg-red-400 m-2 p-2 px-12 rounded-xl"
-              onClick={handleButtonClick}
+              onClick={handleNoClick}
             >
               No
             </button>
 
             <button
               className="bg-green-500 m-2 p-2 px-12 rounded-xl"
-              onClick={handleButtonClick}
+              onClick={handleYesClick}
             >
               Yes
             </button>
