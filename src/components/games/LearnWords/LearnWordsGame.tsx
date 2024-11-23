@@ -15,13 +15,18 @@ const LearnWordsGame = () => {
     const storedUserID = localStorage.getItem("userID");
     setUserID(storedUserID);
   }, []);
+
   const handleYesClick = (): void => {
+    if (!userID) {
+      console.error("User ID not available");
+      return;
+    }
+
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
-      console.log("WordID", selectedWord.id);
+      addLearnedWordsToDB(selectedWord.id);
     } else {
       setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-      console.log("WordID", selectedWord.id);
       addLearnedWordsToDB(selectedWord.id);
     }
   };
