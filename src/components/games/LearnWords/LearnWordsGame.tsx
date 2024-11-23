@@ -15,7 +15,7 @@ const LearnWordsGame = () => {
     const storedUserID = localStorage.getItem("userID");
     setUserID(storedUserID);
   }, []);
-  const handleYesClick = () => {
+  const handleYesClick = (): void => {
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
       console.log("WordID", selectedWord.id);
@@ -26,7 +26,7 @@ const LearnWordsGame = () => {
     }
   };
 
-  const handleNoClick = () => {
+  const handleNoClick = (): void => {
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
     } else {
@@ -34,7 +34,7 @@ const LearnWordsGame = () => {
     }
   };
 
-  const addLearnedWordsToDB = async (WordId: string) => {
+  const addLearnedWordsToDB = async (WordId: string): Promise<void> => {
     try {
       const userDocRef = doc(db, "users", userID ?? "");
       const learnedA1WordsCollectionRef = collection(
@@ -49,9 +49,18 @@ const LearnWordsGame = () => {
         learnedOn: new Date().toISOString(),
       });
       console.log("Added to fireDB");
+      addToLocalStorage(WordId);
     } catch (e) {
       console.error("Error adding learned words", e);
     }
+  };
+
+  const addToLocalStorage = (WordId: string): void => {
+    const learnedWords = JSON.parse(
+      localStorage.getItem("learnedWordsID") ?? "[]"
+    );
+    learnedWords.push(WordId);
+    localStorage.setItem("learnedWordsID", JSON.stringify(learnedWords));
   };
 
   const selectedWord = words[currentWordIndex];
