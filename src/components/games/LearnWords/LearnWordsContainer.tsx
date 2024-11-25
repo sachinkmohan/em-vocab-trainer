@@ -1,11 +1,47 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { db } from "../../../utils/firebaseConfig";
+import { doc, collection, getDocs } from "firebase/firestore";
 
 const LearnWords = () => {
+  const [userID, setUserID] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate("/start-words-game");
   };
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
+
+    const syncLocalStorageWithFirebase = async () => {
+      if (!userID) return;
+
+      const userDocRef = doc(db, "users", userID);
+      const learnedA1WordsCollectionRef = collection(
+        userDocRef,
+        "learnedWords",
+        "A1",
+        "words"
+      );
+
+      const localStorageWords = JSON.parse(
+        localStorage.getItem("learnedWordsID") ?? "[]"
+      );
+      const firebaseWordsSnapshot = await getDocs(learnedA1WordsCollectionRef);
+      const firebaseWords = firebaseWordsSnapshot.docs.map(
+        (doc) => doc.data().WordId
+      );
+
+      if (localStorageWords.length !== firebaseWords.length) {
+        localStorage.setItem("learnedWordsID", JSON.stringify(firebaseWords));
+      }
+    };
+
+    syncLocalStorageWithFirebase();
+  }, [userID]);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-blue-800">
       <head>
