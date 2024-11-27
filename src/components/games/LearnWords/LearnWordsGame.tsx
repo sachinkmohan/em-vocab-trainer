@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import wordsDataMalayalam from "../../../../wordsMalayalam.json";
+import { Word } from "../../../interfaces/Word";
 import { db } from "../../../utils/firebaseConfig";
 import { doc, collection, addDoc } from "firebase/firestore";
-
-const words = wordsDataMalayalam.wordsMalayalam.slice(0, 3);
 
 const LearnWordsGame = () => {
   const [userID, setUserID] = useState<string | null>(null);
   const navigate = useNavigate();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [words, setWords] = useState<Word[]>([]);
+  const [learnedWords, setLearnedWords] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchLearnedWords = JSON.parse(
+      localStorage.getItem("learnedWordsID") ?? "[]"
+    );
+    setLearnedWords(fetchLearnedWords);
+  }, []);
+
+  useEffect(() => {
+    const filteredWords = wordsDataMalayalam.wordsMalayalam
+      .filter((word) => !learnedWords.includes(word.id))
+      .slice(0, 3);
+    setWords(filteredWords);
+  }, [learnedWords]);
 
   useEffect(() => {
     const storedUserID = localStorage.getItem("userID");
@@ -69,6 +84,11 @@ const LearnWordsGame = () => {
   };
 
   const selectedWord = words[currentWordIndex];
+
+  if (!selectedWord) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="bg-blue-800 min-h-screen flex flex-col items-center justify-center">
       <div className="text-center w-full max-w-md">
