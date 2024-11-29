@@ -1,13 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import wordsDataMalayalam from "../../../../wordsMalayalam.json";
+import { Word } from "../../../interfaces/Word";
+import { db } from "../../../utils/firebaseConfig";
+import { doc, collection, addDoc } from "firebase/firestore";
 
-const words = wordsDataMalayalam.wordsMalayalam.slice(0, 3);
 const LearnWordsGame = () => {
+  const [userID, setUserID] = useState<string | null>(null);
   const navigate = useNavigate();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [words, setWords] = useState<Word[]>([]);
+  const [learnedWords, setLearnedWords] = useState<string[]>([]);
 
-  const handleButtonClick = () => {
+  useEffect(() => {
+    const fetchLearnedWords = JSON.parse(
+      localStorage.getItem("learnedWordsID") ?? "[]"
+    );
+    setLearnedWords(fetchLearnedWords);
+  }, []);
+
+  useEffect(() => {
+    const filteredWords = wordsDataMalayalam.wordsMalayalam
+      .filter((word) => !learnedWords.includes(word.id))
+      .slice(0, 3);
+    setWords(filteredWords);
+  }, [learnedWords]);
+
+  useEffect(() => {
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
+  }, []);
+
+  const handleYesClick = (): void => {
+    if (!userID) {
+      console.error("User ID not available");
+      return;
+    }
+
+    if (currentWordIndex === words.length - 1) {
+      navigate("/learn-words-end-screen");
+      addLearnedWordsToDB(selectedWord.id);
+    } else {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      addLearnedWordsToDB(selectedWord.id);
+    }
+  };
+
+  const handleNoClick = (): void => {
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
     } else {
@@ -15,7 +54,41 @@ const LearnWordsGame = () => {
     }
   };
 
+  const addLearnedWordsToDB = async (WordId: string): Promise<void> => {
+    try {
+      const userDocRef = doc(db, "users", userID ?? "");
+      const learnedA1WordsCollectionRef = collection(
+        userDocRef,
+        "learnedWords",
+        "A1",
+        "words"
+      );
+
+      await addDoc(learnedA1WordsCollectionRef, {
+        WordId,
+        learnedOn: new Date().toISOString(),
+      });
+      console.log("Added to fireDB");
+      addToLocalStorage(WordId);
+    } catch (e) {
+      console.error("Error adding learned words", e);
+    }
+  };
+
+  const addToLocalStorage = (WordId: string): void => {
+    const learnedWords = JSON.parse(
+      localStorage.getItem("learnedWordsID") ?? "[]"
+    );
+    learnedWords.push(WordId);
+    localStorage.setItem("learnedWordsID", JSON.stringify(learnedWords));
+  };
+
   const selectedWord = words[currentWordIndex];
+
+  if (!selectedWord) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="bg-blue-800 min-h-screen flex flex-col items-center justify-center">
       <div className="text-center w-full max-w-md">
@@ -81,14 +154,14 @@ const LearnWordsGame = () => {
           <div className="flex justify-center space-x-5">
             <button
               className="bg-red-400 m-2 p-2 px-12 rounded-xl"
-              onClick={handleButtonClick}
+              onClick={handleNoClick}
             >
               No
             </button>
 
             <button
               className="bg-green-500 m-2 p-2 px-12 rounded-xl"
-              onClick={handleButtonClick}
+              onClick={handleYesClick}
             >
               Yes
             </button>
