@@ -40,7 +40,7 @@ interface Word {
 }
 
 const WordList = () => {
-  const { nickname, learningLanguage } = useUserData();
+  const { learningLanguage } = useUserData();
   const [words, setWords] = useState<Word[]>([]);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -51,12 +51,11 @@ const WordList = () => {
   const [prevUserID, setPrevUserID] = useState<string | null>(null);
 
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
-  const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
+  // const [favoriteWordsCount, setFavoriteWordsCount] = useState<number>(0);
   const [highlightedWordId, setHighlightedWordId] = useState<string | null>(
     null
   );
-  const { userGrowthPoints, addGPToFirebase, removeGPFromFirebase } =
-    useUserGrowthPoints(userID);
+  const { addGPToFirebase, removeGPFromFirebase } = useUserGrowthPoints(userID);
 
   useEffect(() => {
     if (selectedTranslation) {
@@ -68,9 +67,9 @@ const WordList = () => {
     ReactGA.initialize("G-K25K213J7F");
   }, []);
 
-  useEffect(() => {
-    setFavoriteWordsCount(favoriteWords.length);
-  }, [favoriteWords]);
+  // useEffect(() => {
+  //   setFavoriteWordsCount(favoriteWords.length);
+  // }, [favoriteWords]);
 
   useEffect(() => {
     if (learningLanguage === "kannada") {
@@ -244,25 +243,6 @@ const WordList = () => {
 
   return (
     <>
-      <div>
-        <h1 className="text-xl font-semibold text-gray-600 ml-2 mb-4">
-          {" "}
-          Welcome {nickname}!
-        </h1>
-        <span className="flex items-center space-x-2 rounded-lg mx-2 px-4 py-1 bg-gray-800 text-white shadow-lg">
-          <span>Total GP - </span>
-          <span className="rounded-full bg-yellow-300 text-gray-800 px-2">
-            {userGrowthPoints}
-          </span>
-        </span>
-        <h1 className="text-xl font-bold text-center text-white mt-4 bg-green-600 rounded-lg shadow-lg mx-2">
-          🫵 have learned{" "}
-          <span className="text-blue-600 text-2xl rounded-full bg-white px-2 py-0">
-            {favoriteWordsCount}
-          </span>{" "}
-          words so far 🥳
-        </h1>
-      </div>
       <div className="p-4">
         <WordListContainer
           words={words}
