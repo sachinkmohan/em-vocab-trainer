@@ -52,7 +52,7 @@ const signUpWithEmail = async (
       instaHandle,
       growthPoints: 0,
     });
-    navigate("/library");
+    navigate("/user-home");
     localStorage.setItem("userID", user.uid ?? "");
   } catch (error) {
     console.error("Error during sign up:", error);
@@ -68,7 +68,7 @@ const signInWithEmail = (
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      navigate("/library");
+      navigate("/user-home");
       localStorage.setItem("userID", user.uid ?? "");
 
       // ...
