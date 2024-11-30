@@ -57,6 +57,15 @@ const WordList = () => {
   );
   const { addGPToFirebase, removeGPFromFirebase } = useUserGrowthPoints(userID);
 
+  const [learnedWords, setLearnedWords] = useState<string[]>([]);
+
+  useEffect(() => {
+    const userLearnedWords = JSON.parse(
+      localStorage.getItem("learnedWordsID") ?? "[]"
+    );
+    setLearnedWords(userLearnedWords);
+  }, []);
+
   useEffect(() => {
     if (selectedTranslation) {
       dialogRef.current?.showModal();
@@ -73,13 +82,21 @@ const WordList = () => {
 
   useEffect(() => {
     if (learningLanguage === "kannada") {
-      setWords(wordsDataKannada.wordsKannada);
+      setWords(
+        wordsDataKannada.wordsKannada.filter((word) =>
+          learnedWords.includes(word.id)
+        )
+      );
     } else if (learningLanguage === "malayalam") {
-      setWords(wordsDataMalayalam.wordsMalayalam);
+      setWords(
+        wordsDataMalayalam.wordsMalayalam.filter((word) =>
+          learnedWords.includes(word.id)
+        )
+      );
     } else {
       setWords([]);
     }
-  }, [learningLanguage]);
+  }, [learningLanguage, learnedWords]);
 
   useEffect(() => {
     const storedUserID = localStorage.getItem("userID");

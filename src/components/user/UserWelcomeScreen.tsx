@@ -7,7 +7,8 @@
 import { useUserData } from "../helpers/UserDataContext";
 import useUserGrowthPoints from "../hooks/useUserGrowthPoints";
 import { useState, useEffect } from "react";
-
+import useSyncLocalLearnedWordsWithFirebase from "../hooks/useSyncLocalLearnedWordsWithFirebase";
+import { toast } from "react-toastify";
 const UserWelcomeScreen = () => {
   const { nickname } = useUserData();
   const [userID, setUserID] = useState<string | null>("");
@@ -17,6 +18,12 @@ const UserWelcomeScreen = () => {
     const storedUserID = localStorage.getItem("userID");
     setUserID(storedUserID);
   }, []);
+
+  const handleSyncComplete = () => {
+    toast.success("Words synced successfully");
+  };
+
+  useSyncLocalLearnedWordsWithFirebase(handleSyncComplete);
 
   return (
     <div>
