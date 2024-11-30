@@ -1,8 +1,8 @@
 // import { db } from "../utils/firebaseConfig";
 import WordList from "../components/WordList";
 
-const LibraryOfWords = () => {
+const LearnedWords = () => {
   return <WordList />;
 };
 
-export default LibraryOfWords;
+export default LearnedWords;

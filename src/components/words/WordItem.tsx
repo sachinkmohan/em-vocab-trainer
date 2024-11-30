@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface Word {
   id: string;
@@ -29,8 +29,8 @@ interface WordItemProps {
 const WordItem: React.FC<WordItemProps> = ({
   word,
   highlightedWordId,
-  favoriteWords,
-  handleFavoriteClick,
+  // favoriteWords,
+  // handleFavoriteClick,
   handleInfoClick,
 }) => {
   return (
@@ -43,13 +43,13 @@ const WordItem: React.FC<WordItemProps> = ({
       {" "}
       {word.word.inTranslit}{" "}
       <div className="flex justify-around gap-6 pr-4">
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           icon={faHeart}
           className={
             favoriteWords.includes(word.id) ? "text-red-500" : "text-gray-500"
           }
           onClick={() => handleFavoriteClick(word.id, word.word.inTranslit)}
-        />
+        /> */}
         <FontAwesomeIcon
           icon={faInfoCircle}
           className="text-blue-500"

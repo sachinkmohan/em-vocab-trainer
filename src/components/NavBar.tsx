@@ -37,15 +37,14 @@ const NavBar = () => {
               <NavLink to="/admin-dashboard" className={linkClass}>
                 A-DBoard
               </NavLink>
+              <NavLink to="/library" className={linkClass}>
+                Library
+              </NavLink>
+              <NavLink to="/user-all-time-dashboard" className={linkClass}>
+                Dashboard
+              </NavLink>
             </>
           )}
-
-          <NavLink to="/library" className={linkClass}>
-            Library
-          </NavLink>
-          <NavLink to="/user-all-time-dashboard" className={linkClass}>
-            Dashboard
-          </NavLink>
         </div>
         {roles && roles.includes("admin") && (
           <FontAwesomeIcon icon={faUserPen} onClick={toggleEditMode} />
