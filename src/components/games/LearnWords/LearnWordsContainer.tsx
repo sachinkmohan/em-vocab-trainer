@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import QuizLearnedWords from "../../quizzes/LearnWords/QuizLearnedWords";
+
 const LearnWords = () => {
   const [userID, setUserID] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -26,13 +28,16 @@ const LearnWords = () => {
           your word power!
         </p>
       </div>
-      <div className="flex flex-grow justify-center items-center">
+      <div className="flex flex-col flex-grow justify-center items-center">
         <button
           className="bg-white py-2 px-4 rounded-full"
           onClick={handleButtonClick}
         >
           Let's Learn!
         </button>
+        <div>
+          <QuizLearnedWords />
+        </div>
       </div>
     </div>
   );
