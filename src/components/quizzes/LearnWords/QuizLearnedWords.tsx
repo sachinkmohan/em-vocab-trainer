@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import wordsMalayalam from "../../../../wordsMalayalam.json";
+import QuizModal from "./QuizModal";
 
 const QuizLearnedWords = ({
   onQuizComplete,
@@ -11,6 +12,8 @@ const QuizLearnedWords = ({
   const [options, setOptions] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+  const [wrongAnswers, setWrongAnswers] = useState<number>(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (selectedOption) {
@@ -24,13 +27,26 @@ const QuizLearnedWords = ({
     );
     if (currentWord && selectedOption === currentWord.meaning) {
       setCorrectAnswers(correctAnswers + 1);
+      if (correctAnswers + 1 >= 3) {
+        onQuizComplete();
+      }
+    } else {
+      setWrongAnswers(wrongAnswers + 1);
+      if (wrongAnswers + 1 >= 3) {
+        setShowModal(true);
+      }
     }
     if (currentWordIndex < 4) {
       setCurrentWordIndex(currentWordIndex + 1);
-    } else {
-      onQuizComplete();
     }
     setSelectedOption("");
+  };
+
+  const resetQuiz = () => {
+    setCurrentWordIndex(0);
+    setCorrectAnswers(0);
+    setWrongAnswers(0);
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -75,8 +91,15 @@ const QuizLearnedWords = ({
     return (correctAnswers / learnedWords.length) * 100;
   };
 
+  const calculateQuizProgress = () => {
+    return (currentWordIndex / learnedWords.length) * 100;
+  };
+
   return (
     <div className="mt-4">
+      <QuizModal show={showModal} onClose={resetQuiz}>
+        <h2> You lost! Try again.</h2>
+      </QuizModal>
       {learnedWords.length > 2 && <p>Hello</p>}
       <div className="border-2 border-indigo-50 p-4">
         <h1>
@@ -106,7 +129,7 @@ const QuizLearnedWords = ({
           <div className="w-full bg-gray-200 rounded-full h-4">
             <div
               className="bg-blue-600 h-4 rounded-full"
-              style={{ width: `${calculateProgress()}%` }}
+              style={{ width: `${calculateQuizProgress()}%` }}
             ></div>
           </div>
           <p className="text-center mt-2">
