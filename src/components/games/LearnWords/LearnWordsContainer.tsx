@@ -17,6 +17,16 @@ const LearnWords = () => {
     setUserID(storedUserID);
   }, [userID]);
 
+  useEffect(() => {
+    const storedLearnedWords = localStorage.getItem("learnedWordsID");
+    if (storedLearnedWords) {
+      const parsedLearnedWords = JSON.parse(storedLearnedWords);
+      if (parsedLearnedWords.length < 5) {
+        setIsQuizComplete(true); // not to confuse, just using this variable to enable the button
+      }
+    }
+  }, []);
+
   const handleQuizComplete = () => {
     setIsQuizComplete(true);
   };
