@@ -53,7 +53,10 @@ const QuizLearnedWords = ({
     const storedLearnedWords = localStorage.getItem("learnedWordsID");
     if (storedLearnedWords) {
       const parsedLearnedWords = JSON.parse(storedLearnedWords);
-      setLearnedWords(parsedLearnedWords.slice(0, 5));
+      const shuffledLearnedWords = parsedLearnedWords.sort(
+        () => 0.5 - Math.random()
+      );
+      setLearnedWords(shuffledLearnedWords.slice(0, 5));
     }
   }, []);
 
