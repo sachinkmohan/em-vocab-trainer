@@ -103,44 +103,45 @@ const QuizLearnedWords = ({
       <QuizModal show={showModal} onClose={resetQuiz}>
         <h2> You lost! Try again.</h2>
       </QuizModal>
-      {learnedWords.length > 2 && <p>Hello</p>}
-      <div className="border-2 border-indigo-50 p-4">
-        <h1>
-          What's the meaning of the word{" "}
-          {
-            wordsMalayalam.wordsMalayalam.find(
-              (word) => word.id === learnedWords[currentWordIndex]
-            )?.word.inTranslit
-          }
-          ?
-        </h1>
-        {options.map((option, index) => (
-          <div key={index}>
-            <input
-              type="radio"
-              id={`option -${index}`}
-              name="quiz-option"
-              value={option}
-              checked={selectedOption === option}
-              onChange={handleOptionChange}
-              className="m-2"
-            />
-            <label htmlFor={`option-${index}`}>{option}</label>
+      {learnedWords.length >= 5 && (
+        <div className="border-2 border-indigo-50 p-4">
+          <h1>
+            What's the meaning of the word{" "}
+            {
+              wordsMalayalam.wordsMalayalam.find(
+                (word) => word.id === learnedWords[currentWordIndex]
+              )?.word.inTranslit
+            }
+            ?
+          </h1>
+          {options.map((option, index) => (
+            <div key={index}>
+              <input
+                type="radio"
+                id={`option -${index}`}
+                name="quiz-option"
+                value={option}
+                checked={selectedOption === option}
+                onChange={handleOptionChange}
+                className="m-2"
+              />
+              <label htmlFor={`option-${index}`}>{option}</label>
+            </div>
+          ))}
+          <div className="mt-4">
+            <div className="w-full bg-gray-200 rounded-full h-4">
+              <div
+                className="bg-blue-600 h-4 rounded-full"
+                style={{ width: `${calculateQuizProgress()}%` }}
+              ></div>
+            </div>
+            <p className="text-center mt-2">
+              {correctAnswers} out of {learnedWords.length} correct (
+              {calculateProgress().toFixed(2)}%)
+            </p>
           </div>
-        ))}
-        <div className="mt-4">
-          <div className="w-full bg-gray-200 rounded-full h-4">
-            <div
-              className="bg-blue-600 h-4 rounded-full"
-              style={{ width: `${calculateQuizProgress()}%` }}
-            ></div>
-          </div>
-          <p className="text-center mt-2">
-            {correctAnswers} out of {learnedWords.length} correct (
-            {calculateProgress().toFixed(2)}%)
-          </p>
         </div>
-      </div>
+      )}
     </div>
   );
 };
