@@ -4,7 +4,7 @@ import BottomNavBar from "../components/BottomNavBar";
 
 const MainLayout = () => {
   return (
-    <div className="bg-blue-800">
+    <div>
       <NavBar />
       <BottomNavBar />
       <Outlet />

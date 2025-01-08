@@ -32,7 +32,7 @@ const LearnWords = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-blue-800">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="text-center">
         <h1 className="text-4xl">Word Quest</h1>
         <p className="text-lg">
