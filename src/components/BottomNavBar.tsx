@@ -9,7 +9,7 @@ const BottomNavBar = () => {
     <div className="fixed bottom-0 left-0 w-full bg-white shadow-md border-t border-gray-200">
       <div className="flex justify-around items-center h-16">
         <NavLink to="/user-home" className={getNavLinkClass}>
-          <FaHome />
+          <FaHome className="size-5" />
         </NavLink>
 
         {/* <NavLink to="/user-all-time-dashboard" className={getNavLinkClass}>
@@ -17,11 +17,11 @@ const BottomNavBar = () => {
         </NavLink> */}
 
         <NavLink to="/learn-new-words" className={getNavLinkClass}>
-          <HiRocketLaunch />
+          <HiRocketLaunch className="size-12" />
         </NavLink>
 
         <NavLink to="/learned-words" className={getNavLinkClass}>
-          <FaBrain />
+          <FaBrain className="size-5" />
         </NavLink>
       </div>
     </div>
