@@ -51,7 +51,7 @@ const LearnWords = () => {
       <div>
         <button
           className={`bg-white py-2 px-4 rounded-full mt-2 border-solid border-2 ${
-            isQuizComplete ? "opacity-100" : "opacity-50 cursor-not-allowed"
+            isQuizComplete ? "bg-lime-400" : "opacity-50 cursor-not-allowed"
           }`}
           onClick={handleButtonClick}
           disabled={!isQuizComplete}
