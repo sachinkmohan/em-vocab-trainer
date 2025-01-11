@@ -5,7 +5,7 @@ import QuizModal from "./QuizModal";
 const QuizLearnedWords = ({
   onQuizComplete,
 }: {
-  onQuizComplete: () => void;
+  onQuizComplete: (message: string) => void;
 }) => {
   const [learnedWords, setLearnedWords] = useState<string[]>([]);
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
@@ -27,8 +27,12 @@ const QuizLearnedWords = ({
     );
     if (currentWord && selectedOption === currentWord.meaning) {
       setCorrectAnswers(correctAnswers + 1);
-      if (correctAnswers + 1 >= 3) {
-        onQuizComplete();
+      if (correctAnswers + 1 === 3) {
+        onQuizComplete("Hurrah, you did it! Quiz is now enabled for you!");
+      } else if (correctAnswers + 1 === 4) {
+        onQuizComplete("You are irresistable! Can you get a 💯?");
+      } else if (correctAnswers + 1 === 5) {
+        onQuizComplete("OMG! That's a 💯! You need a pat on your back!");
       }
     } else {
       setWrongAnswers(wrongAnswers + 1);
