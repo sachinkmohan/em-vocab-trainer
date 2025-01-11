@@ -92,7 +92,6 @@ const QuizLearnedWords = ({
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
-    console.log("CI", currentWordIndex);
   };
 
   const calculateProgress = () => {
