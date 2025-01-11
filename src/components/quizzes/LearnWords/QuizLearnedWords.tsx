@@ -40,7 +40,7 @@ const QuizLearnedWords = ({
         setShowModal(true);
       }
     }
-    if (currentWordIndex < 4) {
+    if (currentWordIndex < 5) {
       setCurrentWordIndex(currentWordIndex + 1);
     }
     setSelectedOption("");
@@ -92,6 +92,7 @@ const QuizLearnedWords = ({
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
+    console.log("CI", currentWordIndex);
   };
 
   const calculateProgress = () => {
@@ -128,6 +129,7 @@ const QuizLearnedWords = ({
                 checked={selectedOption === option}
                 onChange={handleOptionChange}
                 className="m-2"
+                disabled={currentWordIndex === 5}
               />
               <label htmlFor={`option-${index}`}>{option}</label>
             </div>
