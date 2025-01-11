@@ -85,6 +85,8 @@ const QuizLearnedWords = ({
     );
     const shuffledOptions = [
       correctOption,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore no fix yet for this new feature
       ...incorrectOptions.toSorted(() => 0.5 - Math.random()).slice(0, 3),
     ];
     return shuffledOptions.sort(() => 0.5 - Math.random());
