@@ -90,7 +90,7 @@ const LearnWordsGame = () => {
   }
 
   return (
-    <div className="bg-blue-800 min-h-screen flex flex-col items-center justify-center">
+    <div className=" min-h-screen flex flex-col items-center justify-center">
       <div className="text-center w-full max-w-md">
         <h1 className="text-4xl text-white m-4 p-4 border-2 border-blue-300 bg-blue-500 rounded-xl">
           {selectedWord.word.inTranslit}
