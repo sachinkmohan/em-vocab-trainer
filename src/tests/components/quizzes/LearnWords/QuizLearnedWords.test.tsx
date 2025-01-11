@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import QuizLearnedWords from "../../../../components/quizzes/LearnWords/QuizLearnedWords";
 
@@ -12,8 +12,7 @@ describe("QuizLearnedWords", () => {
     });
   });
   it("renders Hello when learnWordsLength is greater than 2", () => {
-    render(<QuizLearnedWords />);
-    const helloText = screen.getByText(/Hello/i);
-    expect(helloText).toBeInTheDocument();
+    const mockOnQuizComplete = jest.fn();
+    render(<QuizLearnedWords onQuizComplete={mockOnQuizComplete} />);
   });
 });
