@@ -36,12 +36,13 @@ const WordItem: React.FC<WordItemProps> = ({
   return (
     <li
       key={word.id}
-      className={`flex justify-between items-center border border-blue-300 ${
-        highlightedWordId === word.id ? "bg-yellow-100" : ""
+      className={`flex justify-between items-center border border-blue-300 rounded-lg ${
+        highlightedWordId === word.id
+          ? "bg-yellow-100"
+          : "bg-gradient-to-r from-blue-200 to-blue-100"
       }`}
     >
-      {" "}
-      {word.word.inTranslit}{" "}
+      <span className=" p-2 pl-4">{word.word.inTranslit}</span>
       <div className="flex justify-around gap-6 pr-4">
         {/* <FontAwesomeIcon
           icon={faHeart}
@@ -52,7 +53,7 @@ const WordItem: React.FC<WordItemProps> = ({
         /> */}
         <FontAwesomeIcon
           icon={faInfoCircle}
-          className="text-blue-500"
+          className="text-blue-500 mr-2"
           onClick={() => handleInfoClick(word)}
         />
       </div>
