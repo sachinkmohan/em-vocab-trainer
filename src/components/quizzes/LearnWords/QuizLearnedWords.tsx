@@ -107,7 +107,7 @@ const QuizLearnedWords = ({
   return (
     <div className="mt-4">
       <QuizModal show={showModal} onClose={resetQuiz}>
-        <h2> You lost! Try again.</h2>
+        <h2 className="text-fuchsia-600 text-lg"> You lost!😢 Try again. 💪</h2>
       </QuizModal>
       {learnedWords.length >= 5 && (
         <div className="border-2 border-indigo-50 p-4">
