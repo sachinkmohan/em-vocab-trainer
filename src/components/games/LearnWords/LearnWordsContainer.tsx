@@ -39,9 +39,10 @@ const LearnWords = () => {
       <div className="w-full max-w-md px-4">
         <div className="text-center">
           <h1 className="text-4xl">Word Quest</h1>
-          <p className="text-lg">
+          <p className="text-sm">
             Boost your vocab daily with Word Quest. Learn, challenge, and grow
-            your word power!
+            your word power! Note, to learn new words, you must score a 60% in
+            the quiz.
           </p>
         </div>
         <QuizLearnedWords onQuizComplete={handleQuizComplete} />
@@ -51,7 +52,7 @@ const LearnWords = () => {
       <div>
         <button
           className={`bg-white py-2 px-4 rounded-full mt-2 border-solid border-2 ${
-            isQuizComplete ? "bg-lime-400" : "opacity-50 cursor-not-allowed"
+            isQuizComplete ? "bg-lime-300" : "opacity-50"
           }`}
           onClick={handleButtonClick}
           disabled={!isQuizComplete}
