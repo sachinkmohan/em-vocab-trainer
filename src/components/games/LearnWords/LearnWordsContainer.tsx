@@ -7,6 +7,8 @@ import LearnWordsScoreCard from "./LearnWordsScoreCard";
 const LearnWords = () => {
   const [userID, setUserID] = useState<string | null>(null);
   const [isQuizComplete, setIsQuizComplete] = useState<boolean>(false);
+  const [notEnoughWordsLearned, setNotEnoughWordsLearned] =
+    useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>("");
   const navigate = useNavigate();
 
@@ -21,10 +23,13 @@ const LearnWords = () => {
 
   useEffect(() => {
     const storedLearnedWords = localStorage.getItem("learnedWordsID");
+    if (storedLearnedWords === null) {
+      setNotEnoughWordsLearned(true);
+    }
     if (storedLearnedWords) {
       const parsedLearnedWords = JSON.parse(storedLearnedWords);
       if (parsedLearnedWords.length < 5) {
-        setIsQuizComplete(true); // not to confuse, just using this variable to enable the button
+        setNotEnoughWordsLearned(true);
       }
     }
   }, []);
@@ -45,21 +50,32 @@ const LearnWords = () => {
             the quiz.
           </p>
         </div>
+
         <QuizLearnedWords onQuizComplete={handleQuizComplete} />
-        {isQuizComplete && <LearnWordsScoreCard userMessage={userMessage} />}
+
+        {isQuizComplete && !notEnoughWordsLearned && (
+          <LearnWordsScoreCard userMessage={userMessage} />
+        )}
       </div>
 
-      <div>
-        <button
-          className={`bg-white py-2 px-4 rounded-full mt-2 border-solid border-2 ${
-            isQuizComplete ? "bg-lime-300" : "opacity-50"
-          }`}
-          onClick={handleButtonClick}
-          disabled={!isQuizComplete}
-        >
-          Let's Learn!
-        </button>
-      </div>
+      {notEnoughWordsLearned || isQuizComplete ? (
+        <div>
+          <button
+            className={`bg-white py-2 px-4 rounded-full mt-2 border-solid border-2 ${
+              notEnoughWordsLearned || isQuizComplete
+                ? "shadow-lg border-lime-300"
+                : "opacity-50"
+            }`}
+            onClick={handleButtonClick}
+          >
+            Let's Learn!
+          </button>
+        </div>
+      ) : (
+        <p className="animate-pulse mt-2">
+          Button will be back once you score 60%
+        </p>
+      )}
     </div>
   );
 };
