@@ -4,6 +4,7 @@ import wordsDataMalayalam from "../../../../wordsMalayalam.json";
 import { Word } from "../../../interfaces/Word";
 import { db } from "../../../utils/firebaseConfig";
 import { doc, collection, addDoc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
 
 const LearnWordsGame = () => {
   const [userID, setUserID] = useState<string | null>(null);
@@ -32,6 +33,9 @@ const LearnWordsGame = () => {
   }, []);
 
   const handleYesClick = (): void => {
+    toast.success("Saved for eternal brilliance!", {
+      position: "top-right",
+    });
     if (!userID) {
       console.error("User ID not available");
       return;
@@ -47,6 +51,9 @@ const LearnWordsGame = () => {
   };
 
   const handleNoClick = (): void => {
+    toast.success("Taking a pass? You’re still winning!", {
+      position: "top-right",
+    });
     if (currentWordIndex === words.length - 1) {
       navigate("/learn-words-end-screen");
     } else {
@@ -168,6 +175,7 @@ const LearnWordsGame = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
