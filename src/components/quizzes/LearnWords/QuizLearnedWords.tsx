@@ -109,7 +109,7 @@ const QuizLearnedWords = ({
       <QuizModal show={showModal} onClose={resetQuiz}>
         <h2 className="text-fuchsia-600 text-lg"> You lost!😢 Try again. 💪</h2>
       </QuizModal>
-      {learnedWords.length >= 5 && (
+      {learnedWords.length >= 5 ? (
         <div className="border-2 border-indigo-50 p-4">
           <h1>
             What's the meaning of the word{" "}
@@ -148,6 +148,11 @@ const QuizLearnedWords = ({
             </p>
           </div>
         </div>
+      ) : (
+        <p className="border-2 border-indigo-200 text-center rounded-md">
+          {" "}
+          📣 Learn atleast 5 words to see a quiz! 📣
+        </p>
       )}
     </div>
   );
