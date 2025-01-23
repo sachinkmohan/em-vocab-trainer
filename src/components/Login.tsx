@@ -37,7 +37,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
+              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
             />
           </div>
           <div className="py-2">
@@ -62,6 +62,15 @@ const Login = () => {
               {error}
             </div>
           )}
+
+          <div className="text-center my-2">
+            <a
+              href="/forgot-password"
+              className="text-blue-700 hover:underline"
+            >
+              Forgot Password?
+            </a>
+          </div>
 
           {/* Divider */}
           <div className="my-4 border-t border-gray-300"></div>

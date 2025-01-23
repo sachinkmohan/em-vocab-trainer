@@ -17,12 +17,15 @@ import LearnWordsEndScreen from "./components/games/LearnWords/LearnWordsEndScre
 import UserWelcomeScreen from "./components/user/UserWelcomeScreen";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 import { EditModeProvider } from "./components/helpers/EditModeContext";
+import ForgotPassword from "./components/ForgotPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+
+      <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="/home" element={<MainLayout />}>
         <Route index element={<MainHomePage />} />
