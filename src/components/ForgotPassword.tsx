@@ -3,9 +3,9 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [sentEmailAddress, setSentEmailAddress] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string | null>("");
+  const [sentEmailAddress, setSentEmailAddress] = useState<string | null>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
