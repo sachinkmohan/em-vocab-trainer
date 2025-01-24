@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { signInWithEmail } from "../utils/firebaseConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -64,12 +64,12 @@ const Login = () => {
           )}
 
           <div className="text-center my-2">
-            <a
-              href="/forgot-password"
+            <Link
+              to="/forgot-password"
               className="text-blue-700 hover:underline"
             >
               Forgot Password?
-            </a>
+            </Link>
           </div>
 
           {/* Divider */}
