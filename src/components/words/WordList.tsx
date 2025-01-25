@@ -1,11 +1,11 @@
-import { db } from "../utils/firebaseConfig";
+import { db } from "../../utils/firebaseConfig";
 
 import { useState, useRef, useEffect } from "react";
-import WordDetails from "./words/WordDetails";
+import WordDetails from "../words/WordDetails";
 import { toast, ToastContainer } from "react-toastify";
-import wordsDataMalayalam from "../../wordsMalayalam.json";
-import wordsDataKannada from "../../wordsKannada.json";
-import useUserGrowthPoints from "./hooks/useUserGrowthPoints";
+import wordsDataMalayalam from "../../../wordsMalayalam.json";
+import wordsDataKannada from "../../../wordsKannada.json";
+import useUserGrowthPoints from "../hooks/useUserGrowthPoints";
 import ReactGA from "react-ga4";
 
 import {
@@ -19,8 +19,8 @@ import {
   CollectionReference,
 } from "firebase/firestore";
 
-import { useUserData } from "./helpers/UserDataContext";
-import WordListContainer from "./words/WordListContainer";
+import { useUserData } from "../helpers/UserDataContext";
+import WordListContainer from "../words/WordListContainer";
 
 interface Word {
   id: string;

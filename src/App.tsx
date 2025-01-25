@@ -18,6 +18,7 @@ import UserWelcomeScreen from "./components/user/UserWelcomeScreen";
 import { UserDataProvider } from "./components/helpers/UserDataContext";
 import { EditModeProvider } from "./components/helpers/EditModeContext";
 import ForgotPassword from "./components/ForgotPassword";
+import MasterWordList from "../src/components/words/MasterWordList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,6 +58,10 @@ const router = createBrowserRouter(
 
       <Route path="/learn-words-end-screen" element={<MainLayout />}>
         <Route index element={<LearnWordsEndScreen />} />
+      </Route>
+
+      <Route path="/library" element={<MainLayout />}>
+        <Route index element={<MasterWordList />} />
       </Route>
     </>
   )
