@@ -23,8 +23,8 @@ interface Word {
 interface WordListContainerProps {
   words: Word[];
   highlightedWordId: string | null;
-  favoriteWords: string[];
-  handleFavoriteClick: (wordId: string, actualWord: string) => void;
+  favoriteWords?: string[];
+  handleFavoriteClick?: (wordId: string, actualWord: string) => void;
   handleInfoClick: (word: Word) => void;
 }
 
@@ -55,8 +55,8 @@ const WordListContainer: React.FC<WordListContainerProps> = ({
               <WordItem
                 word={word}
                 highlightedWordId={highlightedWordId}
-                favoriteWords={favoriteWords}
-                handleFavoriteClick={handleFavoriteClick}
+                favoriteWords={favoriteWords || []} // Provide a default empty array if favoriteWords is undefined
+                handleFavoriteClick={handleFavoriteClick || (() => {})} // need to handle favoriteWords differently
                 handleInfoClick={handleInfoClick}
               />
               {isEditMode && (

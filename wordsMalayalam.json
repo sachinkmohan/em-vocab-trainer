@@ -202,15 +202,15 @@
       "id": "38b5ad6e-2a6b-4889-9521-0a9ff77ae743",
       "word": {
         "inTranslit": "karaNam",
-        "inNativeScript": ""
+        "inNativeScript": "കാരണം"
       },
       "meaning": "because",
       "figureOfSpeech": "conjunction",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "joli karaNam njan ksheenithan aanu.",
+          "translation": "I am tired because of work",
+          "inNativeScript": "ജോലി കാരണം ഞാൻ ക്ഷീണിതൻ ആണ്"
         }
       ],
       "wordLevel": "A1",
