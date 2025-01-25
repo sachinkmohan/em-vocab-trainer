@@ -135,6 +135,7 @@ const SignUp = () => {
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
+              <option value="native">Native</option>
             </select>
             {errors.languageLevel && (
               <p className="text-red-500 text-sm">{errors.languageLevel}</p>
