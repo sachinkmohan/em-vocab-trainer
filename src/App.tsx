@@ -19,6 +19,7 @@ import { UserDataProvider } from "./components/helpers/UserDataContext";
 import { EditModeProvider } from "./components/helpers/EditModeContext";
 import ForgotPassword from "./components/ForgotPassword";
 import MasterWordList from "../src/components/words/MasterWordList";
+import CreditContributors from "./pages/CreditContributors";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,10 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignUp />} />
 
       <Route path="/forgot-password" element={<ForgotPassword />} />
+
+      <Route path="/credits" element={<MainLayout />}>
+        <Route index element={<CreditContributors />} />
+      </Route>
 
       <Route path="/home" element={<MainLayout />}>
         <Route index element={<MainHomePage />} />
