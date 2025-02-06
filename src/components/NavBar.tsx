@@ -70,14 +70,18 @@ const NavBar = () => {
       {isMenuOpen && (
         <div className="fixed top-0 right-0 h-full w-64 p-4 bg-gray-50 shadow-md border-r border-gray-200 z-50">
           <div className="flex justify-between items-center my-4">
-            <h2>Menu</h2>
+            <h2 className="font-semibold">Menu</h2>
             <FontAwesomeIcon
               className="cursor-pointer"
               icon={faTimes}
               onClick={toggleMenu}
             />
           </div>
-          <NavLink to="/credits" className="block py-2">
+          <NavLink
+            to="/credits"
+            className="block p-2 hover:bg-gray-100 rounded-lg"
+            onClick={toggleMenu}
+          >
             Credits
           </NavLink>
         </div>
