@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaHome, FaBrain } from "react-icons/fa";
+import { FaHome, FaBrain, FaBell } from "react-icons/fa";
 import { HiRocketLaunch } from "react-icons/hi2";
 
 const BottomNavBar = () => {
@@ -17,11 +17,15 @@ const BottomNavBar = () => {
         </NavLink> */}
 
         <NavLink to="/learn-new-words" className={getNavLinkClass}>
-          <HiRocketLaunch className="size-12" />
+          <HiRocketLaunch className="size-5" />
         </NavLink>
 
         <NavLink to="/learned-words" className={getNavLinkClass}>
           <FaBrain className="size-5" />
+        </NavLink>
+
+        <NavLink to="/feed" className={getNavLinkClass}>
+          <FaBell className="size-5" />
         </NavLink>
       </div>
     </div>
