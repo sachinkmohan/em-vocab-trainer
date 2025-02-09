@@ -21,6 +21,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import MasterWordList from "../src/components/words/MasterWordList";
 import CreditContributors from "./pages/CreditContributors";
 import UserFeed from "../src/pages/UserFeed";
+import DetectLetters from "./components/games/DetectLetters";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,10 @@ const router = createBrowserRouter(
 
       <Route path="/feed" element={<MainLayout />}>
         <Route index element={<UserFeed />} />
+      </Route>
+
+      <Route path="/classify" element={<MainLayout />}>
+        <Route index element={<DetectLetters />} />
       </Route>
 
       <Route path="/learned-words" element={<MainLayout />}>

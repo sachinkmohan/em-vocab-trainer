@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaHome, FaBrain, FaBell } from "react-icons/fa";
+import { FaHome, FaBrain, FaBell, FaAtom } from "react-icons/fa";
 import { HiRocketLaunch } from "react-icons/hi2";
 
 const BottomNavBar = () => {
@@ -26,6 +26,10 @@ const BottomNavBar = () => {
 
         <NavLink to="/feed" className={getNavLinkClass}>
           <FaBell className="size-5" />
+        </NavLink>
+
+        <NavLink to="/classify" className={getNavLinkClass}>
+          <FaAtom className="size-5" />
         </NavLink>
       </div>
     </div>
