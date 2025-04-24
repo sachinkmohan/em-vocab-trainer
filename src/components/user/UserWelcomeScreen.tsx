@@ -8,7 +8,6 @@ import { useUserData } from "../helpers/UserDataContext";
 import useUserGrowthPoints from "../hooks/useUserGrowthPoints";
 import { useState, useEffect } from "react";
 import useSyncLocalLearnedWordsWithFirebase from "../hooks/useSyncLocalLearnedWordsWithFirebase";
-import { toast } from "react-toastify";
 import wordsDataMalayalam from "../../../wordsMalayalam.json";
 import ProgressBar from "../progress-bar/ProgressBar";
 
@@ -30,7 +29,7 @@ const UserWelcomeScreen = () => {
   }, []);
 
   const handleSyncComplete = () => {
-    toast.success("Words synced successfully");
+    console.log("Words synced successfully");
   };
 
   useSyncLocalLearnedWordsWithFirebase(handleSyncComplete);

@@ -28,7 +28,7 @@ const QuizLearnedWords = ({
     if (currentWord && selectedOption === currentWord.meaning) {
       setCorrectAnswers(correctAnswers + 1);
       if (correctAnswers + 1 === 3) {
-        onQuizComplete("Hurrah, you did it! Quiz is now enabled for you!");
+        onQuizComplete("Hurrah, you did it! Quiz is now enabled!");
       } else if (correctAnswers + 1 === 4) {
         onQuizComplete("You are irresistable! Can you get a 💯?");
       } else if (correctAnswers + 1 === 5) {
@@ -105,12 +105,12 @@ const QuizLearnedWords = ({
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 bg-white rounded-2xl">
       <QuizModal show={showModal} onClose={resetQuiz}>
         <h2 className="text-fuchsia-600 text-lg"> You lost!😢 Try again. 💪</h2>
       </QuizModal>
       {learnedWords.length >= 5 ? (
-        <div className="border-2 border-indigo-50 p-4">
+        <div className="p-4">
           <h1>
             What's the meaning of the word{" "}
             {
@@ -136,16 +136,16 @@ const QuizLearnedWords = ({
             </div>
           ))}
           <div className="mt-4">
-            <div className="w-full bg-gray-200 rounded-full h-4">
+            <div className="w-full bg-gray-200 rounded-full h-6 relative">
+              <p className="text-center absolute inset-0 flex items-center justify-center">
+                {correctAnswers} out of {learnedWords.length} correct (
+                {calculateProgress()}%)
+              </p>
               <div
-                className="bg-blue-600 h-4 rounded-full"
+                className="bg-blue-300 h-6 rounded-full"
                 style={{ width: `${calculateQuizProgress()}%` }}
               ></div>
             </div>
-            <p className="text-center mt-2">
-              {correctAnswers} out of {learnedWords.length} correct (
-              {calculateProgress().toFixed(2)}%)
-            </p>
           </div>
         </div>
       ) : (

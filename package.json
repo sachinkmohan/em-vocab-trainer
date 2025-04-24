@@ -7,7 +7,7 @@
     "testEnvironment": "jsdom"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 6180",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
