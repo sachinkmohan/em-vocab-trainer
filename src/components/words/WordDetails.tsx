@@ -28,7 +28,7 @@ const WordDetails = forwardRef<HTMLDialogElement, WordDetailsProps>(
     return (
       <dialog
         ref={ref}
-        className="fixed max-w-md h-1/3 bg-gray-50 p-4 rounded-lg shadow-xl border border-gray-200 w-11/12  "
+        className="fixed max-w-md h-auto max-h-[60vh] bg-gray-50 p-4 rounded-lg shadow-xl border border-gray-200 w-11/12  "
       >
         <div className="flex flex-col items-start pl-3">
           <div className="flex flex-row text-2xl pt-5">
