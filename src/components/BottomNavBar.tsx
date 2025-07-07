@@ -6,7 +6,7 @@ const BottomNavBar = () => {
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "text-yellow-800" : "text-gray-500";
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md border-t border-gray-200">
+    <div className="fixed bottom-0 left-0 w-full bg-white shadow-md border-t border-gray-200 z-10">
       <div className="flex justify-around items-center h-16">
         <NavLink to="/user-home" className={getNavLinkClass}>
           <FaHome className="size-5" />
