@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import wordsMalayalam from "../../../../wordsMalayalam.json";
 import QuizModal from "./QuizModal";
+import { useUserData } from "../../helpers/UserDataContext";
+import { db } from "../../../utils/firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 const QuizLearnedWords = ({
   onQuizComplete,
@@ -14,12 +17,20 @@ const QuizLearnedWords = ({
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { name } = useUserData();
 
   useEffect(() => {
     if (selectedOption) {
       validateAnswer();
     }
   }, [selectedOption]);
+
+  const addQuizPassNotificationToDB = async () => {
+    const docRef = await addDoc(collection(db, "userFeed"), {
+      message: `${name} passed the Quiz! `,
+    });
+    console.log("User passed the quiz with the ID", docRef.id, name);
+  };
 
   const validateAnswer = () => {
     const currentWord = wordsMalayalam.wordsMalayalam.find(
@@ -29,6 +40,7 @@ const QuizLearnedWords = ({
       setCorrectAnswers(correctAnswers + 1);
       if (correctAnswers + 1 === 3) {
         onQuizComplete("Hurrah, you did it! Quiz is now enabled!");
+        addQuizPassNotificationToDB();
       } else if (correctAnswers + 1 === 4) {
         onQuizComplete("You are irresistable! Can you get a 💯?");
       } else if (correctAnswers + 1 === 5) {
