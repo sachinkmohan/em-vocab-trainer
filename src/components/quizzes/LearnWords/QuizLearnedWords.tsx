@@ -4,6 +4,7 @@ import QuizModal from "./QuizModal";
 import { useUserData } from "../../helpers/UserDataContext";
 import { db } from "../../../utils/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+import { format } from "date-fns";
 
 const QuizLearnedWords = ({
   onQuizComplete,
@@ -28,6 +29,7 @@ const QuizLearnedWords = ({
   const addQuizPassNotificationToDB = async () => {
     const docRef = await addDoc(collection(db, "userFeed"), {
       message: `${name} passed the Quiz! `,
+      date: format(new Date(), "dd-MM-yyyy"),
     });
     console.log("User passed the quiz with the ID", docRef.id, name);
   };
