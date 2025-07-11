@@ -3,7 +3,7 @@ import wordsMalayalam from "../../../../wordsMalayalam.json";
 import QuizModal from "./QuizModal";
 import { useUserData } from "../../helpers/UserDataContext";
 import { db } from "../../../utils/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { format } from "date-fns";
 
 const QuizLearnedWords = ({
@@ -11,6 +11,10 @@ const QuizLearnedWords = ({
 }: {
   onQuizComplete: (message: string) => void;
 }) => {
+  interface UIFeedItem {
+    message: string;
+    date: string;
+  }
   const [learnedWords, setLearnedWords] = useState<string[]>([]);
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
   const [options, setOptions] = useState<string[]>([]);
@@ -18,20 +22,59 @@ const QuizLearnedWords = ({
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [uiFeedData, setUIFeedData] = useState<UIFeedItem[]>([]);
   const { name } = useUserData();
 
   useEffect(() => {
     if (selectedOption) {
       validateAnswer();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
 
+  useEffect(() => {
+    const fetchUserFeedData = async () => {
+      try {
+        const querySnapShot = await getDocs(collection(db, "userFeed"));
+        const feedItems: UIFeedItem[] = [];
+        console.log("querSS", querySnapShot.docs);
+        querySnapShot.forEach((doc) => {
+          // console.log("DATAAA", doc.data());
+          feedItems.push({
+            ...doc.data(),
+          } as UIFeedItem);
+        });
+        setUIFeedData(feedItems);
+        console.log("UI FEED DaTA", uiFeedData);
+      } catch (error) {
+        console.log("Error fetching the feed", error);
+      }
+    };
+    fetchUserFeedData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const addQuizPassNotificationToDB = async () => {
-    const docRef = await addDoc(collection(db, "userFeed"), {
-      message: `${name} passed the Quiz! `,
-      date: format(new Date(), "dd-MM-yyyy"),
-    });
-    console.log("User passed the quiz with the ID", docRef.id, name);
+    // fetch all the items from DB and store in the state ✅
+    // fix the any array to a type specific array ✅
+    // if the item.date and item.message are not same
+    // only then push the data ✅
+    const message = `${name} passed the Quiz! `;
+    const date = format(new Date(), "dd-MM-yyyy");
+    const checkIfItemExists = uiFeedData.some(
+      (item) => item.message === message && item.date === date
+    );
+    if (!checkIfItemExists) {
+      try {
+        const docRef = await addDoc(collection(db, "userFeed"), {
+          message,
+          date,
+        });
+        console.log("User passed the quiz with the ID", docRef.id, name);
+      } catch (error) {
+        console.log("Error", error);
+      }
+    }
   };
 
   const validateAnswer = () => {
