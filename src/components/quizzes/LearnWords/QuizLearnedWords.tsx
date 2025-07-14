@@ -3,7 +3,14 @@ import wordsMalayalam from "../../../../wordsMalayalam.json";
 import QuizModal from "./QuizModal";
 import { useUserData } from "../../helpers/UserDataContext";
 import { db } from "../../../utils/firebaseConfig";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  limit,
+} from "firebase/firestore";
 import { format } from "date-fns";
 
 const QuizLearnedWords = ({
@@ -11,10 +18,6 @@ const QuizLearnedWords = ({
 }: {
   onQuizComplete: (message: string) => void;
 }) => {
-  interface UIFeedItem {
-    message: string;
-    date: string;
-  }
   const [learnedWords, setLearnedWords] = useState<string[]>([]);
   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
   const [options, setOptions] = useState<string[]>([]);
@@ -22,7 +25,6 @@ const QuizLearnedWords = ({
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [uiFeedData, setUIFeedData] = useState<UIFeedItem[]>([]);
   const { name } = useUserData();
 
   useEffect(() => {
@@ -32,27 +34,24 @@ const QuizLearnedWords = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
 
-  useEffect(() => {
-    const fetchUserFeedData = async () => {
-      try {
-        const querySnapShot = await getDocs(collection(db, "userFeed"));
-        const feedItems: UIFeedItem[] = [];
-        console.log("querSS", querySnapShot.docs);
-        querySnapShot.forEach((doc) => {
-          // console.log("DATAAA", doc.data());
-          feedItems.push({
-            ...doc.data(),
-          } as UIFeedItem);
-        });
-        setUIFeedData(feedItems);
-        console.log("UI FEED DaTA", uiFeedData);
-      } catch (error) {
-        console.log("Error fetching the feed", error);
-      }
-    };
-    fetchUserFeedData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const checkNotificationExists = async (
+    message: string,
+    date: string
+  ): Promise<boolean> => {
+    try {
+      const q = query(
+        collection(db, "userFeed"),
+        where("message", "==", message),
+        where("date", "==", date),
+        limit(1)
+      );
+      const querySnapShot = await getDocs(q);
+      return !querySnapShot.empty;
+    } catch (error) {
+      console.error("Error checking notification", error);
+      throw error;
+    }
+  };
 
   const addQuizPassNotificationToDB = async () => {
     // fetch all the items from DB and store in the state ✅
@@ -61,19 +60,20 @@ const QuizLearnedWords = ({
     // only then push the data ✅
     const message = `${name} passed the Quiz! `;
     const date = format(new Date(), "dd-MM-yyyy");
-    const checkIfItemExists = uiFeedData.some(
-      (item) => item.message === message && item.date === date
-    );
-    if (!checkIfItemExists) {
-      try {
+    try {
+      const exists = await checkNotificationExists(message, date);
+
+      if (!exists) {
         const docRef = await addDoc(collection(db, "userFeed"), {
           message,
           date,
         });
-        console.log("User passed the quiz with the ID", docRef.id, name);
-      } catch (error) {
-        console.log("Error", error);
+        console.log("Quiz completion notification added:", docRef.id);
+      } else {
+        console.log("Notification already exists for today");
       }
+    } catch (error) {
+      console.error("Failed to add quiz notification:", error);
     }
   };
 
