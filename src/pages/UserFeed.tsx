@@ -1,63 +1,96 @@
-import { FaCheckCircle } from "react-icons/fa"; // Importing necessary icons
+import { formatDistanceToNow, compareDesc, parse } from "date-fns";
+import { db } from "../utils/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { IoPersonCircleOutline } from "react-icons/io5";
+
+interface UserFeed {
+  id: string;
+  date: string;
+  message: string;
+}
 
 const UserFeed = () => {
-  interface TimelineItem {
-    date: string;
-    title: string;
-  }
+  const [userFeedData, setUserFeedData] = useState<UserFeed[]>([]);
 
-  const timelineData: TimelineItem[] = [
-    {
-      date: "06-02-2025",
-      title: "Added a Credits page.",
-    },
-    {
-      date: "01-01-2025",
-      title: "Pre-launched Bhasha Trainer 🥳.",
-    },
-  ].sort((a, b) => {
-    // Sorting by date in DD-MM-YYYY format
-    const [dayA, monthA, yearA] = a.date.split("-").map(Number);
-    const [dayB, monthB, yearB] = b.date.split("-").map(Number);
-    return (
-      new Date(yearB, monthB - 1, dayB).getTime() -
-      new Date(yearA, monthA - 1, dayA).getTime()
+  const parseDate = (date: string) => {
+    return parse(date, "dd-MM-yyyy", new Date());
+  };
+
+  useEffect(() => {
+    const fetchUserFeed = async () => {
+      try {
+        const querySnapShot = await getDocs(collection(db, "userFeed"));
+        querySnapShot.forEach((doc) => {
+          console.log(doc.id, " =>", doc.data());
+        });
+        setUserFeedData(
+          querySnapShot.docs.map(
+            (doc) => ({ id: doc.id, ...doc.data() } as UserFeed)
+          )
+        );
+      } catch (error) {
+        console.error("Error fetching user feed:", error);
+      }
+    };
+
+    fetchUserFeed();
+  }, []);
+
+  const renderUserFeedData = () => {
+    const sortedUserFeedDataWithDate = [...userFeedData].sort(
+      (a: UserFeed, b: UserFeed) => {
+        if (a.date !== "" && b.date !== "") {
+          return compareDesc(parseDate(a.date), parseDate(b.date));
+        }
+        if (a.date === "" && b.date === "") return 0;
+        return a.date === "" ? 1 : -1;
+      }
     );
-  });
-
-  const calculateDaysAgo = (date: string) => {
-    const [day, month, year] = date.split("-").map(Number);
-    const dateObj = new Date(year, month - 1, day);
-    const diffTime = Math.abs(new Date().getTime() - dateObj.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays > 30) {
-      const diffMonths = Math.floor(diffDays / 30);
-      return `${diffMonths} month${diffMonths > 1 ? "s" : ""} ago`;
-    }
-    return `${diffDays} days ago`;
+    return sortedUserFeedDataWithDate.map((ufData) => (
+      <div key={ufData.id} className="flex items-center gap-2">
+        <IoPersonCircleOutline className="text-6xl" />
+        <div>
+          <p>{ufData.message}</p>
+          {/* <p>{ufData.date}</p> */}
+          {ufData.date && (
+            <p className="text-sm text-gray-500">
+              {formatDistanceToNow(
+                parse(ufData.date, "dd-MM-yyyy", new Date()),
+                { addSuffix: true }
+              )}
+            </p>
+          )}
+        </div>
+      </div>
+    ));
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 md:p-6">
-      <div className="space-y-6">
-        {timelineData.map((item, index) => (
-          <div key={item.date} className="relative flex items-center gap-4">
-            {/* Vertical line */}
-            {index !== timelineData.length - 1 && (
-              <div className="absolute left-6 top-12 bottom-0 w-px bg-gray-200" />
-            )}
-
-            {/* Icon */}
-            <div className="relative z-10 flex-shrink-0 text-green-500">
-              <FaCheckCircle className="text-2xl" />{" "}
-            </div>
-            <div>
-              <h3>{item.title}</h3>
-              <p className="text-gray-500">{calculateDaysAgo(item.date)}</p>
-            </div>
-          </div>
-        ))}
+    <div className="max-w-2xl mx-auto px-8 pb-16">
+      <div className="py-2">
+        <h2 className="text-xl font-bold py-2">Scrolls</h2>
       </div>
+      {userFeedData.length === 0 && (
+        <div>
+          <img
+            src="/src/assets/empty-screen-feed-quiz-new.png"
+            alt="illustration of a man and a woman sitting on giant books looking on their phones with a text saying - Time to take a quiz"
+          />
+          <p>
+            Once you've completed a quiz, you'll see updates from the community
+            here.
+          </p>
+          <Link
+            className="w-full block text-center bg-blue-200  rounded-md py-2 my-2"
+            to="/learn-new-words"
+          >
+            Take a Quiz
+          </Link>
+        </div>
+      )}
+      <div>{renderUserFeedData()}</div>
     </div>
   );
 };

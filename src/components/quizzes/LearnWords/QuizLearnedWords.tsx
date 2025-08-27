@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import wordsMalayalam from "../../../../wordsMalayalam.json";
 import QuizModal from "./QuizModal";
+import { useUserData } from "../../helpers/UserDataContext";
+import { db } from "../../../utils/firebaseConfig";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  limit,
+} from "firebase/firestore";
+import { format } from "date-fns";
 
 const QuizLearnedWords = ({
   onQuizComplete,
@@ -14,12 +25,57 @@ const QuizLearnedWords = ({
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [wrongAnswers, setWrongAnswers] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { name } = useUserData();
 
   useEffect(() => {
     if (selectedOption) {
       validateAnswer();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
+
+  const checkNotificationExists = async (
+    message: string,
+    date: string
+  ): Promise<boolean> => {
+    try {
+      const q = query(
+        collection(db, "userFeed"),
+        where("message", "==", message),
+        where("date", "==", date),
+        limit(1)
+      );
+      const querySnapShot = await getDocs(q);
+      return !querySnapShot.empty;
+    } catch (error) {
+      console.error("Error checking notification", error);
+      throw error;
+    }
+  };
+
+  const addQuizPassNotificationToDB = async () => {
+    // fetch all the items from DB and store in the state ✅
+    // fix the any array to a type specific array ✅
+    // if the item.date and item.message are not same
+    // only then push the data ✅
+    const message = `${name} passed the Quiz! `;
+    const date = format(new Date(), "dd-MM-yyyy");
+    try {
+      const exists = await checkNotificationExists(message, date);
+
+      if (!exists) {
+        const docRef = await addDoc(collection(db, "userFeed"), {
+          message,
+          date,
+        });
+        console.log("Quiz completion notification added:", docRef.id);
+      } else {
+        console.log("Notification already exists for today");
+      }
+    } catch (error) {
+      console.error("Failed to add quiz notification:", error);
+    }
+  };
 
   const validateAnswer = () => {
     const currentWord = wordsMalayalam.wordsMalayalam.find(
@@ -29,6 +85,7 @@ const QuizLearnedWords = ({
       setCorrectAnswers(correctAnswers + 1);
       if (correctAnswers + 1 === 3) {
         onQuizComplete("Hurrah, you did it! Quiz is now enabled!");
+        addQuizPassNotificationToDB();
       } else if (correctAnswers + 1 === 4) {
         onQuizComplete("You are irresistable! Can you get a 💯?");
       } else if (correctAnswers + 1 === 5) {

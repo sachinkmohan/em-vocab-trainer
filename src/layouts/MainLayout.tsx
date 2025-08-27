@@ -6,8 +6,8 @@ const MainLayout = () => {
   return (
     <div>
       <NavBar />
-      <BottomNavBar />
       <Outlet />
+      <BottomNavBar />
     </div>
   );
 };
