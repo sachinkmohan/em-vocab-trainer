@@ -90,7 +90,7 @@ const UserFeed = () => {
           </Link>
         </div>
       )}
-      <div>{renderUserFeedData()}</div>)
+      <div>{renderUserFeedData()}</div>
     </div>
   );
 };
