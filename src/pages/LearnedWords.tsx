@@ -1,8 +1,11 @@
-// import { db } from "../utils/firebaseConfig";
 import WordList from "../components/words/WordList";
 
 const LearnedWords = () => {
-  return <WordList />;
+  return (
+    <div className="pb-16">
+      <WordList />
+    </div>
+  );
 };
 
 export default LearnedWords;
