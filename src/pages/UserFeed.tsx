@@ -72,24 +72,25 @@ const UserFeed = () => {
       <div className="py-2">
         <h2 className="text-xl font-bold py-2">Scrolls</h2>
       </div>
-      <div>
-        <img
-          src="/src/assets/empty-screen-feed-quiz-new.png"
-          alt="illustration of a man and a woman sitting on giant books looking on their phones with a text saying - Time to take a quiz"
-        />
-        <p>
-          Once you've completed a quiz, you'll see updates from the community
-          here.
-        </p>
-
-        <Link
-          className="w-full block text-center bg-blue-200  rounded-md py-2 my-2"
-          to="/learn-new-words"
-        >
-          Take a Quiz
-        </Link>
-        {renderUserFeedData()}
-      </div>
+      {userFeedData.length === 0 && (
+        <div>
+          <img
+            src="/src/assets/empty-screen-feed-quiz-new.png"
+            alt="illustration of a man and a woman sitting on giant books looking on their phones with a text saying - Time to take a quiz"
+          />
+          <p>
+            Once you've completed a quiz, you'll see updates from the community
+            here.
+          </p>
+          <Link
+            className="w-full block text-center bg-blue-200  rounded-md py-2 my-2"
+            to="/learn-new-words"
+          >
+            Take a Quiz
+          </Link>
+        </div>
+      )}
+      <div>{renderUserFeedData()}</div>)
     </div>
   );
 };
