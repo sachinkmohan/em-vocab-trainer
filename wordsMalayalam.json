@@ -22,15 +22,15 @@
       "id": "595ae022-4413-4371-92a4-a8df5773203b",
       "word": {
         "inTranslit": "ithu",
-        "inNativeScript": ""
+        "inNativeScript": "ഇത് / ഇതു"
       },
       "meaning": "this",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Ithu car aanu",
+          "translation": "This is a car",
+          "inNativeScript": "ഇത് കാർ ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -40,15 +40,15 @@
       "id": "43847693-3593-46c3-9a02-25a5363c22bf",
       "word": {
         "inTranslit": "athu",
-        "inNativeScript": ""
+        "inNativeScript": "അത് / അതു "
       },
       "meaning": "that",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Athu pusthakam aanu",
+          "translation": "That is a book",
+          "inNativeScript": "അത് പുസ്തകം ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -58,15 +58,15 @@
       "id": "c93b83c4-da8b-431b-93ef-af20ec1e83a3",
       "word": {
         "inTranslit": "ente",
-        "inNativeScript": ""
+        "inNativeScript": "എന്റെ "
       },
       "meaning": "my/mine",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "my/mine",
-          "inNativeScript": ""
+          "inTranslit": "Ente Achchan",
+          "translation": "My Dad",
+          "inNativeScript": "എന്റെ അച്ഛൻ "
         }
       ],
       "wordLevel": "A1",
@@ -75,16 +75,16 @@
     {
       "id": "2675be2b-8553-4e25-ad38-371ac0b6abd3",
       "word": {
-        "inTranslit": "njan/enikku",
-        "inNativeScript": ""
+        "inTranslit": "Enikku",
+        "inNativeScript": "എനിക്ക് / എനിക്കു "
       },
       "meaning": "I",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Enikku ice-cream ishtam aanu.",
+          "translation": "I like ice-cream",
+          "inNativeScript": "എനിക്ക് ഐസ്-ക്രീം ഇഷ്ടം ആണ്"
         }
       ],
       "wordLevel": "A1",
@@ -94,15 +94,15 @@
       "id": "aa03b3e9-71f8-468d-b832-b3fc0bfb2b3b",
       "word": {
         "inTranslit": "peru",
-        "inNativeScript": ""
+        "inNativeScript": "പേര് "
       },
       "meaning": "name",
       "figureOfSpeech": "noun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "ente peru Thomas aaNu",
+          "translation": "My name is Thomas",
+          "inNativeScript": "എന്റെ പേര് തോമസ് ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -112,15 +112,15 @@
       "id": "c7a81809-ec64-4548-8549-c99bc488a3af",
       "word": {
         "inTranslit": "padikkuka",
-        "inNativeScript": ""
+        "inNativeScript": "പഠിക്കുക "
       },
       "meaning": "to study",
       "figureOfSpeech": "verb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Nee padikkuka aaNo?",
+          "translation": "Are you studying?",
+          "inNativeScript": "നീ പഠിക്കുക ആണോ?"
         }
       ],
       "wordLevel": "A1",
@@ -130,15 +130,15 @@
       "id": "0d98e3a5-08a3-4651-9e71-cddfec8f0da8",
       "word": {
         "inTranslit": "ethu",
-        "inNativeScript": ""
+        "inNativeScript": "ഏതു "
       },
       "meaning": "which",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Ethu cinema?",
+          "translation": "Which movie?",
+          "inNativeScript": "ഏതു സിനിമ?"
         }
       ],
       "wordLevel": "A1",
@@ -148,15 +148,15 @@
       "id": "f63ca11a-3259-4aab-bad7-d3b349201512",
       "word": {
         "inTranslit": "enthu",
-        "inNativeScript": ""
+        "inNativeScript": "എന്ത് "
       },
       "meaning": "what",
       "figureOfSpeech": "pronoun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "enthu aanu ithu?",
+          "translation": "What is this?",
+          "inNativeScript": "എന്ത് ആണ് ഇത്?"
         }
       ],
       "wordLevel": "A1",
@@ -166,15 +166,15 @@
       "id": "3981b8e7-3aba-4beb-9656-ad64dcbde00e",
       "word": {
         "inTranslit": "uranguka",
-        "inNativeScript": ""
+        "inNativeScript": "ഉറങ്ങുക "
       },
       "meaning": "to sleep",
       "figureOfSpeech": "verb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Avan uranguka aaNu",
+          "translation": "He is sleeping",
+          "inNativeScript": "അവൻ ഉറങ്ങുക ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -184,15 +184,15 @@
       "id": "c575b8f7-1d2a-46bb-8aaf-d67a5999a614",
       "word": {
         "inTranslit": "kazhikkuka",
-        "inNativeScript": ""
+        "inNativeScript": "കഴിക്കുക "
       },
       "meaning": "to eat",
       "figureOfSpeech": "verb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "Njangal kazhikkuka aaNu",
+          "translation": "We are eating",
+          "inNativeScript": "ഞങ്ങൾ കഴിക്കുക ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -219,16 +219,16 @@
     {
       "id": "5800b05e-4740-4be3-afa3-71c195258576",
       "word": {
-        "inTranslit": "eppozhum",
-        "inNativeScript": ""
+        "inTranslit": "eppozhum/eppoLum",
+        "inNativeScript": "എപ്പോഴും"
       },
       "meaning": "always",
       "figureOfSpeech": "adverb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "njan eppozhum paRayum",
+          "translation": "I always say",
+          "inNativeScript": "ഞാൻ എപ്പോളും പറയും "
         }
       ],
       "wordLevel": "A1",
@@ -238,15 +238,15 @@
       "id": "575cfad1-5a59-40da-96f1-2a04c1c9ea5d",
       "word": {
         "inTranslit": "pinneyum",
-        "inNativeScript": ""
+        "inNativeScript": "പിന്നെയും"
       },
       "meaning": "again",
       "figureOfSpeech": "adverb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "aval pusthakam pinneyum vaayichu",
+          "translation": "She read the book again",
+          "inNativeScript": "അവൾ പുസ്തകം പിന്നെയും വായിച്ചു"
         }
       ],
       "wordLevel": "A1",
@@ -256,15 +256,15 @@
       "id": "6eef5470-5e0a-4b0d-9e73-6e79cfa5d657",
       "word": {
         "inTranslit": "munbu",
-        "inNativeScript": ""
+        "inNativeScript": "മുമ്പ്"
       },
       "meaning": "before",
       "figureOfSpeech": "preposition",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "4:30-kku munbu",
+          "translation": "Before 4:30",
+          "inNativeScript": "4:30 ക്ക് മുമ്പ്  "
         }
       ],
       "wordLevel": "A1",
@@ -274,15 +274,15 @@
       "id": "feb7843c-a1eb-4212-bb7f-0743cad7a50f",
       "word": {
         "inTranslit": "sheSham",
-        "inNativeScript": ""
+        "inNativeScript": "ശേഷം"
       },
       "meaning": "after",
       "figureOfSpeech": "preposition",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "4:30-kku sheSham ",
+          "translation": "After 4:30 ",
+          "inNativeScript": "4:30 ക്ക് ശേഷം "
         }
       ],
       "wordLevel": "A1",
@@ -292,15 +292,15 @@
       "id": "cffda172-2c4c-48ca-b5fb-6a218aac0eee",
       "word": {
         "inTranslit": "um",
-        "inNativeScript": ""
+        "inNativeScript": "ഉം"
       },
       "meaning": "also",
       "figureOfSpeech": "adverb",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "achan-um amma-y-um",
+          "translation": "Dad and Mom",
+          "inNativeScript": "അച്ഛനും അമ്മയും "
         }
       ],
       "wordLevel": "A1",
@@ -309,16 +309,16 @@
     {
       "id": "8065bc6f-b0e9-4d00-8207-6cf0270ed242",
       "word": {
-        "inTranslit": "pinne/um",
-        "inNativeScript": ""
+        "inTranslit": "pinne",
+        "inNativeScript": "പിന്നെ"
       },
       "meaning": "and",
       "figureOfSpeech": "conjunction",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "chaya kudichu pinne kalichu",
+          "translation": "Drank tea and played",
+          "inNativeScript": "ചായ കുടിച്ചു പിന്നെ കളിച്ചു "
         }
       ],
       "wordLevel": "A1",
@@ -328,33 +328,15 @@
       "id": "8e044a76-e096-4968-a882-0ffbcdb2bf0a",
       "word": {
         "inTranslit": "uttharam",
-        "inNativeScript": ""
+        "inNativeScript": "ഉത്തരം"
       },
       "meaning": "answer",
       "figureOfSpeech": "noun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
-        }
-      ],
-      "wordLevel": "A1",
-      "pronunciation": ""
-    },
-    {
-      "id": "1ea56f91-c766-4bc6-97af-da3748b31465",
-      "word": {
-        "inTranslit": "ekadesham",
-        "inNativeScript": ""
-      },
-      "meaning": "about",
-      "figureOfSpeech": "preposition",
-      "examples": [
-        {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "ente uththaram shari aanu",
+          "translation": "My answer is correct",
+          "inNativeScript": "എന്റെ ഉത്തരം ശരി ആണ് "
         }
       ],
       "wordLevel": "A1",
@@ -364,15 +346,15 @@
       "id": "8e572af4-04fb-4dfa-a277-ccdab5fc70bf",
       "word": {
         "inTranslit": "ellam",
-        "inNativeScript": ""
+        "inNativeScript": "എല്ലാം"
       },
       "meaning": "all",
       "figureOfSpeech": "determiner",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "enikku ithu ellam venam",
+          "translation": "I want all this",
+          "inNativeScript": "എനിക്ക് ഇത് എല്ലാം വേണം"
         }
       ],
       "wordLevel": "A1",
@@ -382,15 +364,15 @@
       "id": "a3a5b214-9758-4db1-b057-108660a7880d",
       "word": {
         "inTranslit": "pole",
-        "inNativeScript": ""
+        "inNativeScript": "പോലെ"
       },
       "meaning": "as",
       "figureOfSpeech": "preposition",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "like that house",
+          "translation": "aa veedine pole",
+          "inNativeScript": "ആ വീടിനെ പോലെ "
         }
       ],
       "wordLevel": "A1",
@@ -400,15 +382,15 @@
       "id": "f097f48e-a772-448e-9d07-d9dca4e78ce0",
       "word": {
         "inTranslit": "uccha",
-        "inNativeScript": ""
+        "inNativeScript": "ഉച്ച"
       },
       "meaning": "afternoon",
       "figureOfSpeech": "noun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "enikku uchaykku oru meeting undu",
+          "translation": "I have a meeting in the afternoon",
+          "inNativeScript": "എനിക്ക് ഉച്ചയ്ക്ക് ഒരു മീറ്റിംഗ് ഉണ്ട്"
         }
       ],
       "wordLevel": "A1",
@@ -417,34 +399,16 @@
     {
       "id": "c830b034-0d40-4629-b06b-3b6714309732",
       "word": {
-        "inTranslit": "kalatthu",
-        "inNativeScript": ""
+        "inTranslit": "kalatthu/ravile",
+        "inNativeScript": "കാലത്ത്/രാവിലെ"
       },
       "meaning": "morning",
       "figureOfSpeech": "noun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
-        }
-      ],
-      "wordLevel": "A1",
-      "pronunciation": ""
-    },
-    {
-      "id": "df5c2219-d5bc-4ee6-8387-447d2dd03474",
-      "word": {
-        "inTranslit": "enthum/enthengilum",
-        "inNativeScript": ""
-      },
-      "meaning": "anything",
-      "figureOfSpeech": "pronoun",
-      "examples": [
-        {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "aval ravile kaappi kudikkum",
+          "translation": "She drinks coffee in the morning",
+          "inNativeScript": "അവൾ രാവിലെ കാപ്പി കുടിക്കും"
         }
       ],
       "wordLevel": "A1",
@@ -454,15 +418,15 @@
       "id": "2a50069c-100a-4dda-b73e-abb0106e2c34",
       "word": {
         "inTranslit": "divasam",
-        "inNativeScript": ""
+        "inNativeScript": "ദിവസം"
       },
       "meaning": "day",
       "figureOfSpeech": "noun",
       "examples": [
         {
-          "inTranslit": "",
-          "translation": "",
-          "inNativeScript": ""
+          "inTranslit": "innu manoharamaaya oru divasam aanu",
+          "translation": "Today is a beautiful day",
+          "inNativeScript": "ഇന്ന് മനോഹരമായ ഒരു ദിവസം ആണ്"
         }
       ],
       "wordLevel": "A1",
